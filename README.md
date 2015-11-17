@@ -6,3 +6,5 @@ This repository will contain everything related to the project the group will wo
 	2. Preslav Gerchev
 	3. Dimitar Vikentiev
 	4. Monica Stoica
+
+17.11.2015
