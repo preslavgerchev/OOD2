@@ -1,0 +1,9 @@
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\bin\Debug\OOD2WPF.exe.config
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\bin\Debug\OOD2WPF.exe
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\bin\Debug\OOD2WPF.pdb
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\obj\Debug\OOD2WPF.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\obj\Debug\OOD2WPF.Form1.resources
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\obj\Debug\OOD2WPF.Properties.Resources.resources
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\obj\Debug\OOD2WPF.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\obj\Debug\OOD2WPF.exe
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2WPF\OOD2WPF\obj\Debug\OOD2WPF.pdb
