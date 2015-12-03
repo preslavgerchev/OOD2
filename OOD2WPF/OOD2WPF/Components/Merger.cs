@@ -2,14 +2,26 @@
 
 namespace OOD2WPF
 {
-    class Merger : Component
+    public class Merger : Component
     {
         public int UpperFlow { get; private set; } = 0;
         public int /*Downer*/ LowerFlow { get; private set; } = 0;
-        private const int DefaultCurrentFlow = 0;
+
+        public override int CurrentFlow
+        {
+            get
+            {
+                return this.UpperFlow + this.LowerFlow;
+            }
+
+            set
+            {
+                base.CurrentFlow = value;
+            }
+        }
 
         public Merger(int locX, int locY, int maxFlow)
-            : base(locX, locY, DefaultCurrentFlow, maxFlow)
+            : base(locX, locY, maxFlow)
         {
 
         }
@@ -28,11 +40,6 @@ namespace OOD2WPF
         public void SetLowerFlow(int lowerFlow)
         {
             this.LowerFlow = lowerFlow;
-        }
-
-        public int GetTotalFLow()
-        {
-            return this.LowerFlow + this.UpperFlow;
         }
     }
 }

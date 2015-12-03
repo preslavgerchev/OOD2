@@ -8,8 +8,8 @@ namespace OOD2WPF
         public int UpperFlow { get; private set; } = 0;
         public int LowerFlow { get; private set; } = 0;
 
-        public Splitter(int locx, int locy, int currFlow, int maxFlow) :
-            base(locx, locy, currFlow, maxFlow)
+        public Splitter(int locx, int locy, int maxFlow) :
+            base(locx, locy, maxFlow)
         {
 
         }
@@ -28,11 +28,6 @@ namespace OOD2WPF
         public void SetLowerFlow(int lowerFlow)
         {
             this.LowerFlow = lowerFlow;
-        }
-
-        public int GetCurrentFlow()
-        {
-            return this.LowerFlow + this.UpperFlow;
         }
     }
 }

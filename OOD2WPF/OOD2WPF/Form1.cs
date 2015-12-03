@@ -30,10 +30,10 @@ namespace OOD2WPF
             switch (classType)
             {
                 case 0:
-                    c = new Pump(mea.X, mea.Y,25,25);
+                    c = new Pump(mea.X, mea.Y,25);
                     break;
                 case 1:
-                    c = new Sink(mea.X, mea.Y,25,25);
+                    c = new Sink(mea.X, mea.Y,25);
                     break;
             }
             bool found = false;
@@ -50,6 +50,8 @@ namespace OOD2WPF
                 componentsList.Add(c);
                 graphics.DrawImage(c.GetImage(), c.GetLocation());
                 graphics.DrawRectangle(Pens.Blue, c.GetComponentBox());
+                Font f = new Font(FontFamily.GenericMonospace, 20f, FontStyle.Italic);
+                graphics.DrawString(c.CurrentFlow.ToString(), f, Brushes.Red, c.GetTextLocation());
             }
         }
 

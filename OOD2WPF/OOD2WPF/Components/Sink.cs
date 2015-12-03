@@ -10,8 +10,8 @@ namespace OOD2WPF
     public class Sink : Component
     {
       
-        public Sink(int locX, int locY,int currFlow,int maxFlow) :
-            base(locX, locY,currFlow,maxFlow)
+        public Sink(int locX, int locY,int maxFlow) :
+            base(locX, locY,maxFlow)
         {
 
         }

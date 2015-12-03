@@ -7,14 +7,18 @@ namespace OOD2WPF
     {
         public int LocationX { get; private set; }
         public int LocationY { get; private set; }
+        private int drawingTextLocX;
+        private int drawingTextLocY;
         private int currentFlow;
         private int maxFlow;
         private Rectangle componentBox;
 
-        public Component(int locx, int locy, int currFlow, int maxFlow)
+        public Component(int locx, int locy, int maxFlow)
         {
             this.MaxFlow = maxFlow;
-            this.CurrentFlow = currentFlow;
+            this.CurrentFlow = 0;
+            drawingTextLocX = locx;
+            drawingTextLocY = locy;
             this.LocationX = locx - GetImage().Height / 2;//sets the X to the upper-left corner
             this.LocationY = locy - GetImage().Width / 2;//sets the Y to the upper-left corner
             componentBox = new Rectangle(new Point(LocationX, LocationY), new Size(GetImage().Height, GetImage().Width));
@@ -33,7 +37,7 @@ namespace OOD2WPF
             get { return this.maxFlow; }
         }
 
-        public int CurrentFlow
+        public virtual int CurrentFlow
         {
             set
             {
@@ -58,9 +62,19 @@ namespace OOD2WPF
 
         public abstract Image GetImage();
 
+        public void SetCurrentFlow(int currFlow)
+        {
+            this.CurrentFlow = currFlow;
+        }
+
         public Point GetLocation()
         {
             return new Point(LocationX, LocationY);
+        }
+
+        public Point GetTextLocation()
+        {
+            return new Point(drawingTextLocX, drawingTextLocY);
         }
     }
 }
