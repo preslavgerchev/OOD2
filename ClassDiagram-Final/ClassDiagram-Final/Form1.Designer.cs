@@ -1,4 +1,4 @@
-﻿namespace ClassDiagramOOD2
+﻿namespace ClassDiagram_Final
 {
     partial class Form1
     {

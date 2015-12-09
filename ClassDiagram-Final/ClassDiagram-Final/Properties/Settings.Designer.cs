@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClassDiagramOOD2.Properties
+namespace ClassDiagram_Final.Properties
 {
 
 

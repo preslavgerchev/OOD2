@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClassDiagramOOD2
+namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
     {

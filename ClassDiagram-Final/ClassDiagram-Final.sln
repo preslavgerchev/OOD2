@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagramOOD2", "ClassDiagramOOD2\ClassDiagramOOD2.csproj", "{007B0140-7EDB-4AF3-B526-39C4117FDB43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagram-Final", "ClassDiagram-Final\ClassDiagram-Final.csproj", "{117D9699-8AF8-49C7-A967-1FE00C1E2C6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{007B0140-7EDB-4AF3-B526-39C4117FDB43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{007B0140-7EDB-4AF3-B526-39C4117FDB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{007B0140-7EDB-4AF3-B526-39C4117FDB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{007B0140-7EDB-4AF3-B526-39C4117FDB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117D9699-8AF8-49C7-A967-1FE00C1E2C6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117D9699-8AF8-49C7-A967-1FE00C1E2C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117D9699-8AF8-49C7-A967-1FE00C1E2C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117D9699-8AF8-49C7-A967-1FE00C1E2C6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
