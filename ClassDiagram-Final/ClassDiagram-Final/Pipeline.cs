@@ -7,15 +7,15 @@ using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    class Pipeline
+    public class Pipeline
     {
         // PROPERTIES
-        public Color PipelineColor;
-        public int CurrentFlow { get; set; }
-        public int MaxFlow { get; set; }
+        public Color PipelineColor { get; private set; }
+        public int CurrentFlow { get; private set; }
+        public int MaxFlow { get; private  set; }
         public List<Point> InBetweenPoints;
-        public Component StartComponent { get; set; }
-        public Component EndComponent { get; set; }
+        public Component StartComponent { get; private set; }
+        public Component EndComponent { get; private set; }
 
         // METHODS
 

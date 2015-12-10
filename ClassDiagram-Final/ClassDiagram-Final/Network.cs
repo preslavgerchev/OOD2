@@ -7,11 +7,11 @@ using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    class Network
+   public class Network
     {
         // PROPERTIES
-        public List<Component> MyComponents { get; }
-        public List<Pipeline> Pipelines { get; }
+        public List<Component> MyComponents { get; private set; }
+        public List<Pipeline> Pipelines { get; private  set; }
         
         
         // METHODS 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassDiagram_Final
 {
-    abstract class Sink : Component
+     public class Sink : Component
     {
-        public Pipeline IncomePipeline { get; set; }
+        public Pipeline IncomePipeline { get;private set; }
         public void SetIncomePipeline(Pipeline pipeLine) {  }
 
     }

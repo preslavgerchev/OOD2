@@ -15,7 +15,7 @@ namespace ClassDiagram_Final
         private int locationY;
 
         // PROPERTIES
-        public Rectangle ComponentBox { get; set; }
+        public Rectangle ComponentBox { get; private set; }
 
         // METHODS
         public abstract Image GetImage();

@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    abstract  class Splitter : Component
+    public  class Splitter : Component
     {
         // FIELDS
         private Rectangle upperHalf;

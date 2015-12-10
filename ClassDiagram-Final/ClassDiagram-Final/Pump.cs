@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassDiagram_Final
 {
-   abstract class Pump : Component
+   public class Pump : Component
     {
         // PROPERTIES
         public Pipeline OutcomePipeline { get; set; }

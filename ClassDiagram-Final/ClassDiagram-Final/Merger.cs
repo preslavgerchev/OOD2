@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClassDiagram_Final
 {
-   abstract class Merger : Component
+        public  class Merger : Component
     {
         // FIELDS
         private Rectangle upperHalf;
@@ -15,9 +15,9 @@ namespace ClassDiagram_Final
         
         // PROPERTIES
 
-        public Pipeline LowerIncomePipeline { get; set; }
-        public Pipeline UpperIncomePipeline { get; set; }
-        public Pipeline OutcomePipeline { get; set;}
+        public Pipeline LowerIncomePipeline { get; private set; }
+        public Pipeline UpperIncomePipeline { get; private  set; }
+        public Pipeline OutcomePipeline { get; private  set; }
         
         // METHODS
 
