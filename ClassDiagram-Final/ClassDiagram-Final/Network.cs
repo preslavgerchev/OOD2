@@ -20,7 +20,7 @@ namespace ClassDiagram_Final
         public Component GetComponent(Point p) { return null; }
 
         public bool AddPipeline(Pipeline p) { return false; }
-        public bool RemovePipeline(Pipeline p) { return p; }
+        public bool RemovePipeline(Pipeline p) { return false; }
 
         public bool Save(string filepath) { return false; }
         public bool SaveAs(string filepath) { return false; }

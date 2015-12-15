@@ -1,15 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace ClassDiagram_Final
 {
      public class Sink : Component
     {
         public Pipeline IncomePipeline { get;private set; }
-        public void SetIncomePipeline(Pipeline pipeLine) {  }
 
+        public Sink(int locx,int locy):
+            base(locx,locy)
+        {
+
+        }
+
+        public void SetIncomePipeline(Pipeline incomePipeline)
+        {
+            this.IncomePipeline = incomePipeline;
+        }
+
+        public override void UpdateFlow()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Image GetImage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

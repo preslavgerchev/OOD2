@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    abstract class Component
+  public abstract class Component
     {
         
         // FIELDS
@@ -16,13 +11,34 @@ namespace ClassDiagram_Final
 
         // PROPERTIES
         public Rectangle ComponentBox { get; private set; }
-
+        public Component(int locx,int locy)
+        {
+           
+            this.locationX = locx - GetImage().Height / 2;//sets the X to the upper-left corner
+            this.locationY = locy - GetImage().Width / 2;//sets the Y to the upper-left corner
+            ComponentBox = new Rectangle(new Point(locationX, locationY), new Size(GetImage().Height, GetImage().Width));
+        }
         // METHODS
         public abstract Image GetImage();
-        public virtual Point GetLocation() { Point p = new Point(); return p; }
-        public virtual Point GetTextLocation() { Point p = new Point(); return p; }
-        public virtual bool CheckOverlapComponent(Component otherComponent ) { return false; }
-        public void UpdateFlow() { }
+
+        public virtual Point GetLocation()
+        {   
+            //sets it to the center of the image and rectangle
+            //will be used when connecting pipelines  - so they can go straight to the center
+            return new Point(locationX + GetImage().Height / 2, locationY + GetImage().Width / 2);
+        }
+        public virtual Point GetTextLocation()
+        {   //sets it to the center of the image and the rectangle 
+            //-> have to see if that's a good place for drawing the text.
+            //will be possibly changed
+            return GetLocation();
+        }
+        public virtual bool CheckOverlapComponent(Component otherComponent)
+        {
+            return this.ComponentBox.IntersectsWith(otherComponent.ComponentBox);
+        }
+
+        public abstract void UpdateFlow();
 
 
 
