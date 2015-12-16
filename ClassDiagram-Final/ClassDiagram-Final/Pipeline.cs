@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using System.Drawing;
 
 namespace ClassDiagram_Final
@@ -17,16 +17,43 @@ namespace ClassDiagram_Final
         public Component StartComponent { get; private set; }
         public Component EndComponent { get; private set; }
 
-        // METHODS
-
-        public int ChangeCurrentFlow(int newFlow) { return 0; }
-        public bool CheckFlow() { return false; }
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-        public void SetStartComponent(Component c) { }
-        public void SetEndComponent(Component c) { }
         
+        public Pipeline()
+        {
+            this.InBetweenPoints = new List<Point>();
+        }
+
+        // METHODS
+        public bool ChangeCurrentFlow(int newFlow)
+        {
+            if (newFlow < MaxFlow)
+            {
+                this.CurrentFlow = newFlow;
+                return true;
+            }
+            return false;
+        }
+
+        public bool CheckFlow()
+        {    //if this is for color changing -makes more sense to add another method where we call this one 
+            //and based on the return boolean we change the color or we don't
+            return this.CurrentFlow <= this.MaxFlow;
+        }
+
+        public override string ToString()
+        {   
+            //have to see what else we might return here
+            return CurrentFlow.ToString();
+        }
+
+        public void SetStartComponent(Component startComp)
+        {
+            this.StartComponent = startComp;
+        }
+
+        public void SetEndComponent(Component endComp)
+        {
+            this.EndComponent = endComp;
+        }
     }
 }

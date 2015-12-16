@@ -12,23 +12,64 @@ namespace ClassDiagram_Final
         // PROPERTIES
         public List<Component> MyComponents { get; private set; }
         public List<Pipeline> Pipelines { get; private  set; }
-        
-        
+
+        public Network()
+        {
+            this.MyComponents = new List<Component>();
+            this.Pipelines = new List<Pipeline>();
+        }
+
         // METHODS 
-        public bool AddComponent(Component c) { return false; }
-        public bool RemoveComponent(Component c) { return false; }
-        public Component GetComponent(Point p) { return null; }
+        public bool AddComponent(Component comp)
+        {
+            foreach (Component c in MyComponents)
+            {
+                if (c.CheckOverlapComponent(comp))
+                {
+                    return false;
+                }
+            }
+            MyComponents.Add(comp);
+            return true;
+        }
 
-        public bool AddPipeline(Pipeline p) { return false; }
-        public bool RemovePipeline(Pipeline p) { return false; }
+        public bool RemoveComponent(Component c)
+        {
+            if (MyComponents.Contains(c))
+            {
+                MyComponents.Remove(c);
+                return true;
+            }
+            return false;
+        }
 
+        public Component GetComponent(Point p)
+        {
+            foreach (Component c in MyComponents)
+            {
+                if (c.ComponentBox.Contains(p))
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
+
+        public bool AddPipeline(Pipeline p)
+        {
+            //do some checking for intersecting pipelines - return false
+            //otherwise true and add to list
+            return true;
+        }
+
+        public bool RemovePipeline(Pipeline p)
+        {   //same as above
+            return false;
+        }
+
+        // baby playground  
         public bool Save(string filepath) { return false; }
         public bool SaveAs(string filepath) { return false; }
         public bool Load(string filepath) { return false; }
-        
-
-        
-
-
     }
 }
