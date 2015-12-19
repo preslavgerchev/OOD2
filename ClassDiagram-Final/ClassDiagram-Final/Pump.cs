@@ -15,9 +15,20 @@ namespace ClassDiagram_Final
 
         }
         // METHODS
-        public override void UpdateFlow()
+        /// <summary>
+        /// Updates the flow only if the connected pipeline has the max flow bigger or equal to the new flow of the pump
+        /// The method returns true if the update is done - Monica
+        /// </summary>
+        /// <param name="newFlow"></param>
+        /// <returns></returns>
+        public override bool UpdateFlow(int newFlow)
         {
-            throw new NotImplementedException();
+            if (this.OutcomePipeline.MaxFlow >= newFlow)
+            {
+                SetFlow(newFlow);
+                return true;
+            }
+            else return false;
         }
 
         public override Image GetImage()

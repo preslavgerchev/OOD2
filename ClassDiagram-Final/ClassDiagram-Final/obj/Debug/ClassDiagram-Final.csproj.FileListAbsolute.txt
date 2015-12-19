@@ -22,3 +22,6 @@ C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final
 C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final\obj\Debug\ClassDiagram-Final.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final\bin\Debug\ClassDiagram-Final.exe
 C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final\bin\Debug\ClassDiagram-Final.pdb
+D:\Documents\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final\bin\Debug\ClassDiagram-Final.exe.config
+D:\Documents\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final\obj\Debug\ClassDiagram-Final.exe
+D:\Documents\OOD2\OOD2\ClassDiagram-Final\ClassDiagram-Final\obj\Debug\ClassDiagram-Final.pdb
