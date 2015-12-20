@@ -40,7 +40,7 @@ namespace ClassDiagram_Final
         // METHODS
         public override Image GetImage()
         { //to be done -put images and return
-            throw new NotImplementedException();
+            return Properties.Resources.merger;
         }
 
         public override void UpdateFlow()

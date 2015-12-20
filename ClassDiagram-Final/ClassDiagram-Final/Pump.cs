@@ -33,7 +33,7 @@ namespace ClassDiagram_Final
 
         public override Image GetImage()
         {
-            throw new NotImplementedException();
+            return Properties.Resources.pump;
         }
 
         public void SetOutcomePipeline(Pipeline outcomePipeline)
