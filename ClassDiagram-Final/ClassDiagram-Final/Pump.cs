@@ -21,14 +21,9 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="newFlow"></param>
         /// <returns></returns>
-        public override bool UpdateFlow(int newFlow)
+        public override void UpdateFlow()
         {
-            if (this.OutcomePipeline.MaxFlow >= newFlow)
-            {
-                SetFlow(newFlow);
-                return true;
-            }
-            else return false;
+            throw new NotImplementedException();
         }
 
         public override Image GetImage()

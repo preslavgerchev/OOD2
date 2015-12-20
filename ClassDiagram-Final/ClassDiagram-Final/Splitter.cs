@@ -54,6 +54,10 @@ namespace ClassDiagram_Final
 
         public override Image GetImage()
         {
+            if (IsAdjustable)
+            {
+                return Properties.Resources.adjustable_splitter;
+            }
             return Properties.Resources.splitter;
         }
 

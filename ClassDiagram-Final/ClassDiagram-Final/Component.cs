@@ -13,19 +13,20 @@ namespace ClassDiagram_Final
         public Rectangle ComponentBox { get; private set; }
         public Component(int locx,int locy)
         {
-           
-            this.locationX = locx - GetImage().Height / 2;//sets the X to the upper-left corner
-            this.locationY = locy - GetImage().Width / 2;//sets the Y to the upper-left corner
-            ComponentBox = new Rectangle(new Point(locationX, locationY), new Size(GetImage().Height, GetImage().Width));
+
+            this.locationX = locx - GetImage().Width / 2;//sets the X to the upper-left corner
+            this.locationY = locy - GetImage().Height / 2; //sets the Y to the upper-left corner
+            ComponentBox = new Rectangle(new Point(locationX, locationY), new Size(GetImage().Width, GetImage().Height));
+            
         }
         // METHODS
         public abstract Image GetImage();
 
         public virtual Point GetLocation()
-        {   
+        {
             //sets it to the center of the image and rectangle
             //will be used when connecting pipelines  - so they can go straight to the center
-            return new Point(locationX + GetImage().Height / 2, locationY + GetImage().Width / 2);
+            return new Point(locationX, locationY);
         }
         public virtual Point GetTextLocation()
         {   //sets it to the center of the image and the rectangle 

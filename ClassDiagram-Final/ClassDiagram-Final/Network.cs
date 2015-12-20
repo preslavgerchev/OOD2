@@ -67,9 +67,29 @@ namespace ClassDiagram_Final
             return false;
         }
 
+        public Component CreateComponent(ComponentType type, int locx, int locy)
+        {
+            switch (type)
+            {
+                case ComponentType.MERGER:
+                    return new Merger(locx, locy);
+                case ComponentType.PUMP:
+                    return new Pump(locx, locy);
+                case ComponentType.SINK:
+                    return new Sink(locx, locy);
+                case ComponentType.ADJUSTABLE_SPLITTER:
+                    return new Splitter(locx, locy, true);
+                case ComponentType.SPLITTER:
+                    return new Splitter(locx, locy);
+                default:
+                    return null;
+            }
+        }
+
         // baby playground  
         public bool Save(string filepath) { return false; }
         public bool SaveAs(string filepath) { return false; }
         public bool Load(string filepath) { return false; }
     }
+
 }
