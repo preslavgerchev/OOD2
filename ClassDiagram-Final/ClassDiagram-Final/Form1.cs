@@ -5,8 +5,8 @@ namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
     {
-        Graphics gr;
-        ComponentType type;
+        
+        ComponentType type = ComponentType.NONE;
         Component selectedComponent;
         int mouseX;
         int mouseY;
@@ -15,7 +15,6 @@ namespace ClassDiagram_Final
         {
             InitializeComponent();
             myNetwork = new Network();
-            gr = pictureBox1.CreateGraphics();
             pictureBox1.Paint += PictureBox1_Paint;
             pictureBox1.MouseDown += PictureBox1_MouseDown;
         }
@@ -29,19 +28,16 @@ namespace ClassDiagram_Final
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
-         
-            Component c = myNetwork.CreateComponent(type, mouseX, mouseY);
-            if (c == null)
+            if (selectedComponent != null)
             {
-                return;
+                e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
             }
-            myNetwork.AddComponent(c);
-            foreach (var v in myNetwork.MyComponents)
+            else if(type != ComponentType.NONE)
             {
-                e.Graphics.DrawImage(v.GetImage(), v.GetLocation());
-                e.Graphics.DrawRectangle(Pens.Red, v.ComponentBox);
+                Component c = myNetwork.CreateComponent(type, mouseX, mouseY);
+                myNetwork.AddComponent(c);
             }
-          
+            RedrawImages(e.Graphics);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -67,6 +63,32 @@ namespace ClassDiagram_Final
         private void button4_Click(object sender, EventArgs e)
         {
             type = ComponentType.ADJUSTABLE_SPLITTER;
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            selectedComponent = myNetwork.GetComponent(e.Location);
+            pictureBox1.Invalidate();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (selectedComponent != null)
+            {
+                myNetwork.RemoveComponent(selectedComponent);
+                selectedComponent = null;
+                type = ComponentType.NONE;
+                pictureBox1.Invalidate();
+            }
+        }
+
+        private void RedrawImages(Graphics gr)
+        {
+            foreach (var comp in myNetwork.MyComponents)
+            {
+                gr.DrawImage(comp.GetImage(), comp.GetLocation());
+                gr.DrawString(comp.TestFlow().ToString(), Font, Brushes.Red, comp.GetTextLocation());
+            }
         }
     }
 }

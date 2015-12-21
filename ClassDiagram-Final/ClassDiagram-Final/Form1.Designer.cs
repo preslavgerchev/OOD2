@@ -230,6 +230,7 @@
             this.button7.Size = new System.Drawing.Size(47, 45);
             this.button7.TabIndex = 8;
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // label9
             // 
@@ -480,6 +481,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(885, 520);
             this.pictureBox1.TabIndex = 24;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
             // Form1
             // 
