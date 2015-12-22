@@ -106,11 +106,11 @@
     <None Include="Resources\tick.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pump.png" />
-    <None Include="Resources\sink.png" />
-    <None Include="Resources\splitter.png" />
-    <None Include="Resources\adjustable_splitter.png" />
-    <None Include="Resources\merger.png" />
+    <Content Include="Resources\adjustable_splitter.bmp" />
+    <Content Include="Resources\merger.bmp" />
+    <Content Include="Resources\pump.bmp" />
+    <None Include="Resources\sink.bmp" />
+    <None Include="Resources\splitter.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
