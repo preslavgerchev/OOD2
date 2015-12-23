@@ -56,7 +56,7 @@ namespace ClassDiagram_Final
         {
             if (IsAdjustable)
             {
-                return Properties.Resources.adjustable_splitter;
+                return Properties.Resources.adjustable_splitter ; 
             }
             return Properties.Resources.splitter;
         }

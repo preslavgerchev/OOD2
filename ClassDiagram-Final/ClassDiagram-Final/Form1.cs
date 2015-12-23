@@ -11,12 +11,16 @@ namespace ClassDiagram_Final
         int mouseX;
         int mouseY;
         Network myNetwork;
+        Pipeline pipe;
+
         public Form1()
         {
             InitializeComponent();
             myNetwork = new Network();
             pictureBox1.Paint += PictureBox1_Paint;
             pictureBox1.MouseDown += PictureBox1_MouseDown;
+            pipe = new Pipeline();
+            
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -32,12 +36,13 @@ namespace ClassDiagram_Final
             {
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
             }
-            else if(type != ComponentType.NONE)
+            if (type != ComponentType.NONE)
             {
                 Component c = myNetwork.CreateComponent(type, mouseX, mouseY);
                 myNetwork.AddComponent(c);
             }
             RedrawImages(e.Graphics);
+
         }
 
         private void button2_Click(object sender, EventArgs e)

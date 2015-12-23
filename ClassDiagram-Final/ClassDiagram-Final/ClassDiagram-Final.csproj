@@ -90,27 +90,36 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\save.png" />
+    <None Include="Resources\load.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save as.png" />
+    <None Include="Resources\merger.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\load.png" />
+    <None Include="Resources\pump.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\rubbish.png" />
+    <None Include="Resources\rubbish.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tick.png" />
+    <None Include="Resources\save.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\adjustable_splitter.bmp" />
-    <Content Include="Resources\merger.bmp" />
-    <Content Include="Resources\pump.bmp" />
+    <None Include="Resources\save_as.bmp" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\sink.bmp" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\splitter.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adjustable_splitter.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
