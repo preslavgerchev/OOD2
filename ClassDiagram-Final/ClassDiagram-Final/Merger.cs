@@ -43,11 +43,6 @@ namespace ClassDiagram_Final
             return Properties.Resources.merger;
         }
 
-        public override void UpdateFlow()
-        {  //to be discussed
-            throw new NotImplementedException();
-        }
-
         public void SetLowerIncomePipeline(Pipeline lowerPipeline)
         {
             this.LowerIncomePipeline = lowerPipeline;
@@ -71,6 +66,5 @@ namespace ClassDiagram_Final
             }
             return lowerHalf;
         }
-
     }
 }

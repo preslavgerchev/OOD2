@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    public class Pump : Component
+    public class Pump : Component, IFlow
     {
         // PROPERTIES
         public Pipeline OutcomePipeline { get; private set; }
@@ -21,10 +21,6 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="newFlow"></param>
         /// <returns></returns>
-        public override void UpdateFlow()
-        {
-            throw new NotImplementedException();
-        }
 
         public override Image GetImage()
         {
@@ -39,6 +35,16 @@ namespace ClassDiagram_Final
         public void SetFlow(int newFlow)
         {
             this.Flow = newFlow;
+        }
+
+        public string GetFlow()
+        {
+            return Flow.ToString();
+        }
+
+        public  Point GetTextLocation()
+        {
+            return new Point(GetLocation().X + GetImage().Width / 3, GetLocation().Y + GetImage().Height / 3);
         }
     }
 }

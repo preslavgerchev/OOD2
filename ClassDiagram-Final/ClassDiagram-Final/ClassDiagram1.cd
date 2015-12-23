@@ -3,49 +3,50 @@
   <Class Name="ClassDiagram_Final.Form1" Collapsed="true">
     <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>tiAAAAAAACAAABARAACAIEACAMw7AQAhETAPAQAEAAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram_Final.Merger">
     <Position X="4.75" Y="6.5" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAARAAAACAAAAAAAAACAAQAgAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAgAAAAARAAAACAAAAABAAASAAQAkAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Merger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram_Final.Pump">
     <Position X="9.25" Y="6.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAAAgAACACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAAAgAASACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pump.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram_Final.Sink">
     <Position X="12.75" Y="6.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Sink.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram_Final.Splitter">
     <Position X="1.25" Y="6.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>QEgAAAAAAAAAAAAAAAAAIAAAQIAAgAAAAAAIAgAEAAA=</HashCode>
+      <HashCode>QEgEAAAIAAEAAAAAAAABAABQQAAAkAAAABAIQAAEAAA=</HashCode>
       <FileName>Splitter.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ClassDiagram_Final.Network">
     <Position X="1.25" Y="0.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>EAAAgIACAAAIAAAACAACBAAAAAAAAAAEABAAAAAAAAA=</HashCode>
+      <HashCode>EAAAgIACAAAIAAAACAACBAAAAAAAAAAEABAAAAAABAA=</HashCode>
       <FileName>Network.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ClassDiagram_Final.Component">
     <Position X="5.75" Y="2.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AgAAAAACAAgAAAAAAAAAAAASAAAAAAAAAAgAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAACAAgAAAAAAAAAAAASAAAAAAAAAAgAAAAAAAg=</HashCode>
       <FileName>Component.cs</FileName>
     </TypeIdentifier>
   </Class>

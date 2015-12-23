@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    public class Splitter : Component
+    public class Splitter : Component, IFlow
     {
         // FIELDS
         private Rectangle upperHalf;
@@ -11,6 +11,8 @@ namespace ClassDiagram_Final
 
         // PROPERTIES
         public bool IsAdjustable { get; private set; }
+        public int UpperOutComePercentage { get; private set; } = 50;
+        public int LowerOutComePercentage { get; private set; } = 50;
         public Pipeline LowerOutcomePipeline { get; private set; }
         public Pipeline UpperOutcomePipeline { get; private set; }
         public Pipeline IncomePipeline { get; private set; }
@@ -56,15 +58,11 @@ namespace ClassDiagram_Final
         {
             if (IsAdjustable)
             {
-                return Properties.Resources.adjustable_splitter ; 
+                return Properties.Resources.adjustable_splitter;
             }
             return Properties.Resources.splitter;
         }
 
-        public override void UpdateFlow()
-        {
-            throw new NotImplementedException();
-        }
 
         public Rectangle GetHalfOfRectangle(Point myPoint)
         {
@@ -73,6 +71,25 @@ namespace ClassDiagram_Final
                 return upperHalf;
             }
             return lowerHalf;
+        }
+
+        public string GetFlow()
+        {
+            return string.Format("{0} %", UpperOutComePercentage);
+        }
+
+        public void AdjustPercentages(int newPercentage)
+        {
+            if (!IsAdjustable || newPercentage < 0 || newPercentage > 100)
+            {
+                return;
+            }
+            this.UpperOutComePercentage = newPercentage;
+        }
+
+        public Point GetTextLocation()
+        {
+            return new Point(ComponentBox.Left, ComponentBox.Bottom - 10);
         }
     }
 }
