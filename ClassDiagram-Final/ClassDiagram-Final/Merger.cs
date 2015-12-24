@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace ClassDiagram_Final
 {
-    public class Merger : Component
+    public class Merger : Component, ISplit
     {
-        // FIELDS
-        private Rectangle upperHalf;
-        private Rectangle lowerHalf;
-
         // PROPERTIES
+        public Rectangle UpperHalf { get; }
+        public Rectangle LowerHalf { get; }
 
         public Pipeline LowerIncomePipeline { get; private set; }
         public Pipeline UpperIncomePipeline { get; private set; }
@@ -22,20 +20,19 @@ namespace ClassDiagram_Final
             base(locx, locy)
         {
             //not tested
-            this.upperHalf = CalculateLowerHalf();
-            this.lowerHalf = CalculateUpperHalf();
+            this.UpperHalf = CalculateLowerHalf();
+            this.LowerHalf = CalculateUpperHalf();
 
         }
         //private stuff guys (and girl)
-        private Rectangle CalculateLowerHalf()
-        {
-            return new Rectangle(GetLocation(), new Size(this.ComponentBox.Height / 2, this.ComponentBox.Width));
-        }
-
         private Rectangle CalculateUpperHalf()
         {
-            Point point = new Point(GetLocation().X, GetLocation().Y - this.ComponentBox.Height / 2);
-            return new Rectangle(point, new Size(this.ComponentBox.Height / 2, this.ComponentBox.Width));
+            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(ComponentBox.Width, ComponentBox.Height / 2));
+        }
+
+        private Rectangle CalculateLowerHalf()
+        {
+            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(ComponentBox.Width, ComponentBox.Height / 2));
         }
         // METHODS
         public override Image GetImage()
@@ -60,11 +57,11 @@ namespace ClassDiagram_Final
 
         public Rectangle GetHalfOfComponent(Point myPoint)
         {
-            if (upperHalf.Contains(myPoint))
+            if (UpperHalf.Contains(myPoint))
             {
-                return upperHalf;
+                return UpperHalf;
             }
-            return lowerHalf;
+            return LowerHalf;
         }
     }
 }

@@ -93,6 +93,11 @@ namespace ClassDiagram_Final
                 {
                     gr.DrawString(flowComp.GetFlow(), font, Brushes.Black, flowComp.GetTextLocation());
                 }
+                /*ISplit splitComp = comp as ISplit;
+                if(splitComp != null)
+                {
+                    gr.DrawRectangle(Pens.Orange, splitComp.GetHalfOfComponent(new Point(mouseX, mouseY)));
+                }*/
             }
         }
 
@@ -113,7 +118,7 @@ namespace ClassDiagram_Final
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            (selectedComponent as Splitter).AdjustPercentages(trackBar1.Value);
+            ((Splitter)selectedComponent).AdjustPercentages(trackBar1.Value);
             panel1.Invalidate();
         }
     }

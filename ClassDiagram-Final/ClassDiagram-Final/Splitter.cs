@@ -3,13 +3,12 @@ using System.Drawing;
 
 namespace ClassDiagram_Final
 {
-    public class Splitter : Component, IFlow
+    public class Splitter : Component, IFlow, ISplit
     {
-        // FIELDS
-        private Rectangle upperHalf;
-        private Rectangle lowerHalf;
-
         // PROPERTIES
+        public Rectangle UpperHalf { get; }
+        public Rectangle LowerHalf { get; }
+
         public bool IsAdjustable { get; private set; }
         public int UpperOutComePercentage { get; private set; } = 50;
         public int LowerOutComePercentage { get; private set; } = 50;
@@ -17,24 +16,25 @@ namespace ClassDiagram_Final
         public Pipeline UpperOutcomePipeline { get; private set; }
         public Pipeline IncomePipeline { get; private set; }
 
+      
+
         public Splitter(int locx, int locy, bool isAdjustable = false) :// <- default - if skipped,sets to false automatically
             base(locx, locy)
         {
             this.IsAdjustable = isAdjustable;
-            this.lowerHalf = CalculateLowerHalf();
-            this.upperHalf = CalculateUpperHalf();
+            this.LowerHalf = CalculateLowerHalf();
+            this.UpperHalf = CalculateUpperHalf();
         }
 
         //same deal
-        private Rectangle CalculateLowerHalf()
-        {
-            return new Rectangle(GetLocation(), new Size(this.ComponentBox.Height / 2, this.ComponentBox.Width));
-        }
-
         private Rectangle CalculateUpperHalf()
         {
-            Point point = new Point(GetLocation().X, GetLocation().Y - this.ComponentBox.Height / 2);
-            return new Rectangle(point, new Size(this.ComponentBox.Height / 2, this.ComponentBox.Width));
+            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(ComponentBox.Width, ComponentBox.Height / 2));
+        }
+
+        private Rectangle CalculateLowerHalf()
+        {
+            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(ComponentBox.Width, ComponentBox.Height / 2));
         }
 
         // METHODS
@@ -64,13 +64,13 @@ namespace ClassDiagram_Final
         }
 
 
-        public Rectangle GetHalfOfRectangle(Point myPoint)
+        public Rectangle GetHalfOfComponent(Point myPoint)
         {
-            if (upperHalf.Contains(myPoint))
+            if (UpperHalf.Contains(myPoint))
             {
-                return upperHalf;
+                return UpperHalf;
             }
-            return lowerHalf;
+            return LowerHalf;
         }
 
         public string GetFlow()
