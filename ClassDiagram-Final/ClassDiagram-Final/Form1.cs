@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
 using System;
+using System.Runtime.Serialization;
 namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
@@ -120,6 +121,23 @@ namespace ClassDiagram_Final
         {
             ((Splitter)selectedComponent).AdjustPercentages(trackBar1.Value);
             panel1.Invalidate();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog myDialog = new SaveFileDialog();
+            myDialog.Title = "Save netowork";
+            myDialog.ShowDialog();
+            if (myDialog.FileName != "")
+            {
+                myNetwork.SaveFileToSert(myNetwork, myDialog.FileName);
+            }
+
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

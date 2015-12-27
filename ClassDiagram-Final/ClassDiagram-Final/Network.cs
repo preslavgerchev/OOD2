@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ClassDiagram_Final
 {
-   public class Network
-    {
+    [Serializable]
+   public class Network: ISerializable
+        {
         // PROPERTIES
         public List<Component> MyComponents { get; private set; }
         public List<Pipeline> Pipelines { get; private  set; }
@@ -20,6 +24,35 @@ namespace ClassDiagram_Final
         }
 
         // METHODS 
+        public void SaveFileToSert(Network net, String name)
+        {
+            using (FileStream fl = new FileStream("Netowrk.DAT", FileMode.OpenOrCreate))
+            {
+                BinaryFormatter binFormatter = new BinaryFormatter();
+                binFormatter.Serialize(fl, net);
+            }
+        }
+        public static Network LoadFromFile()
+        {
+            FileStream fl = null;
+            try
+            {
+                fl = new FileStream("Netowrk.DAT", FileMode.Open);
+                BinaryFormatter binF = new BinaryFormatter();
+                return (Network)binF.Deserialize(fl);
+            }
+            catch
+            {
+                return new Network();
+            }
+            finally
+            {
+                if (fl != null)
+                {
+                    fl.Close();
+                }
+            }
+        }
         public bool AddComponent(Component comp)
         {
             foreach (Component c in MyComponents)
@@ -90,6 +123,13 @@ namespace ClassDiagram_Final
         public bool Save(string filepath) { return false; }
         public bool SaveAs(string filepath) { return false; }
         public bool Load(string filepath) { return false; }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            // i need to add the values of the things that need to be saved. idk how to add everythng
+            //info.AddValue(value, type);
+            
+        }
     }
 
 }
