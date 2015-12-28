@@ -11,25 +11,31 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace ClassDiagram_Final
 {
     [Serializable]
-   public class Network: ISerializable
-        {
+    public class Network : ISerializable
+    {
+        private static readonly string _FILE_PATH = "Network.DAT";
         // PROPERTIES
+        
         public List<Component> MyComponents { get; private set; }
-        public List<Pipeline> Pipelines { get; private  set; }
+        public List<Pipeline> Pipelines { get; private set; }
 
         public Network()
         {
             this.MyComponents = new List<Component>();
             this.Pipelines = new List<Pipeline>();
         }
-
-        // METHODS 
-        public void SaveFileToSert(String name)
+        public Network(SerializationInfo info, StreamingContext context)
         {
-            using (FileStream fl = new FileStream("Netowrk.DAT", FileMode.OpenOrCreate))
+            this.MyComponents = (List<Component>)info.GetValue("MyComponents", MyComponents.GetType());
+            this.Pipelines = (List<Pipeline>)info.GetValue("Pipelines", Pipelines.GetType());
+        }
+        // METHODS 
+        public static void SaveToFile(Network net)
+        {
+            using (FileStream fl = new FileStream(_FILE_PATH, FileMode.OpenOrCreate))
             {
                 BinaryFormatter binFormatter = new BinaryFormatter();
-                binFormatter.Serialize(fl, this);
+                binFormatter.Serialize(fl,net );
             }
         }
         public static Network LoadFromFile()
@@ -37,9 +43,12 @@ namespace ClassDiagram_Final
             FileStream fl = null;
             try
             {
-                fl = new FileStream("Netowrk.DAT", FileMode.Open);
+                fl = new FileStream(_FILE_PATH, FileMode.Open);
                 BinaryFormatter binF = new BinaryFormatter();
-                return (Network)binF.Deserialize(fl);
+                if (fl != null)
+
+                    return (Network)binF.Deserialize(fl);
+                else return new Network();
             }
             catch
             {
@@ -126,10 +135,18 @@ namespace ClassDiagram_Final
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+
             // i need to add the values of the things that need to be saved. idk how to add everythng
             //info.AddValue(value, type);
-            
+            //foreach (Component c in MyComponents)
+            //{
+            info.AddValue("MyComponents", MyComponents);
+            //}
+            //foreach (Pipeline p in Pipelines)
+            //{ 
+            info.AddValue("Pipelines", Pipelines);
+            //}
         }
-    }
 
+    }
 }

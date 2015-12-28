@@ -125,25 +125,37 @@ namespace ClassDiagram_Final
 
         private void button12_Click(object sender, EventArgs e)
         {
-            SaveFileDialog myDialog = new SaveFileDialog();
-            myDialog.Title = "Save netowork";
-           if(myDialog.ShowDialog() == DialogResult.OK)
-            {
+           // SaveFileDialog myDialog = new SaveFileDialog();
+           // myDialog.Title = "Save netowork";
+           //if(myDialog.ShowDialog() == DialogResult.OK)
+            //{
+               
 
-
-            }
+            //}
         
             
-            if (myDialog.FileName != "")
-            {
-                //myNetwork.SaveFileToSert(myNetwork, myDialog.FileName);
-            }
+            
 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             throw new NotImplementedException();
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+           myNetwork= Network.LoadFromFile();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            Network.SaveToFile(myNetwork);
+            base.OnClosed(e);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Network.SaveToFile(myNetwork);
+            MessageBox.Show("yay");
         }
     }
 }

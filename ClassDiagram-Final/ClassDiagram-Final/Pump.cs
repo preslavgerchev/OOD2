@@ -1,8 +1,10 @@
-﻿using System.Drawing;
-
+﻿using System;
+using System.Drawing;
+using System.Runtime.Serialization;
 namespace ClassDiagram_Final
 {
-    public class Pump : Component, IFlow
+    [Serializable]
+    public class Pump : Component, IFlow, ISerializable
     {
         // PROPERTIES
         public Pipeline OutcomePipeline { get; private set; }

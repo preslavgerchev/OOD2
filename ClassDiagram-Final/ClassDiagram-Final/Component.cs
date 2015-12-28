@@ -1,8 +1,11 @@
 ﻿using System.Drawing;
+using System.Runtime.Serialization;
+using System;
 
 namespace ClassDiagram_Final
 {
-    public abstract class Component
+    [Serializable]
+    public abstract class Component:ISerializable
     {
         private readonly int locationX;
         private readonly int locationY;
@@ -27,6 +30,11 @@ namespace ClassDiagram_Final
         public bool CheckOverlapComponent(Component otherComponent)
         {
             return this.ComponentBox.IntersectsWith(otherComponent.ComponentBox);
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }

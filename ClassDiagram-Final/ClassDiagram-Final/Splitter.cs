@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
-
+using System.Runtime.Serialization;
 namespace ClassDiagram_Final
-{
-    public class Splitter : Component, IFlow, ISplit
+{ [Serializable]
+    public class Splitter : Component, IFlow, ISplit, ISerializable
     {
         // PROPERTIES
         public Rectangle UpperHalf { get; }

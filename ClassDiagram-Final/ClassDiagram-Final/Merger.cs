@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
 namespace ClassDiagram_Final
-{
-    public class Merger : Component, ISplit
+{ [Serializable]
+    public class Merger : Component, ISplit , ISerializable
     {
         // PROPERTIES
         public Rectangle UpperHalf { get; }

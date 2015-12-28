@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Drawing;
-
+using System.Runtime.Serialization;
 namespace ClassDiagram_Final
-{
-    public class Sink : Component, IFlow
+{ 
+    [Serializable]
+    public class Sink : Component, IFlow, ISerializable
     {
         public Pipeline IncomePipeline { get; private set; }
 

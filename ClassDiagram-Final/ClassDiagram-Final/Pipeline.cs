@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ClassDiagram_Final
-{
-    public class Pipeline
+{[Serializable]
+    public class Pipeline:ISerializable
     {
         // PROPERTIES
         public Color PipelineColor { get; private set; }
@@ -50,6 +52,11 @@ namespace ClassDiagram_Final
         public void SetEndComponent(Component endComp)
         {
             this.EndComponent = endComp;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }
