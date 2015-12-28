@@ -25,7 +25,25 @@ namespace ClassDiagram_Final
             this.LowerHalf = CalculateLowerHalf();
             this.UpperHalf = CalculateUpperHalf();
         }
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
 
+            info.AddValue("LowerOutcomePipeline", LowerOutcomePipeline);
+            info.AddValue("UpperOutcomePipeline", UpperOutcomePipeline);
+            info.AddValue("IncomePipeline", IncomePipeline);
+            info.AddValue("IsAdjustable", IsAdjustable);
+            info.AddValue("UpperOutComePercentage", UpperOutComePercentage);
+            info.AddValue("LowerOutComePercentage", LowerOutComePercentage);
+        }
+        public Splitter(SerializationInfo info, StreamingContext context): base(info,context)
+        {
+            this.LowerOutcomePipeline = (Pipeline)info.GetValue("LowerOutcomePipeline", typeof(Pipeline));
+            this.UpperOutcomePipeline = (Pipeline)info.GetValue("UpperOutcomePipeline", typeof(Pipeline));
+            this.IncomePipeline = (Pipeline)info.GetValue("IncomePipeline", typeof(Pipeline));
+            this.IsAdjustable = info.GetBoolean("IsAdjustable");
+            this.UpperOutComePercentage = info.GetInt32("UpperOutComePercentage");
+            this.LowerOutComePercentage = info.GetInt32("LowerOutComePercentage");
+        }
         //same deal
         private Rectangle CalculateUpperHalf()
         {

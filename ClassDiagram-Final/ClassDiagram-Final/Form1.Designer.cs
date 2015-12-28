@@ -30,11 +30,11 @@
         {
             this.panel4 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnSaveAs = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btSave = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
@@ -61,6 +61,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -71,11 +73,11 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.label16);
-            this.panel4.Controls.Add(this.button12);
+            this.panel4.Controls.Add(this.btnSaveAs);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.button9);
-            this.panel4.Controls.Add(this.button8);
+            this.panel4.Controls.Add(this.btnLoad);
+            this.panel4.Controls.Add(this.btSave);
             this.panel4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel4.Location = new System.Drawing.Point(1004, 11);
             this.panel4.Name = "panel4";
@@ -92,19 +94,19 @@
             this.label16.TabIndex = 14;
             this.label16.Text = "Save As";
             // 
-            // button12
+            // btnSaveAs
             // 
-            this.button12.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.save_as;
-            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(17, 130);
-            this.button12.Name = "button12";
-            this.button12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button12.Size = new System.Drawing.Size(47, 45);
-            this.button12.TabIndex = 13;
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.btnSaveAs.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.save_as;
+            this.btnSaveAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAs.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAs.Location = new System.Drawing.Point(17, 130);
+            this.btnSaveAs.Name = "btnSaveAs";
+            this.btnSaveAs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnSaveAs.Size = new System.Drawing.Size(47, 45);
+            this.btnSaveAs.TabIndex = 13;
+            this.btnSaveAs.UseVisualStyleBackColor = true;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // label11
             // 
@@ -126,33 +128,33 @@
             this.label10.TabIndex = 11;
             this.label10.Text = "Save";
             // 
-            // button9
+            // btnLoad
             // 
-            this.button9.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.load;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(17, 221);
-            this.button9.Name = "button9";
-            this.button9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button9.Size = new System.Drawing.Size(47, 45);
-            this.button9.TabIndex = 10;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.btnLoad.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.load;
+            this.btnLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoad.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(17, 221);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnLoad.Size = new System.Drawing.Size(47, 45);
+            this.btnLoad.TabIndex = 10;
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // button8
+            // btSave
             // 
-            this.button8.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.save;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(17, 31);
-            this.button8.Name = "button8";
-            this.button8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button8.Size = new System.Drawing.Size(47, 45);
-            this.button8.TabIndex = 9;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.btSave.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.save;
+            this.btSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSave.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSave.Location = new System.Drawing.Point(17, 31);
+            this.btSave.Name = "btSave";
+            this.btSave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btSave.Size = new System.Drawing.Size(47, 45);
+            this.btSave.TabIndex = 9;
+            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel3
             // 
@@ -433,6 +435,8 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Location = new System.Drawing.Point(121, 86);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(877, 511);
@@ -451,11 +455,32 @@
             this.trackBar1.Value = 1;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblInfo.Location = new System.Drawing.Point(781, 28);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblInfo.TabIndex = 25;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(578, 39);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 26;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 609);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
@@ -464,7 +489,7 @@
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Canvas";
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -483,11 +508,11 @@
 
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label16;
-        public System.Windows.Forms.Button button12;
+        public System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        public System.Windows.Forms.Button button9;
-        public System.Windows.Forms.Button button8;
+        public System.Windows.Forms.Button btnLoad;
+        public System.Windows.Forms.Button btSave;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label13;
         public System.Windows.Forms.Button button7;
@@ -514,6 +539,8 @@
         public System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Button button8;
     }
 }
 

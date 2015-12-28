@@ -10,8 +10,8 @@ namespace ClassDiagram_Final
     public class Merger : Component, ISplit , ISerializable
     {
         // PROPERTIES
-        public Rectangle UpperHalf { get; }
-        public Rectangle LowerHalf { get; }
+        public Rectangle UpperHalf { get;  }
+        public Rectangle LowerHalf { get;  }
 
         public Pipeline LowerIncomePipeline { get; private set; }
         public Pipeline UpperIncomePipeline { get; private set; }
@@ -23,6 +23,19 @@ namespace ClassDiagram_Final
             this.UpperHalf = CalculateLowerHalf();
             this.LowerHalf = CalculateUpperHalf();
 
+        }
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            
+            info.AddValue("LowerIncomePipeline",LowerIncomePipeline);
+            info.AddValue("UpperIncomePipeline", UpperIncomePipeline);
+            info.AddValue("OutcomePipeline", OutcomePipeline);
+        }
+        public Merger(SerializationInfo info, StreamingContext context): base(info,context)
+        {
+            this.LowerIncomePipeline = (Pipeline)info.GetValue("LowerIncomePipeline", typeof(Pipeline));
+            this.UpperIncomePipeline = (Pipeline)info.GetValue("UpperIncomePipeline", typeof(Pipeline));
+            this.OutcomePipeline = (Pipeline)info.GetValue("OutcomePipeline", typeof(Pipeline));
         }
         //private stuff guys (and girl)
         private Rectangle CalculateUpperHalf()

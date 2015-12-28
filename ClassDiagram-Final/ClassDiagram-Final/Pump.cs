@@ -16,7 +16,17 @@ namespace ClassDiagram_Final
 
         }
         // METHODS
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
 
+            info.AddValue("Flow", Flow);
+            info.AddValue("OutcomePipeline", OutcomePipeline);
+        }
+        public Pump(SerializationInfo info, StreamingContext context): base(info,context)
+        {
+            this.Flow = info.GetInt32("Flow");
+            this.OutcomePipeline = (Pipeline)info.GetValue("OutcomePipeline", typeof(Pipeline));
+        }
         public override Image GetImage()
         {
             return Properties.Resources.pump;
