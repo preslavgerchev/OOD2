@@ -11,7 +11,7 @@ namespace ClassDiagram_Final
         private readonly int locationY;
 
         public Rectangle ComponentBox { get; private set; }
-
+        public Component() { }
         public Component(int locx, int locy)
         {
 

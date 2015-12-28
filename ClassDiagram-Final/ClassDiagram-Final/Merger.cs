@@ -24,6 +24,7 @@ namespace ClassDiagram_Final
             this.LowerHalf = CalculateUpperHalf();
 
         }
+        public Merger() { }
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             

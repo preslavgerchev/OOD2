@@ -16,7 +16,7 @@ namespace ClassDiagram_Final
         public Pipeline UpperOutcomePipeline { get; private set; }
         public Pipeline IncomePipeline { get; private set; }
 
-      
+        public Splitter() { }
 
         public Splitter(int locx, int locy, bool isAdjustable = false) :// <- default - if skipped,sets to false automatically
             base(locx, locy)

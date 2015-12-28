@@ -15,6 +15,7 @@ namespace ClassDiagram_Final
         {
 
         }
+        public Pump() { }
         // METHODS
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {

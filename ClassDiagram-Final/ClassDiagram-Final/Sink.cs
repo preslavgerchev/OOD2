@@ -13,6 +13,7 @@ namespace ClassDiagram_Final
         {
 
         }
+        public Sink() { }
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
 
