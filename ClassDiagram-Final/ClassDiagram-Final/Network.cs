@@ -24,12 +24,12 @@ namespace ClassDiagram_Final
         }
 
         // METHODS 
-        public void SaveFileToSert(Network net, String name)
+        public void SaveFileToSert(String name)
         {
             using (FileStream fl = new FileStream("Netowrk.DAT", FileMode.OpenOrCreate))
             {
                 BinaryFormatter binFormatter = new BinaryFormatter();
-                binFormatter.Serialize(fl, net);
+                binFormatter.Serialize(fl, this);
             }
         }
         public static Network LoadFromFile()

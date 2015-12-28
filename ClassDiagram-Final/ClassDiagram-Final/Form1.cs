@@ -94,11 +94,11 @@ namespace ClassDiagram_Final
                 {
                     gr.DrawString(flowComp.GetFlow(), font, Brushes.Black, flowComp.GetTextLocation());
                 }
-                /*ISplit splitComp = comp as ISplit;
+                ISplit splitComp = comp as ISplit;
                 if(splitComp != null)
                 {
                     gr.DrawRectangle(Pens.Orange, splitComp.GetHalfOfComponent(new Point(mouseX, mouseY)));
-                }*/
+                }
             }
         }
 
@@ -127,10 +127,16 @@ namespace ClassDiagram_Final
         {
             SaveFileDialog myDialog = new SaveFileDialog();
             myDialog.Title = "Save netowork";
-            myDialog.ShowDialog();
+           if(myDialog.ShowDialog() == DialogResult.OK)
+            {
+
+
+            }
+        
+            
             if (myDialog.FileName != "")
             {
-                myNetwork.SaveFileToSert(myNetwork, myDialog.FileName);
+                //myNetwork.SaveFileToSert(myNetwork, myDialog.FileName);
             }
 
         }

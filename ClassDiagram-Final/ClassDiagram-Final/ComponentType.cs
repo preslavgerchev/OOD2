@@ -1,7 +1,8 @@
 ﻿namespace ClassDiagram_Final
 {
     public enum ComponentType
-    {   NONE,
+    {
+        NONE,
         PUMP,
         SINK,
         MERGER,

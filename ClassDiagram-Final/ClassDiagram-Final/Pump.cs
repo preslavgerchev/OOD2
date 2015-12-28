@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace ClassDiagram_Final
 {
@@ -15,12 +14,6 @@ namespace ClassDiagram_Final
 
         }
         // METHODS
-        /// <summary>
-        /// Updates the flow only if the connected pipeline has the max flow bigger or equal to the new flow of the pump
-        /// The method returns true if the update is done - Monica
-        /// </summary>
-        /// <param name="newFlow"></param>
-        /// <returns></returns>
 
         public override Image GetImage()
         {
@@ -30,9 +23,10 @@ namespace ClassDiagram_Final
         public void SetOutcomePipeline(Pipeline outcomePipeline)
         {
             this.OutcomePipeline = outcomePipeline;
+            SetFlow(OutcomePipeline.CurrentFlow);
         }
 
-        public void SetFlow(int newFlow)
+        private void SetFlow(int newFlow)
         {
             this.Flow = newFlow;
         }
@@ -42,7 +36,7 @@ namespace ClassDiagram_Final
             return Flow.ToString();
         }
 
-        public  Point GetTextLocation()
+        public Point GetTextLocation()
         {
             return new Point(GetLocation().X + GetImage().Width / 3, GetLocation().Y + GetImage().Height / 3);
         }

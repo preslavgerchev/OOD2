@@ -27,12 +27,12 @@ namespace ClassDiagram_Final
         //private stuff guys (and girl)
         private Rectangle CalculateUpperHalf()
         {
-            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(ComponentBox.Width, ComponentBox.Height / 2));
+            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
         }
 
         private Rectangle CalculateLowerHalf()
         {
-            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(ComponentBox.Width, ComponentBox.Height / 2));
+            return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
         // METHODS
         public override Image GetImage()
@@ -61,7 +61,11 @@ namespace ClassDiagram_Final
             {
                 return UpperHalf;
             }
-            return LowerHalf;
+            else if (LowerHalf.Contains(myPoint))
+            {
+                return LowerHalf;
+            }
+            return new Rectangle();
         }
     }
 }
