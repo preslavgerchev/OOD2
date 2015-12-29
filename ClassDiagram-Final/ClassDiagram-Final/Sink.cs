@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ClassDiagram_Final
 { 
     [Serializable]
-    public class Sink : Component, IFlow, ISerializable
+    public class Sink : Component, IFlow
     {
         public Pipeline IncomePipeline { get; private set; }
 
@@ -13,18 +13,7 @@ namespace ClassDiagram_Final
         {
 
         }
-        public Sink() { }
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-
-           
-            info.AddValue("IncomePipeline", IncomePipeline);
-        }
-        public Sink(SerializationInfo info, StreamingContext context): base(info,context)
-        {
-          
-            this.IncomePipeline = (Pipeline)info.GetValue("IncomePipeline", typeof(Pipeline));
-        }
+        
         public void SetIncomePipeline(Pipeline incomePipeline)
         {
             this.IncomePipeline = incomePipeline;

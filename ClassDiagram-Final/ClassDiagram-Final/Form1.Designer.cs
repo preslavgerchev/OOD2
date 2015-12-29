@@ -62,7 +62,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -95,8 +94,7 @@
             this.label16.Text = "Save As";
             // 
             // btnSaveAs
-            //
-
+            // 
             this.btnSaveAs.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.save_as;
             this.btnSaveAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -108,7 +106,6 @@
             this.btnSaveAs.TabIndex = 13;
             this.btnSaveAs.UseVisualStyleBackColor = true;
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
-
             // 
             // label11
             // 
@@ -468,22 +465,11 @@
             this.lblInfo.Size = new System.Drawing.Size(0, 13);
             this.lblInfo.TabIndex = 25;
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(578, 39);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 26;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 609);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.panel1);
@@ -494,6 +480,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Canvas";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -544,7 +531,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label lblInfo;
-        private System.Windows.Forms.Button button8;
     }
 }
 

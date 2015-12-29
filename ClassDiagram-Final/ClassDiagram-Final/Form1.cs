@@ -41,7 +41,7 @@ namespace ClassDiagram_Final
             {
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
             }
-            if (type != ComponentType.NONE && type!=ComponentType.PIPELINE)
+            if (type != ComponentType.NONE && type != ComponentType.PIPELINE)
             {
                 Component c = myNetwork.CreateComponent(type, mouseX, mouseY);
                 myNetwork.AddComponent(c);
@@ -152,41 +152,55 @@ namespace ClassDiagram_Final
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            //DialogResult dialog = MessageBox.Show("Do you want to save your changes?", "Save?", MessageBoxButtons.OKCancel);
-            //if (dialog == DialogResult.OK)
-            //{
-            //btnSaveAs.PerformClick();
-            OpenFileDialog load = new OpenFileDialog();
-            load.Title = "Load from file";
-            if (load.ShowDialog() == DialogResult.OK)
-            { myNetwork = Network.LoadFromFile(load.FileName);
-                panel1.Invalidate();
+            DialogResult dialog = MessageBox.Show("Do you want to save your changes?", "Save?", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                btnSaveAs.PerformClick();
+                OpenFileDialog load = new OpenFileDialog();
+                if (load.ShowDialog() == DialogResult.OK)
+                { load.Title = "Load from file";
+
+                    myNetwork = Network.LoadFromFile(load.FileName);
+                    panel1.Invalidate();
+                }
             }
-            //}
-            //else if (dialog==DialogResult.Cancel)
-            //{
-            // OpenFileDialog load = new OpenFileDialog();
-            //load.Title = "Load from file";
-            //myNetwork = Network.LoadFromFile(load.FileName);
+            else if (dialog == DialogResult.No)
+            {
+                OpenFileDialog load = new OpenFileDialog();
+                if (load.ShowDialog() == DialogResult.OK)
+                {
+                    load.Title = "Load from file";
+
+                    myNetwork = Network.LoadFromFile(load.FileName);
+                    panel1.Invalidate();
+                }
+            }
 
         }
         protected override void OnClosed(EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Do you want to save it?", "Save?", MessageBoxButtons.OKCancel);
-            if (dialog == DialogResult.OK && saved == true)
+            
+            DialogResult dialog = MessageBox.Show("Do you want to save it?", "Save?", MessageBoxButtons.YesNoCancel);
+            if (dialog == DialogResult.Yes && saved == true)
             {
                 Network.SaveToFile(myNetwork, FILE_PATH);
                 base.OnClosed(e);
             }
             else
             {
-                if (dialog == DialogResult.OK && saved == false)
+                if (dialog == DialogResult.Yes && saved == false)
                 {
 
                     btnSaveAs.PerformClick();
                 }
+                else
+                if (dialog==DialogResult.Cancel)
+                {
+                    //it should cancel the exit and close the dialog
 
             }
+            }
+       
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -196,13 +210,7 @@ namespace ClassDiagram_Final
             lblInfo.Text = "Your file has been saved! " + DateTime.Now;
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            if (myNetwork.MyComponents.Count == 0 )
-            {
-                MessageBox.Show("Empty list");
-            }
-        }
+       
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -230,6 +238,11 @@ namespace ClassDiagram_Final
         private void button1_Click(object sender, EventArgs e)
         {
             type = ComponentType.PIPELINE;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

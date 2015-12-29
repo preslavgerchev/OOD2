@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ClassDiagram_Final
 {
     [Serializable]
-    public class Pump : Component, IFlow, ISerializable
+    public class Pump : Component, IFlow
     {
         // PROPERTIES
         public Pipeline OutcomePipeline { get; private set; }
@@ -15,19 +15,8 @@ namespace ClassDiagram_Final
         {
 
         }
-        public Pump() { }
-        // METHODS
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
+      
 
-            info.AddValue("Flow", Flow);
-            info.AddValue("OutcomePipeline", OutcomePipeline);
-        }
-        public Pump(SerializationInfo info, StreamingContext context): base(info,context)
-        {
-            this.Flow = info.GetInt32("Flow");
-            this.OutcomePipeline = (Pipeline)info.GetValue("OutcomePipeline", typeof(Pipeline));
-        }
         public override Image GetImage()
         {
             return Properties.Resources.pump;
