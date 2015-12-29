@@ -97,16 +97,31 @@ namespace ClassDiagram_Final
             return null;
         }
 
-        public bool AddPipeline(Pipeline p)
+        public void AddPipeline(Pipeline p)
         {
-            //do some checking for intersecting pipelines - return false
-            //otherwise true and add to list
-            return true;
+            this.Pipelines.Add(p);
         }
 
-        public bool RemovePipeline(Pipeline p)
-        {   //same as above
-            return false;
+        public bool RemovePipeline(Pipeline p, Component c)
+        {
+            Splitter splitter = c as Splitter;
+            if (splitter != null)
+            {
+                splitter.SetIncomePipeline(null);
+                splitter.SetLowerOutcomePipeline(null);
+                splitter.SetUpperOutcomePipeline(null);
+                return true;
+            }
+            Merger merger = c as Merger;
+            if (merger != null)
+            {
+                merger.SetLowerIncomePipeline(null);
+                merger.SetOutcomePipeline(null);
+                merger.SetUpperIncomePipeline(null);
+                return true;
+            }
+            Sink sink = c as Sink;
+            if(splitter!=nul)
         }
 
         public Component CreateComponent(ComponentType type, int locx, int locy)

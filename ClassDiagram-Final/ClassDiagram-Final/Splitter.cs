@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.Serialization;
+
 namespace ClassDiagram_Final
-{ [Serializable]
+{
+    [Serializable]
     public class Splitter : Component, IFlow, ISplit, ISerializable
     {
-        // PROPERTIES
+        private Point upperHalfPoint;
+        private Point lowerHalfPoint;
+
         public Rectangle UpperHalf { get; }
         public Rectangle LowerHalf { get; }
 
@@ -16,28 +20,35 @@ namespace ClassDiagram_Final
         public Pipeline UpperOutcomePipeline { get; private set; }
         public Pipeline IncomePipeline { get; private set; }
 
-      
-
-        public Splitter(int locx, int locy, bool isAdjustable = false) :// <- default - if skipped,sets to false automatically
+        public Splitter(int locx, int locy, bool isAdjustable = false) :
             base(locx, locy)
         {
             this.IsAdjustable = isAdjustable;
             this.LowerHalf = CalculateLowerHalf();
             this.UpperHalf = CalculateUpperHalf();
+            this.upperHalfPoint = CalculateUpperHalfPoint();
+            this.lowerHalfPoint = CalculateLowerHalfPoint();
         }
 
-        //same deal
         private Rectangle CalculateUpperHalf()
         {
-            return new Rectangle(new Point(ComponentBox.Left+ComponentBox.Width/2, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
+            return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
         }
 
         private Rectangle CalculateLowerHalf()
         {
-            return new Rectangle(new Point(ComponentBox.Left+ComponentBox.Width/2, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
+            return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
 
-        // METHODS
+        private Point CalculateUpperHalfPoint()
+        {
+            return new Point(UpperHalf.Right - 4, UpperHalf.Top + UpperHalf.Width / 4);
+        }
+
+        private Point CalculateLowerHalfPoint()
+        {
+            return new Point(UpperHalf.Right - 4, LowerHalf.Bottom - LowerHalf.Width / 4);
+        }
 
         public void SetLowerOutcomePipeline(Pipeline lowerPipeline)
         {
@@ -94,6 +105,19 @@ namespace ClassDiagram_Final
         public Point GetTextLocation()
         {
             return new Point(ComponentBox.Left, ComponentBox.Bottom - 10);
+        }
+
+        public Point GetPipelineLocation(Point mouseClick)
+        {
+            if (UpperHalf.Contains(mouseClick))
+            {
+                return upperHalfPoint;
+            }
+            else if (LowerHalf.Contains(mouseClick))
+            {
+                return lowerHalfPoint;
+            }
+            return new Point(0, 0);
         }
     }
 }

@@ -104,7 +104,6 @@
             this.button12.Size = new System.Drawing.Size(47, 45);
             this.button12.TabIndex = 13;
             this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // label11
             // 
@@ -430,6 +429,7 @@
             this.button1.Size = new System.Drawing.Size(47, 45);
             this.button1.TabIndex = 1;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
@@ -437,6 +437,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(877, 511);
             this.panel1.TabIndex = 23;
+            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             this.panel1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDoubleClick);
             // 
             // trackBar1

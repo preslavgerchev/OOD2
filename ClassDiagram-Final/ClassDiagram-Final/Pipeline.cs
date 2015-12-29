@@ -14,7 +14,8 @@ namespace ClassDiagram_Final
         public List<Point> InBetweenPoints;
         public Component StartComponent { get; private set; }
         public Component EndComponent { get; private set; }
-
+        public Point StartPoint { get; private set; }
+        public Point EndPoint { get; private set; }
         
         public Pipeline()
         {
@@ -47,6 +48,16 @@ namespace ClassDiagram_Final
         public void SetStartComponent(Component startComp)
         {
             this.StartComponent = startComp;
+            
+        }
+        public void SetStartPoint(Point p)
+        {
+            this.StartPoint = p;
+        }
+
+        public void SetEndPoint(Point p)
+        {
+            this.EndPoint = p;
         }
 
         public void SetEndComponent(Component endComp)

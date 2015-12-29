@@ -1,30 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
+
 namespace ClassDiagram_Final
-{ [Serializable]
-    public class Merger : Component, ISplit , ISerializable
+{
+    [Serializable]
+    public class Merger : Component, ISplit, ISerializable
     {
-        // PROPERTIES
+        private Point lowerHalfPoint;
+        private Point upperHalfPoint;
+
         public Rectangle UpperHalf { get; }
         public Rectangle LowerHalf { get; }
 
         public Pipeline LowerIncomePipeline { get; private set; }
         public Pipeline UpperIncomePipeline { get; private set; }
         public Pipeline OutcomePipeline { get; private set; }
+
         public Merger(int locx, int locy) :
             base(locx, locy)
         {
-            //not tested
             this.UpperHalf = CalculateLowerHalf();
             this.LowerHalf = CalculateUpperHalf();
-
+            this.upperHalfPoint = CalculateUpperHalfPoint();
+            this.lowerHalfPoint = CalculateLowerHalfPoint();
         }
-        //private stuff guys (and girl)
+
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
@@ -34,9 +35,19 @@ namespace ClassDiagram_Final
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
-        // METHODS
+
+        private Point CalculateUpperHalfPoint()
+        {
+            return new Point(UpperHalf.Left + 4, UpperHalf.Top + UpperHalf.Width / 2);
+        }
+
+        private Point CalculateLowerHalfPoint()
+        {
+            return new Point(UpperHalf.Left + 4, LowerHalf.Bottom - LowerHalf.Width / 2);
+        }
+
         public override Image GetImage()
-        { //to be done -put images and return
+        {
             return Properties.Resources.merger;
         }
 
@@ -66,6 +77,19 @@ namespace ClassDiagram_Final
                 return LowerHalf;
             }
             return new Rectangle();
+        }
+
+        public Point GetPipelineLocation(Point mouseClick)
+        {
+            if (UpperHalf.Contains(mouseClick))
+            {
+                return upperHalfPoint;
+            }
+            else if (LowerHalf.Contains(mouseClick))
+            {
+                return lowerHalfPoint;
+            }
+            return new Point(0, 0);
         }
     }
 }

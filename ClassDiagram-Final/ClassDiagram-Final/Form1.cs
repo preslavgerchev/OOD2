@@ -7,8 +7,11 @@ namespace ClassDiagram_Final
     public partial class Form1 : Form
     {
         Font font;
+        Pipeline p;
         ComponentType type = ComponentType.NONE;
         Component selectedComponent;
+        Component startComp;
+        Component endComp;
         int mouseX;
         int mouseY;
         Network myNetwork;
@@ -36,12 +39,13 @@ namespace ClassDiagram_Final
             {
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
             }
-            if (type != ComponentType.NONE)
+            if (type != ComponentType.NONE && type!=ComponentType.PIPELINE)
             {
                 Component c = myNetwork.CreateComponent(type, mouseX, mouseY);
                 myNetwork.AddComponent(c);
             }
-            RedrawImages(e.Graphics);
+            DrawImages(e.Graphics);
+            DrawPipelines(e.Graphics);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,7 +88,7 @@ namespace ClassDiagram_Final
             }
         }
 
-        private void RedrawImages(Graphics gr)
+        private void DrawImages(Graphics gr)
         {
             foreach (var comp in myNetwork.MyComponents)
             {
@@ -122,20 +126,13 @@ namespace ClassDiagram_Final
             ((Splitter)selectedComponent).AdjustPercentages(trackBar1.Value);
             panel1.Invalidate();
         }
-
-        private void button12_Click(object sender, EventArgs e)
+       
+        private void DrawPipelines(Graphics gr)
         {
-           // SaveFileDialog myDialog = new SaveFileDialog();
-           // myDialog.Title = "Save netowork";
-           //if(myDialog.ShowDialog() == DialogResult.OK)
-            //{
-               
-
-            //}
-        
-            
-            
-
+            foreach (Pipeline p in myNetwork.Pipelines)
+            {
+                gr.DrawLine(new Pen(Color.Red, 5), p.StartPoint, p.EndPoint);
+            }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -156,6 +153,34 @@ namespace ClassDiagram_Final
         {
             Network.SaveToFile(myNetwork);
             MessageBox.Show("yay");
+        }
+
+        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (type == ComponentType.PIPELINE)
+            {
+                if (p == null)
+                {
+                    p = new Pipeline();
+                }
+                if (startComp == null)
+                {
+                    startComp = myNetwork.GetComponent(e.Location);
+                    p.SetStartPoint((startComp as ISplit).GetPipelineLocation(e.Location));
+                    return;
+                }
+
+                endComp = myNetwork.GetComponent(e.Location);
+                p.SetEndPoint((endComp as ISplit).GetPipelineLocation(e.Location));
+                myNetwork.AddPipeline(p);
+                type = ComponentType.NONE;
+                panel1.Invalidate();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            type = ComponentType.PIPELINE;
         }
     }
 }

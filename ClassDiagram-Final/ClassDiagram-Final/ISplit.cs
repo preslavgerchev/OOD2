@@ -7,5 +7,6 @@ namespace ClassDiagram_Final
         Rectangle GetHalfOfComponent(Point p);
         Rectangle UpperHalf { get; }
         Rectangle LowerHalf { get; }
+        Point GetPipelineLocation(Point mouseClick);
     }
 }

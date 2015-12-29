@@ -7,6 +7,7 @@
         SINK,
         MERGER,
         SPLITTER,
-        ADJUSTABLE_SPLITTER
+        ADJUSTABLE_SPLITTER,
+        PIPELINE
     }
 }
