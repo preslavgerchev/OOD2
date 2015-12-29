@@ -19,8 +19,11 @@ namespace ClassDiagram_Final
         public Pipeline LowerOutcomePipeline { get; private set; }
         public Pipeline UpperOutcomePipeline { get; private set; }
         public Pipeline IncomePipeline { get; private set; }
+ 
+        public Splitter() { }
 
-        public Splitter(int locx, int locy, bool isAdjustable = false) :
+        public Splitter(int locx, int locy, bool isAdjustable = false) :// <- default - if skipped,sets to false automatically
+
             base(locx, locy)
         {
             this.IsAdjustable = isAdjustable;
@@ -29,6 +32,25 @@ namespace ClassDiagram_Final
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
         }
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("LowerOutcomePipeline", LowerOutcomePipeline);
+            info.AddValue("UpperOutcomePipeline", UpperOutcomePipeline);
+            info.AddValue("IncomePipeline", IncomePipeline);
+            info.AddValue("IsAdjustable", IsAdjustable);
+            info.AddValue("UpperOutComePercentage", UpperOutComePercentage);
+            info.AddValue("LowerOutComePercentage", LowerOutComePercentage);
+        }
+        public Splitter(SerializationInfo info, StreamingContext context): base(info,context)
+        {
+            this.LowerOutcomePipeline = (Pipeline)info.GetValue("LowerOutcomePipeline", typeof(Pipeline));
+            this.UpperOutcomePipeline = (Pipeline)info.GetValue("UpperOutcomePipeline", typeof(Pipeline));
+            this.IncomePipeline = (Pipeline)info.GetValue("IncomePipeline", typeof(Pipeline));
+            this.IsAdjustable = info.GetBoolean("IsAdjustable");
+            this.UpperOutComePercentage = info.GetInt32("UpperOutComePercentage");
+            this.LowerOutComePercentage = info.GetInt32("LowerOutComePercentage");
+        }
+        //same deal
 
         private Rectangle CalculateUpperHalf()
         {

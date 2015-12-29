@@ -21,7 +21,15 @@ namespace ClassDiagram_Final
         {
             this.InBetweenPoints = new List<Point>();
         }
-
+        public Pipeline(SerializationInfo info, StreamingContext context)
+        {
+            this.PipelineColor = (Color)info.GetValue("PipelineColor", PipelineColor.GetType());
+            this.CurrentFlow = info.GetInt32("CurrentFlow");
+            this.MaxFlow=info.GetInt32("MaxFlow");
+            this.InBetweenPoints=(List<Point>)info.GetValue("InBetweenPoints", InBetweenPoints.GetType());
+            this.StartComponent=(Component)info.GetValue("StartComponent", typeof(Component));
+            this.EndComponent=(Component)info.GetValue("EndComponent", typeof(Component));
+        }
         // METHODS
         public bool ChangeCurrentFlow(int newFlow)
         {
@@ -67,7 +75,13 @@ namespace ClassDiagram_Final
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            throw new NotImplementedException();
-        }
+            info.AddValue("PipelineColor", PipelineColor);
+            info.AddValue("CurrentFlow",CurrentFlow);
+            info.AddValue("MaxFlow", MaxFlow);
+            info.AddValue("InBetweenPoints", InBetweenPoints);
+            info.AddValue("StartComponent", StartComponent);
+            info.AddValue("EndComponent", EndComponent);
+
     }
+}
 }

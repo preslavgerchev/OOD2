@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
 using System;
-using System.Runtime.Serialization;
 namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
@@ -15,7 +14,8 @@ namespace ClassDiagram_Final
         int mouseX;
         int mouseY;
         Network myNetwork;
-
+        string FILE_PATH = "Network.XML";
+        bool saved;
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +24,8 @@ namespace ClassDiagram_Final
             panel1.MouseDown += PictureBox1_MouseDown;
             trackBar1.Visible = false;
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
+            saved = false;
+
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -99,7 +101,7 @@ namespace ClassDiagram_Final
                     gr.DrawString(flowComp.GetFlow(), font, Brushes.Black, flowComp.GetTextLocation());
                 }
                 ISplit splitComp = comp as ISplit;
-                if(splitComp != null)
+                if (splitComp != null)
                 {
                     gr.DrawRectangle(Pens.Orange, splitComp.GetHalfOfComponent(new Point(mouseX, mouseY)));
                 }
@@ -126,7 +128,8 @@ namespace ClassDiagram_Final
             ((Splitter)selectedComponent).AdjustPercentages(trackBar1.Value);
             panel1.Invalidate();
         }
-       
+
+
         private void DrawPipelines(Graphics gr)
         {
             foreach (Pipeline p in myNetwork.Pipelines)
@@ -134,25 +137,71 @@ namespace ClassDiagram_Final
                 gr.DrawLine(new Pen(Color.Red, 5), p.StartPoint, p.EndPoint);
             }
         }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        private void btnSaveAs_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SaveFileDialog myDialog = new SaveFileDialog();
+            myDialog.Title = "Save netowork";
+            myDialog.DefaultExt = ".XML";
+            if (myDialog.ShowDialog() == DialogResult.OK & myDialog.FileName != null)
+            {
+                Network.SaveToFile(myNetwork, myDialog.FileName);
+                FILE_PATH = myDialog.FileName;
+                saved = true;
+            }
         }
-        private void button9_Click(object sender, EventArgs e)
+
+        private void btnLoad_Click(object sender, EventArgs e)
         {
-           myNetwork= Network.LoadFromFile();
+            //DialogResult dialog = MessageBox.Show("Do you want to save your changes?", "Save?", MessageBoxButtons.OKCancel);
+            //if (dialog == DialogResult.OK)
+            //{
+            //btnSaveAs.PerformClick();
+            OpenFileDialog load = new OpenFileDialog();
+            load.Title = "Load from file";
+            if (load.ShowDialog() == DialogResult.OK)
+            { myNetwork = Network.LoadFromFile(load.FileName);
+                panel1.Invalidate();
+            }
+            //}
+            //else if (dialog==DialogResult.Cancel)
+            //{
+            // OpenFileDialog load = new OpenFileDialog();
+            //load.Title = "Load from file";
+            //myNetwork = Network.LoadFromFile(load.FileName);
+
         }
         protected override void OnClosed(EventArgs e)
         {
-            Network.SaveToFile(myNetwork);
-            base.OnClosed(e);
+            DialogResult dialog = MessageBox.Show("Do you want to save it?", "Save?", MessageBoxButtons.OKCancel);
+            if (dialog == DialogResult.OK && saved == true)
+            {
+                Network.SaveToFile(myNetwork, FILE_PATH);
+                base.OnClosed(e);
+            }
+            else
+            {
+                if (dialog == DialogResult.OK && saved == false)
+                {
+
+                    btnSaveAs.PerformClick();
+                }
+
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Network.SaveToFile(myNetwork, FILE_PATH);
+            saved = true;
+            lblInfo.Text = "Your file has been saved! " + DateTime.Now;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Network.SaveToFile(myNetwork);
-            MessageBox.Show("yay");
+            if (myNetwork.MyComponents.Count == 0 )
+            {
+                MessageBox.Show("Empty list");
+            }
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)

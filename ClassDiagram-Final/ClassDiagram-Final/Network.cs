@@ -13,7 +13,7 @@ namespace ClassDiagram_Final
     [Serializable]
     public class Network : ISerializable
     {
-        private static readonly string _FILE_PATH = "Network.DAT";
+        
         // PROPERTIES
         
         public List<Component> MyComponents { get; private set; }
@@ -26,32 +26,36 @@ namespace ClassDiagram_Final
         }
         public Network(SerializationInfo info, StreamingContext context)
         {
-            this.MyComponents = (List<Component>)info.GetValue("MyComponents", MyComponents.GetType());
-            this.Pipelines = (List<Pipeline>)info.GetValue("Pipelines", Pipelines.GetType());
+            this.MyComponents = (List<Component>)info.GetValue("MyComponents", typeof(List<Component>));
+            this.Pipelines = (List<Pipeline>)info.GetValue("Pipelines", typeof(List<Pipeline>));
         }
         // METHODS 
-        public static void SaveToFile(Network net)
+        public static void SaveToFile(Network net, String path)
         {
-            using (FileStream fl = new FileStream(_FILE_PATH, FileMode.OpenOrCreate))
+            using (FileStream fl = new FileStream(path, FileMode.OpenOrCreate))
             {
                 BinaryFormatter binFormatter = new BinaryFormatter();
                 binFormatter.Serialize(fl,net );
             }
         }
-        public static Network LoadFromFile()
+        public static Network LoadFromFile(String path)
         {
             FileStream fl = null;
+            BinaryReader br;
             try
+
             {
-                fl = new FileStream(_FILE_PATH, FileMode.Open);
+                
+                br = new BinaryReader(  fl = new FileStream(path, FileMode.Open));
                 BinaryFormatter binF = new BinaryFormatter();
-                if (fl != null)
 
                     return (Network)binF.Deserialize(fl);
-                else return new Network();
+                
             }
-            catch
+            catch(Exception e)
             {
+                String test = e.Message;
+               
                 return new Network();
             }
             finally
@@ -121,7 +125,18 @@ namespace ClassDiagram_Final
                 return true;
             }
             Sink sink = c as Sink;
-            if(splitter!=nul)
+            if (sink != null)
+            {
+                sink.SetIncomePipeline(null);
+                return true;
+            }
+            Pump pump = c as Pump;
+            if (pump != null)
+            {
+                pump.SetOutcomePipeline(null);
+                return true;
+            }
+            return false;
         }
 
         public Component CreateComponent(ComponentType type, int locx, int locy)

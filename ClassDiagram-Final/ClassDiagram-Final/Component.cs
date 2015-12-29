@@ -11,7 +11,7 @@ namespace ClassDiagram_Final
         private readonly int locationY;
 
         public Rectangle ComponentBox { get; private set; }
-
+        public Component() { }
         public Component(int locx, int locy)
         {
 
@@ -19,7 +19,13 @@ namespace ClassDiagram_Final
             this.locationY = locy - GetImage().Height / 2; //sets the Y to the upper-left corner
             ComponentBox = new Rectangle(new Point(locationX - 5, locationY - 5), new Size(GetImage().Width, GetImage().Height));
         }
-
+        public Component(SerializationInfo info, StreamingContext context)
+        {
+            
+            this.locationX = info.GetInt32("locationX");
+            this.locationY = info.GetInt32("locationY");
+            this.ComponentBox = (Rectangle)info.GetValue("ComponentBox", ComponentBox.GetType());
+        }
         public abstract Image GetImage();
 
         public virtual Point GetLocation()
@@ -32,9 +38,11 @@ namespace ClassDiagram_Final
             return this.ComponentBox.IntersectsWith(otherComponent.ComponentBox);
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            throw new NotImplementedException();
+            info.AddValue("ComponentBox", ComponentBox);
+            info.AddValue("locationX",locationX);
+            info.AddValue("locationY", locationY);
         }
     }
 }
