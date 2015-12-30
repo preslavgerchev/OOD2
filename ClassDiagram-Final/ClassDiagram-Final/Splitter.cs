@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.Serialization;
 
 namespace ClassDiagram_Final
 {
@@ -19,10 +19,8 @@ namespace ClassDiagram_Final
         public Pipeline LowerOutcomePipeline { get; private set; }
         public Pipeline UpperOutcomePipeline { get; private set; }
         public Pipeline IncomePipeline { get; private set; }
- 
-        
-        public Splitter(int locx, int locy, bool isAdjustable = false) :// <- default - if skipped,sets to false automatically
 
+        public Splitter(int locx, int locy, bool isAdjustable = false) :
             base(locx, locy)
         {
             this.IsAdjustable = isAdjustable;
@@ -31,8 +29,7 @@ namespace ClassDiagram_Final
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
         }
-        //same deal
-
+        #region Calculating Methods
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
@@ -52,7 +49,7 @@ namespace ClassDiagram_Final
         {
             return new Point(UpperHalf.Right - 4, LowerHalf.Bottom - LowerHalf.Width / 4);
         }
-
+        #endregion
         public void SetLowerOutcomePipeline(Pipeline lowerPipeline)
         {
             this.LowerOutcomePipeline = lowerPipeline;
@@ -77,20 +74,6 @@ namespace ClassDiagram_Final
             return Properties.Resources.splitter;
         }
 
-
-        public Rectangle GetHalfOfComponent(Point myPoint)
-        {
-            if (UpperHalf.Contains(myPoint))
-            {
-                return UpperHalf;
-            }
-            else if (LowerHalf.Contains(myPoint))
-            {
-                return LowerHalf;
-            }
-            return new Rectangle();
-        }
-
         public string GetFlow()
         {
             return string.Format("{0} %", UpperOutComePercentage);
@@ -110,7 +93,7 @@ namespace ClassDiagram_Final
             return new Point(ComponentBox.Left, ComponentBox.Bottom - 10);
         }
 
-        public Point GetPipelineLocation(Point mouseClick)
+        public override Point GetPipelineLocation(Point mouseClick)
         {
             if (UpperHalf.Contains(mouseClick))
             {
@@ -121,6 +104,30 @@ namespace ClassDiagram_Final
                 return lowerHalfPoint;
             }
             return new Point(0, 0);
+        }
+
+        public override void SetPipeline(Point location, Pipeline pipe)
+        {
+            if (UpperHalf.Contains(location))
+            {
+                SetUpperOutcomePipeline(pipe);
+            }
+            else if (LowerHalf.Contains(location))
+            {
+                SetLowerOutcomePipeline(pipe);
+            }
+        }
+
+        public override void ClearPipelines()
+        {
+            this.LowerOutcomePipeline = null;
+            this.UpperOutcomePipeline = null;
+            this.IncomePipeline = null;
+        }
+
+        public override IEnumerable<Pipeline> GetPipelines()
+        {
+            return new List<Pipeline>() { UpperOutcomePipeline, LowerOutcomePipeline, IncomePipeline };
         }
     }
 }

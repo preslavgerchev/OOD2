@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.Serialization;
 
 namespace ClassDiagram_Final
 {
     [Serializable]
     public class Merger : Component, ISplit
     {
-
         private Point lowerHalfPoint;
         private Point upperHalfPoint;
 
@@ -26,8 +25,8 @@ namespace ClassDiagram_Final
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
         }
-       
 
+        #region Calculating Methods
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
@@ -47,6 +46,7 @@ namespace ClassDiagram_Final
         {
             return new Point(UpperHalf.Left + 4, LowerHalf.Bottom - LowerHalf.Width / 2);
         }
+        #endregion
 
         public override Image GetImage()
         {
@@ -67,21 +67,8 @@ namespace ClassDiagram_Final
         {
             this.OutcomePipeline = outcomePipeline;
         }
-
-        public Rectangle GetHalfOfComponent(Point myPoint)
-        {
-            if (UpperHalf.Contains(myPoint))
-            {
-                return UpperHalf;
-            }
-            else if (LowerHalf.Contains(myPoint))
-            {
-                return LowerHalf;
-            }
-            return new Rectangle();
-        }
-
-        public Point GetPipelineLocation(Point mouseClick)
+       
+        public override  Point GetPipelineLocation(Point mouseClick)
         {
             if (UpperHalf.Contains(mouseClick))
             {
@@ -92,6 +79,30 @@ namespace ClassDiagram_Final
                 return lowerHalfPoint;
             }
             return new Point(0, 0);
+        }
+
+        public override void SetPipeline(Point location, Pipeline pipe)
+        {
+            if (UpperHalf.Contains(location))
+            {
+                SetUpperIncomePipeline(pipe);
+            }
+            else if (LowerHalf.Contains(location))
+            {
+                SetLowerIncomePipeline(pipe);
+            }
+        }
+
+        public override void ClearPipelines()
+        {
+            this.UpperIncomePipeline = null;
+            this.LowerIncomePipeline = null;
+            this.OutcomePipeline = null;
+        }
+
+        public override IEnumerable<Pipeline> GetPipelines()
+        {
+            return new List<Pipeline>() { LowerIncomePipeline, UpperIncomePipeline, OutcomePipeline };
         }
     }
 }

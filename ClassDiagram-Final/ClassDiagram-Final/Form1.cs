@@ -1,21 +1,28 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
 using System;
+
 namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
     {
         Font font;
+        Network myNetwork;
+
         Pipeline p;
         ComponentType type = ComponentType.NONE;
         Component selectedComponent;
+
         Component startComp;
         Component endComp;
+        Point startCompLoc;
+        Point endCompLoc;
+
         int mouseX;
         int mouseY;
-        Network myNetwork;
         string FILE_PATH = "Network.XML";
         bool saved;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +32,6 @@ namespace ClassDiagram_Final
             trackBar1.Visible = false;
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             saved = false;
-
         }
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -80,6 +86,7 @@ namespace ClassDiagram_Final
             if (selectedComponent != null)
             {
                 myNetwork.RemoveComponent(selectedComponent);
+                myNetwork.RemovePipeline(selectedComponent);
                 selectedComponent = null;
                 type = ComponentType.NONE;
                 if (trackBar1.Visible)
@@ -99,11 +106,6 @@ namespace ClassDiagram_Final
                 if (flowComp != null)
                 {
                     gr.DrawString(flowComp.GetFlow(), font, Brushes.Black, flowComp.GetTextLocation());
-                }
-                ISplit splitComp = comp as ISplit;
-                if (splitComp != null)
-                {
-                    gr.DrawRectangle(Pens.Orange, splitComp.GetHalfOfComponent(new Point(mouseX, mouseY)));
                 }
             }
         }
@@ -129,7 +131,6 @@ namespace ClassDiagram_Final
             panel1.Invalidate();
         }
 
-
         private void DrawPipelines(Graphics gr)
         {
             foreach (Pipeline p in myNetwork.Pipelines)
@@ -137,6 +138,7 @@ namespace ClassDiagram_Final
                 gr.DrawLine(new Pen(Color.Red, 5), p.StartPoint, p.EndPoint);
             }
         }
+
         private void btnSaveAs_Click(object sender, EventArgs e)
         {
             SaveFileDialog myDialog = new SaveFileDialog();
@@ -158,8 +160,8 @@ namespace ClassDiagram_Final
                 btnSaveAs.PerformClick();
                 OpenFileDialog load = new OpenFileDialog();
                 if (load.ShowDialog() == DialogResult.OK)
-                { load.Title = "Load from file";
-
+                {
+                    load.Title = "Load from file";
                     myNetwork = Network.LoadFromFile(load.FileName);
                     panel1.Invalidate();
                 }
@@ -170,16 +172,13 @@ namespace ClassDiagram_Final
                 if (load.ShowDialog() == DialogResult.OK)
                 {
                     load.Title = "Load from file";
-
                     myNetwork = Network.LoadFromFile(load.FileName);
                     panel1.Invalidate();
                 }
             }
-
         }
         protected override void OnClosed(EventArgs e)
         {
-            
             DialogResult dialog = MessageBox.Show("Do you want to save it?", "Save?", MessageBoxButtons.YesNoCancel);
             if (dialog == DialogResult.Yes && saved == true)
             {
@@ -190,17 +189,14 @@ namespace ClassDiagram_Final
             {
                 if (dialog == DialogResult.Yes && saved == false)
                 {
-
                     btnSaveAs.PerformClick();
                 }
                 else
-                if (dialog==DialogResult.Cancel)
+                if (dialog == DialogResult.Cancel)
                 {
                     //it should cancel the exit and close the dialog
-
+                }
             }
-            }
-       
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -210,26 +206,20 @@ namespace ClassDiagram_Final
             lblInfo.Text = "Your file has been saved! " + DateTime.Now;
         }
 
-       
-
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
             if (type == ComponentType.PIPELINE)
             {
-                if (p == null)
-                {
-                    p = new Pipeline();
-                }
                 if (startComp == null)
                 {
                     startComp = myNetwork.GetComponent(e.Location);
-                    p.SetStartPoint((startComp as ISplit).GetPipelineLocation(e.Location));
+                    startCompLoc = startComp.GetPipelineLocation(e.Location);
                     return;
                 }
-
                 endComp = myNetwork.GetComponent(e.Location);
-                p.SetEndPoint((endComp as ISplit).GetPipelineLocation(e.Location));
-                myNetwork.AddPipeline(p);
+                endCompLoc = endComp.GetPipelineLocation(e.Location);
+                myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc);
+                ClearVariables();
                 type = ComponentType.NONE;
                 panel1.Invalidate();
             }
@@ -240,9 +230,10 @@ namespace ClassDiagram_Final
             type = ComponentType.PIPELINE;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ClearVariables()
         {
-
+            this.startComp = null;
+            this.endComp = null;
         }
     }
 }
