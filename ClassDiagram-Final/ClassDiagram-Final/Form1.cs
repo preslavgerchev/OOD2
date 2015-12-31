@@ -106,6 +106,20 @@ namespace ClassDiagram_Final
                 {
                     gr.DrawString(flowComp.GetFlow(), font, Brushes.Black, flowComp.GetTextLocation());
                 }
+                Merger m = comp as Merger;
+                if (m != null)
+                {
+                    gr.DrawRectangle(Pens.Red, m.UpperHalf);
+                    gr.DrawRectangle(Pens.Red, m.LowerHalf);
+                    gr.DrawRectangle(Pens.Red, m.OutcomeHalf);
+                }
+                Splitter sp = comp as Splitter;
+                if (sp != null)
+                {
+                    gr.DrawRectangle(Pens.Red, sp.LowerHalf);
+                    gr.DrawRectangle(Pens.Red, sp.UpperHalf);
+                    gr.DrawRectangle(Pens.Red, sp.IncomeHalf);
+                }
             }
         }
 

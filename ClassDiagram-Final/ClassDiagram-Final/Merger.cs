@@ -9,11 +9,11 @@ namespace ClassDiagram_Final
     {
         private Point lowerHalfPoint;
         private Point upperHalfPoint;
-        private Point outcomingHalf;
+        private Point outcomingHalfPoint;
 
         public Rectangle UpperHalf { get; }
         public Rectangle LowerHalf { get; }
-        public Rectangle OutcomingHalf { get; }
+        public Rectangle OutcomeHalf { get; }
 
         public Pipeline LowerIncomePipeline { get; private set; }
         public Pipeline UpperIncomePipeline { get; private set; }
@@ -24,11 +24,11 @@ namespace ClassDiagram_Final
         {
             this.UpperHalf = CalculateLowerHalf();
             this.LowerHalf = CalculateUpperHalf();
-            this.OutcomingHalf = CalculateOutcomingHalf();
+            this.OutcomeHalf = CalculateOutcomeHalf();
+
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
-            this.outcomingHalf = CalculateOutcomingHalfPoint();
-            
+            this.outcomingHalfPoint = CalculateOutcomingHalfPoint();
         }
 
         #region Calculating Methods
@@ -41,24 +41,25 @@ namespace ClassDiagram_Final
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
-        //this
-        private Rectangle CalculateOutcomingHalf()
+       
+        private Rectangle CalculateOutcomeHalf()
         {
-            return new Rectangle(new Point(ComponentBox.Right, ComponentBox.Top + (ComponentBox.Height / 3) * 2), new Size(25, ComponentBox.Height / 3 * 2));
+            return new Rectangle(new Point(ComponentBox.Right - ComponentBox.Width / 2, ComponentBox.Top + ComponentBox.Height / 3), new Size(25, ComponentBox.Height / 2));
         }
+
         private Point CalculateUpperHalfPoint()
         {
-            return new Point(UpperHalf.Left + 4, UpperHalf.Top + UpperHalf.Width / 2);
+            return new Point(UpperHalf.Left + 5, UpperHalf.Top + UpperHalf.Width / 2);
         }
 
         private Point CalculateLowerHalfPoint()
         {
-            return new Point(UpperHalf.Left + 4, LowerHalf.Bottom - LowerHalf.Width / 2);
+            return new Point(UpperHalf.Left + 5, LowerHalf.Bottom - LowerHalf.Width / 2);
         }
-        //this
+
         private Point CalculateOutcomingHalfPoint()
         {
-            return new Point(UpperHalf.Right + OutcomingHalf.Width/3, OutcomingHalf.Width/3 + OutcomingHalf.Width /3*2);
+            return new Point(OutcomeHalf.Right - 5, OutcomeHalf.Top + OutcomeHalf.Width / 4);
         }
         #endregion
 
@@ -78,15 +79,15 @@ namespace ClassDiagram_Final
                 return lowerHalfPoint;
             }
             
-            else if (OutcomingHalf.Contains(mouseClick))
+            else if (OutcomeHalf.Contains(mouseClick))
             {
-                return outcomingHalf;
+                return outcomingHalfPoint;
             }
             return new Point(0, 0);
         }
 
         public override void SetPipeline(Point location, Pipeline pipe)
-        {
+        {   
             if (UpperHalf.Contains(location))
             {
                 this.UpperIncomePipeline = pipe;
@@ -95,7 +96,7 @@ namespace ClassDiagram_Final
             {
                 this.LowerIncomePipeline = pipe;
             }
-            else if (OutcomingHalf.Contains(location))
+            else if (OutcomeHalf.Contains(location))
             {
                 this.OutcomePipeline = pipe;
             }

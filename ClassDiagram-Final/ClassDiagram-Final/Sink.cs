@@ -19,7 +19,7 @@ namespace ClassDiagram_Final
 
         private Point CalculatePipelineLocation()
         {
-            return new Point(ComponentBox.Left + 4, ComponentBox.Top + ComponentBox.Height / 2);
+            return new Point(ComponentBox.Left + 5, ComponentBox.Top + ComponentBox.Height / 2);
         }
        
         public override Image GetImage()
