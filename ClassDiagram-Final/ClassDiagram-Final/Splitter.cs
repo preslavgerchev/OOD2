@@ -9,9 +9,11 @@ namespace ClassDiagram_Final
     {
         private Point upperHalfPoint;
         private Point lowerHalfPoint;
+        private Point incomingHalfPoint;
 
         public Rectangle UpperHalf { get; }
         public Rectangle LowerHalf { get; }
+        public Rectangle IncomingHalf { get; }
 
         public bool IsAdjustable { get; private set; }
         public int UpperOutComePercentage { get; private set; } = 50;
@@ -39,16 +41,26 @@ namespace ClassDiagram_Final
         {
             return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
-
+        //
+        private Rectangle CalculateIncomingHalf()
+        {
+            return new Rectangle(new Point(ComponentBox.Right, ComponentBox.Top + (ComponentBox.Height / 3) * 2), new Size(25, ComponentBox.Height / 3 * 2));
+        }
         private Point CalculateUpperHalfPoint()
         {
             return new Point(UpperHalf.Right - 4, UpperHalf.Top + UpperHalf.Width / 4);
         }
-
+        
         private Point CalculateLowerHalfPoint()
         {
             return new Point(UpperHalf.Right - 4, LowerHalf.Bottom - LowerHalf.Width / 4);
         }
+        //
+        private Point CalculateOutcomingHalfPoint()
+        {
+            return new Point(UpperHalf.Right + IncomingHalf.Width / 3, IncomingHalf.Width / 3 + IncomingHalf.Width / 3 * 2);
+        }
+
         #endregion
 
         public override Image GetImage()
@@ -89,6 +101,10 @@ namespace ClassDiagram_Final
             {
                 return lowerHalfPoint;
             }
+            else if (IncomingHalf.Contains(mouseClick))
+            {
+                return upperHalfPoint;
+            }
             return new Point(0, 0);
         }
 
@@ -101,6 +117,10 @@ namespace ClassDiagram_Final
             else if (LowerHalf.Contains(location))
             {
                 this.LowerOutcomePipeline = pipe;
+            }
+            else if (UpperHalf.Contains(location))
+            {
+                this.IncomePipeline = pipe;
             }
         }
 

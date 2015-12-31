@@ -9,9 +9,11 @@ namespace ClassDiagram_Final
     {
         private Point lowerHalfPoint;
         private Point upperHalfPoint;
+        private Point outcomingHalf;
 
         public Rectangle UpperHalf { get; }
         public Rectangle LowerHalf { get; }
+        public Rectangle OutcomingHalf { get; }
 
         public Pipeline LowerIncomePipeline { get; private set; }
         public Pipeline UpperIncomePipeline { get; private set; }
@@ -22,8 +24,11 @@ namespace ClassDiagram_Final
         {
             this.UpperHalf = CalculateLowerHalf();
             this.LowerHalf = CalculateUpperHalf();
+            this.OutcomingHalf = CalculateOutcomingHalf();
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
+            this.outcomingHalf = CalculateOutcomingHalfPoint();
+            
         }
 
         #region Calculating Methods
@@ -36,7 +41,11 @@ namespace ClassDiagram_Final
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
-
+        //this
+        private Rectangle CalculateOutcomingHalf()
+        {
+            return new Rectangle(new Point(ComponentBox.Right, ComponentBox.Top + (ComponentBox.Height / 3) * 2), new Size(25, ComponentBox.Height / 3 * 2));
+        }
         private Point CalculateUpperHalfPoint()
         {
             return new Point(UpperHalf.Left + 4, UpperHalf.Top + UpperHalf.Width / 2);
@@ -45,6 +54,11 @@ namespace ClassDiagram_Final
         private Point CalculateLowerHalfPoint()
         {
             return new Point(UpperHalf.Left + 4, LowerHalf.Bottom - LowerHalf.Width / 2);
+        }
+        //this
+        private Point CalculateOutcomingHalfPoint()
+        {
+            return new Point(UpperHalf.Right + OutcomingHalf.Width/3, OutcomingHalf.Width/3 + OutcomingHalf.Width /3*2);
         }
         #endregion
 
@@ -63,6 +77,11 @@ namespace ClassDiagram_Final
             {
                 return lowerHalfPoint;
             }
+            
+            else if (OutcomingHalf.Contains(mouseClick))
+            {
+                return outcomingHalf;
+            }
             return new Point(0, 0);
         }
 
@@ -76,7 +95,12 @@ namespace ClassDiagram_Final
             {
                 this.LowerIncomePipeline = pipe;
             }
+            else if (OutcomingHalf.Contains(location))
+            {
+                this.OutcomePipeline = pipe;
+            }
         }
+
 
         public override void ClearPipeline(Pipeline p)
         {
