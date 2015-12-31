@@ -28,12 +28,6 @@ namespace ClassDiagram_Final
             return Properties.Resources.pump;
         }
 
-        public void SetOutcomePipeline(Pipeline outcomePipeline)
-        {
-            this.OutcomePipeline = outcomePipeline;
-            SetFlow(OutcomePipeline.CurrentFlow);
-        }
-
         private void SetFlow(int newFlow)
         {
             this.Flow = newFlow;
@@ -53,7 +47,7 @@ namespace ClassDiagram_Final
         {
             if (ComponentBox.Contains(location))
             {
-                SetOutcomePipeline(pipe);
+                this.OutcomePipeline = pipe;
             }
         }
 
@@ -66,14 +60,19 @@ namespace ClassDiagram_Final
             return new Point(0, 0);
         }
 
-        public override void ClearPipelines()
+        public override void ClearPipeline(Pipeline p)
         {
-            this.OutcomePipeline = null;
+            if (this.OutcomePipeline == p)
+            {
+                this.OutcomePipeline = null;
+            }
         }
 
         public override IEnumerable<Pipeline> GetPipelines()
         {
-            return new List<Pipeline>() { OutcomePipeline };
+            List<Pipeline> allPipelines = new List<Pipeline>();
+            if (OutcomePipeline != null) { allPipelines.Add(OutcomePipeline); }
+            return allPipelines;
         }
     }
 }

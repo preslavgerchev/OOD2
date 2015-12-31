@@ -122,8 +122,9 @@ namespace ClassDiagram_Final
             foreach (var pipe in c.GetPipelines())
             {
                 this.Pipelines.Remove(pipe);
+                pipe.StartComponent.ClearPipeline(pipe);
+                pipe.EndComponent.ClearPipeline(pipe);
             }
-            c.ClearPipelines();
         }
 
         public Component CreateComponent(ComponentType type, int locx, int locy)

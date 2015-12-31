@@ -22,7 +22,7 @@ namespace ClassDiagram_Final
 
         public abstract Image GetImage();
 
-        public abstract void ClearPipelines();
+        public abstract void ClearPipeline(Pipeline p);
 
         public abstract IEnumerable<Pipeline> GetPipelines();
 

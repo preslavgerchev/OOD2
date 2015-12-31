@@ -9,7 +9,6 @@ namespace ClassDiagram_Final
         Font font;
         Network myNetwork;
 
-        Pipeline p;
         ComponentType type = ComponentType.NONE;
         Component selectedComponent;
 
@@ -217,6 +216,10 @@ namespace ClassDiagram_Final
                     return;
                 }
                 endComp = myNetwork.GetComponent(e.Location);
+                if (endComp == null)
+                {
+                    return;
+                }
                 endCompLoc = endComp.GetPipelineLocation(e.Location);
                 myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc);
                 ClearVariables();

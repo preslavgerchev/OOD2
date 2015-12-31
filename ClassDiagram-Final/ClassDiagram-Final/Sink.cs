@@ -21,12 +21,7 @@ namespace ClassDiagram_Final
         {
             return new Point(ComponentBox.Left + 4, ComponentBox.Top + ComponentBox.Height / 2);
         }
-
-        public void SetIncomePipeline(Pipeline incomePipeline)
-        {
-            this.IncomePipeline = incomePipeline;
-        }
-
+       
         public override Image GetImage()
         {
             return Properties.Resources.sink;
@@ -50,7 +45,7 @@ namespace ClassDiagram_Final
         {
             if (ComponentBox.Contains(location))
             {
-                SetIncomePipeline(pipe);
+                this.IncomePipeline = pipe;
             }
         }
 
@@ -63,14 +58,19 @@ namespace ClassDiagram_Final
             return new Point(0, 0);
         }
 
-        public override void ClearPipelines()
+        public override void ClearPipeline(Pipeline p)
         {
-            this.IncomePipeline = null;
+            if (this.IncomePipeline == p)
+            {
+                this.IncomePipeline = null;
+            }
         }
 
         public override IEnumerable<Pipeline> GetPipelines()
         {
-            return new List<Pipeline>() { IncomePipeline };
+            List<Pipeline> allPipelines = new List<Pipeline>();
+            if (IncomePipeline != null) { allPipelines.Add(IncomePipeline); }
+            return allPipelines;
         }
     }
 }

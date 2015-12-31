@@ -52,22 +52,7 @@ namespace ClassDiagram_Final
         {
             return Properties.Resources.merger;
         }
-
-        public void SetLowerIncomePipeline(Pipeline lowerPipeline)
-        {
-            this.LowerIncomePipeline = lowerPipeline;
-        }
-
-        public void SetUpperIncomePipeline(Pipeline upperPipeline)
-        {
-            this.UpperIncomePipeline = upperPipeline;
-        }
-
-        public void SetOutcomePipeline(Pipeline outcomePipeline)
-        {
-            this.OutcomePipeline = outcomePipeline;
-        }
-       
+        
         public override  Point GetPipelineLocation(Point mouseClick)
         {
             if (UpperHalf.Contains(mouseClick))
@@ -85,24 +70,37 @@ namespace ClassDiagram_Final
         {
             if (UpperHalf.Contains(location))
             {
-                SetUpperIncomePipeline(pipe);
+                this.UpperIncomePipeline = pipe;
             }
             else if (LowerHalf.Contains(location))
             {
-                SetLowerIncomePipeline(pipe);
+                this.LowerIncomePipeline = pipe;
             }
         }
 
-        public override void ClearPipelines()
+        public override void ClearPipeline(Pipeline p)
         {
-            this.UpperIncomePipeline = null;
-            this.LowerIncomePipeline = null;
-            this.OutcomePipeline = null;
+            if (this.UpperIncomePipeline == p)
+            {
+                this.UpperIncomePipeline = null;
+            }
+            if (this.LowerIncomePipeline == p)
+            {
+                this.LowerIncomePipeline = null;
+            }
+            if (this.OutcomePipeline == p)
+            {
+                this.OutcomePipeline = null;
+            }
         }
 
         public override IEnumerable<Pipeline> GetPipelines()
         {
-            return new List<Pipeline>() { LowerIncomePipeline, UpperIncomePipeline, OutcomePipeline };
+            List<Pipeline> allPipelines = new List<Pipeline>();
+            if (LowerIncomePipeline != null) { allPipelines.Add(LowerIncomePipeline); }
+            if (UpperIncomePipeline != null) { allPipelines.Add(UpperIncomePipeline); }
+            if (OutcomePipeline != null) { allPipelines.Add(OutcomePipeline); }
+            return allPipelines;
         }
     }
 }
