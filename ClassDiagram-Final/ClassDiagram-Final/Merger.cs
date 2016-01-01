@@ -101,7 +101,22 @@ namespace ClassDiagram_Final
                 this.OutcomePipeline = pipe;
             }
         }
-
+        public override bool CheckIfConnected(Point location)
+        {
+            if (UpperHalf.Contains(location) && UpperIncomePipeline == null)
+            {
+                return false;
+            }
+            else if (LowerHalf.Contains(location) && LowerIncomePipeline == null)
+            {
+                return false;
+            }
+            else if (OutcomeHalf.Contains(location) && OutcomePipeline == null)
+            {
+                return false;
+            }
+            return false;
+        }
 
         public override void ClearPipeline(Pipeline p)
         {

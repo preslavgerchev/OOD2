@@ -39,5 +39,6 @@ namespace ClassDiagram_Final
         {
             return this.ComponentBox.IntersectsWith(otherComponent.ComponentBox);
         }
+        public abstract bool CheckIfConnected(Point location);
     }
 }

@@ -17,8 +17,9 @@ namespace ClassDiagram_Final
         {
             this.pipelineLocation = CalculaltePipelineLocation();
         }
-        public bool CheckAttachedPipeline()
+        public override bool CheckIfConnected(Point locaton)
         {
+           
             if (OutcomePipeline == null)
                 return false;
             else return true;

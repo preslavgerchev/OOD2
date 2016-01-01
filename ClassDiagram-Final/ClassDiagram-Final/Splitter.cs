@@ -35,6 +35,22 @@ namespace ClassDiagram_Final
             this.incomeHalfPoint = CalculateIncomeHalfPoint();
         }
         #region Calculating Methods
+        public override bool CheckIfConnected(Point location)
+        {
+            if (UpperHalf.Contains(location) && UpperOutcomePipeline==null)
+            {
+                return false;
+            }
+            else if (LowerHalf.Contains(location) && LowerOutcomePipeline==null)
+            {
+                return false;
+            }
+            else if (IncomeHalf.Contains(location) && IncomePipeline==null)
+            {
+                return false;
+            }
+            return false;
+        }
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));

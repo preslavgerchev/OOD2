@@ -97,71 +97,63 @@ namespace ClassDiagram_Final
         {
             this.Pipelines.Add(p);
         }
-        private bool CheckSmth(Component c)
+        private bool CheckSmth(Component c, Point location)
         {
-            
-            int caseSwitch = 1;
-
-            switch (caseSwitch)
+            bool check = true;
+            if (c is Pump)
             {
-                case 1:
-                    if (c is Pump)
-                    {
-                        Pump p = c as Pump;
-                        if (p.CheckAttachedPipeline() == false)
-                            return false;
-                        else return true;
-                    }
-
-                    break;
-                case 2:
-                    if (c is Sink)
-                    {
-                        Sink s = c as Sink;
-                        if (s.CheckAttachedPipeline() == false)
-                            return false;
-                        else return true;
-                    }
-                    break;
-                    //case 3:
-                    //    if (c is Splitter)
-                    //    {
-                    //        Splitter s = c as Splitter;
-                    //        if (s.CheckAttachedPipeline() == false)
-                    //            return false;
-                    //    }
-                    //    break;
+                Pump p = c as Pump;
+                if (p.CheckIfConnected(location) == false)
+                    check = false;
             }
+            else if (c is Sink)
+            {
+                Sink s = c as Sink;
+                if (s.CheckIfConnected(location) == false)
+                    check = false;
 
-
-
-
-            return false;
+            }
+            else if (c is Splitter)
+            {
+                Splitter s = c as Splitter;
+                if (s.CheckIfConnected(location) == false)
+                    check = false;
+            }
+            else if (c is Merger)
+            {
+                Splitter s = c as Splitter;
+                if (s.CheckIfConnected(location) == false)
+                    check = false;
+            }
+            return check;
+       
+        
         }
+
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
         {
             Pipeline p = new Pipeline();
-            bool check = false;
-            if (CheckSmth(startComp) == true)
-            {
-                check = true;
-            }
-            if (CheckSmth(endComp) == true) { check = true; }
+            //bool check = false;
+            //if (CheckSmth(startComp, location) == true)
+            //{
+            //    check = true;
+            //}
+            //if (CheckSmth(endComp) == true) { check = true; }
 
 
-            else
-            {
-                check = false;
-            }
-            if (check == false)
-            {
+            //else
+            //{
+            //    check = false;
+            //}
+            //if (check == false)
+            //{
                 p.SetStartComponent(startComp);
                 p.SetEndComponent(endComp);
                 p.SetStartPoint(startCompLoc);
                 p.SetEndPoint(endCompLoc);
                 return p;
-            }
-            else return p;
+            //}
+            //else return p;
 
 
         
@@ -171,10 +163,14 @@ namespace ClassDiagram_Final
         //good name plz
         public void CreateAndProcessPipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
         {
-            Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc);
-            startComp.SetPipeline(startCompLoc, p);
-            endComp.SetPipeline(endCompLoc, p);
-            AddPipeline(p);
+            if (CheckSmth(startComp, startCompLoc) == false && CheckSmth(endComp, endCompLoc) == false)
+
+            {
+                Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc);
+                startComp.SetPipeline(startCompLoc, p);
+                endComp.SetPipeline(endCompLoc, p);
+                AddPipeline(p);
+            }
         }
 
         public void RemovePipeline(Component c)
@@ -205,7 +201,7 @@ namespace ClassDiagram_Final
                     return null;
             }
         }
-
+        
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("MyComponents", MyComponents);

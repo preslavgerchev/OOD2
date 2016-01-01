@@ -65,7 +65,7 @@ namespace ClassDiagram_Final
                 this.IncomePipeline = null;
             }
         }
-        public bool CheckAttachedPipeline()
+        public override bool CheckIfConnected(Point location)
         {
             if (IncomePipeline == null)
                 return false;
