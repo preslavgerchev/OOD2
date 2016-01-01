@@ -17,7 +17,12 @@ namespace ClassDiagram_Final
         {
             this.pipelineLocation = CalculaltePipelineLocation();
         }
-
+        public bool CheckAttachedPipeline()
+        {
+            if (OutcomePipeline == null)
+                return false;
+            else return true;
+        }
         private Point CalculaltePipelineLocation()
         {
             return new Point(ComponentBox.Right - 5, ComponentBox.Top + ComponentBox.Height / 2);

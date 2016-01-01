@@ -97,15 +97,75 @@ namespace ClassDiagram_Final
         {
             this.Pipelines.Add(p);
         }
+        private bool CheckSmth(Component c)
+        {
+            
+            int caseSwitch = 1;
 
+            switch (caseSwitch)
+            {
+                case 1:
+                    if (c is Pump)
+                    {
+                        Pump p = c as Pump;
+                        if (p.CheckAttachedPipeline() == false)
+                            return false;
+                        else return true;
+                    }
+
+                    break;
+                case 2:
+                    if (c is Sink)
+                    {
+                        Sink s = c as Sink;
+                        if (s.CheckAttachedPipeline() == false)
+                            return false;
+                        else return true;
+                    }
+                    break;
+                    //case 3:
+                    //    if (c is Splitter)
+                    //    {
+                    //        Splitter s = c as Splitter;
+                    //        if (s.CheckAttachedPipeline() == false)
+                    //            return false;
+                    //    }
+                    //    break;
+            }
+
+
+
+
+            return false;
+        }
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
         {
             Pipeline p = new Pipeline();
-            p.SetStartComponent(startComp);
-            p.SetEndComponent(endComp);
-            p.SetStartPoint(startCompLoc);
-            p.SetEndPoint(endCompLoc);
-            return p;
+            bool check = false;
+            if (CheckSmth(startComp) == true)
+            {
+                check = true;
+            }
+            if (CheckSmth(endComp) == true) { check = true; }
+
+
+            else
+            {
+                check = false;
+            }
+            if (check == false)
+            {
+                p.SetStartComponent(startComp);
+                p.SetEndComponent(endComp);
+                p.SetStartPoint(startCompLoc);
+                p.SetEndPoint(endCompLoc);
+                return p;
+            }
+            else return p;
+
+
+        
+    
         }
 
         //good name plz

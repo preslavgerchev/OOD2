@@ -148,6 +148,7 @@ namespace ClassDiagram_Final
         {
             foreach (Pipeline p in myNetwork.Pipelines)
             {
+                
                 gr.DrawLine(new Pen(Color.Red, 5), p.StartPoint, p.EndPoint);
             }
         }

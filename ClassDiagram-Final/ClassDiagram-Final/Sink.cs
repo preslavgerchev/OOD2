@@ -65,7 +65,12 @@ namespace ClassDiagram_Final
                 this.IncomePipeline = null;
             }
         }
-
+        public bool CheckAttachedPipeline()
+        {
+            if (IncomePipeline == null)
+                return false;
+            else return true;
+        }
         public override IEnumerable<Pipeline> GetPipelines()
         {
             List<Pipeline> allPipelines = new List<Pipeline>();
