@@ -1,0 +1,25 @@
+Implementation: 
+ 1. Little square merger/splitter
+ 2. Delete a line
+ 3. Colors for a line
+ 4. Info about a line's flow
+ 5. Flow handling
+ 6. Pump - Capacity = max flow
+	 - Current flow <= Capacity
+ 7. Pipeline image - UI
+ 8. Comments
+ 
+Optional: No overlapping lines
+
+Docs : 
+URS and Design doc
+ 1. New class diagram + desciption of the members(=comments)
+ 2. Update seq diagrams
+ 3. New user interface screen shot + desciption
+(Maybe URS - updated 01.01.2016)
+Process report:
+ 1. Update rules and decisions + explanation
+ 2. Who-did-what table
+ 3. Problems and solutions
+ 4. Changes 
+ 5. Personal opinion on the project/group work
