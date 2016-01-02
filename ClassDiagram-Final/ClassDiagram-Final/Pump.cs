@@ -11,13 +11,22 @@ namespace ClassDiagram_Final
 
         public Pipeline OutcomePipeline { get; private set; }
         public int Flow { get; private set; }
+        public int Capacity { get; private set;  }
 
         public Pump(int locx, int locy) :
             base(locx, locy)
         {
             this.pipelineLocation = CalculaltePipelineLocation();
         }
-
+        
+        public void SetFlow(int max, int current)
+        {
+            if (current <= max)
+            {
+                this.Flow = current;
+                this.Capacity = max;
+            }
+        }
         private Point CalculaltePipelineLocation()
         {
             return new Point(ComponentBox.Right - 5, ComponentBox.Top + ComponentBox.Height / 2);

@@ -55,32 +55,32 @@ namespace ClassDiagram_Final
             DrawPipelines(e.Graphics);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPump_Click(object sender, EventArgs e)
         {
             type = ComponentType.PUMP;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnSink_Click(object sender, EventArgs e)
         {
             type = ComponentType.SINK;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnSplitter_Click(object sender, EventArgs e)
         {
             type = ComponentType.SPLITTER;
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnMerger_Click(object sender, EventArgs e)
         {
             type = ComponentType.MERGER;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnAdjSplitter_Click(object sender, EventArgs e)
         {
             type = ComponentType.ADJUSTABLE_SPLITTER;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
             if (selectedComponent != null)
             {
@@ -126,6 +126,13 @@ namespace ClassDiagram_Final
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             selectedComponent = myNetwork.GetComponent(e.Location);
+            if (selectedComponent is Pump)
+            {
+                Pump p = (Pump)selectedComponent;
+                this.tbCurrentFlow.Text = p.Capacity.ToString();
+                this.lblCapacity.Text = p.Flow.ToString();
+            }
+           
             Splitter splitterComp = selectedComponent as Splitter;
             if (splitterComp != null && splitterComp.IsAdjustable)
             {
@@ -243,7 +250,7 @@ namespace ClassDiagram_Final
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPipe_Click(object sender, EventArgs e)
         {
             type = ComponentType.PIPELINE;
         }
@@ -253,5 +260,23 @@ namespace ClassDiagram_Final
             this.startComp = null;
             this.endComp = null;
         }
+
+        private void btnUpdateFlow_Click(object sender, EventArgs e)
+        {
+            if (selectedComponent != null)
+            {
+                if (selectedComponent is Pump)
+                {
+                    Pump p = (Pump)selectedComponent;
+                    p.SetFlow(Convert.ToInt32(this.lblCapacity.Text), Convert.ToInt32(this.tbCurrentFlow.Text));
+                }
+                selectedComponent = null;
+                this.tbCurrentFlow.Text = "";
+                this.lblCapacity.Text = "";
+                panel1.Invalidate();
+            }
+        }
+
+       
     }
 }

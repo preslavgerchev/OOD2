@@ -150,5 +150,14 @@ namespace ClassDiagram_Final
             info.AddValue("MyComponents", MyComponents);
             info.AddValue("Pipelines", Pipelines);
         }
+        //public void SetFlow(Component c, int max, int current)
+        //{
+        //    if (c is Pump)
+        //    {
+        //        Pump p = c;
+        //        p.Flow = max;
+        //    }
+        //    }
+        }
     }
-}
+

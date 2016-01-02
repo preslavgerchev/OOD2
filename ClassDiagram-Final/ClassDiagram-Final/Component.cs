@@ -40,6 +40,8 @@ namespace ClassDiagram_Final
         {
             return this.ComponentBox.IntersectsWith(otherComponent.ComponentBox);
         }
+       
+
 
     }
 }

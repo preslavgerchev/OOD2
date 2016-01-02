@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel4 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.btnSaveAs = new System.Windows.Forms.Button();
@@ -37,35 +38,35 @@
             this.btSave = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button11 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnUpdateFlow = new System.Windows.Forms.Button();
+            this.tbCurrentFlow = new System.Windows.Forms.TextBox();
+            this.lblCapacity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.gbToolbox = new System.Windows.Forms.GroupBox();
+            this.btnMerger = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnAdjSplitter = new System.Windows.Forms.Button();
+            this.btnSplitter = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSink = new System.Windows.Forms.Button();
+            this.btnPump = new System.Windows.Forms.Button();
+            this.btnPipe = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.lblInfo = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbToolbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,7 +159,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.btnRemove);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(357, 11);
@@ -176,19 +177,19 @@
             this.label13.TabIndex = 9;
             this.label13.Text = "component";
             // 
-            // button7
+            // btnRemove
             // 
-            this.button7.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.rubbish;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(15, 12);
-            this.button7.Name = "button7";
-            this.button7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button7.Size = new System.Drawing.Size(47, 45);
-            this.button7.TabIndex = 8;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btnRemove.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.rubbish;
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.Location = new System.Drawing.Point(15, 12);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnRemove.Size = new System.Drawing.Size(47, 45);
+            this.btnRemove.TabIndex = 8;
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // label9
             // 
@@ -202,9 +203,9 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button11);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.btnUpdateFlow);
+            this.panel2.Controls.Add(this.tbCurrentFlow);
+            this.panel2.Controls.Add(this.lblCapacity);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -213,34 +214,35 @@
             this.panel2.Size = new System.Drawing.Size(200, 67);
             this.panel2.TabIndex = 20;
             // 
-            // button11
+            // btnUpdateFlow
             // 
-            this.button11.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.tick;
-            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(153, 20);
-            this.button11.Name = "button11";
-            this.button11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button11.Size = new System.Drawing.Size(35, 29);
-            this.button11.TabIndex = 11;
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnUpdateFlow.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.tick;
+            this.btnUpdateFlow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUpdateFlow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateFlow.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateFlow.Location = new System.Drawing.Point(153, 20);
+            this.btnUpdateFlow.Name = "btnUpdateFlow";
+            this.btnUpdateFlow.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnUpdateFlow.Size = new System.Drawing.Size(35, 29);
+            this.btnUpdateFlow.TabIndex = 11;
+            this.btnUpdateFlow.UseVisualStyleBackColor = true;
+            this.btnUpdateFlow.Click += new System.EventHandler(this.btnUpdateFlow_Click);
             // 
-            // textBox1
+            // tbCurrentFlow
             // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(92, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 21);
-            this.textBox1.TabIndex = 5;
+            this.tbCurrentFlow.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCurrentFlow.Location = new System.Drawing.Point(92, 8);
+            this.tbCurrentFlow.Name = "tbCurrentFlow";
+            this.tbCurrentFlow.Size = new System.Drawing.Size(46, 21);
+            this.tbCurrentFlow.TabIndex = 5;
             // 
-            // textBox2
+            // lblCapacity
             // 
-            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(92, 38);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(46, 21);
-            this.textBox2.TabIndex = 6;
+            this.lblCapacity.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCapacity.Location = new System.Drawing.Point(92, 38);
+            this.lblCapacity.Name = "lblCapacity";
+            this.lblCapacity.Size = new System.Drawing.Size(46, 21);
+            this.lblCapacity.TabIndex = 6;
             // 
             // label7
             // 
@@ -258,46 +260,46 @@
             this.label8.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(13, 38);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 16);
+            this.label8.Size = new System.Drawing.Size(63, 16);
             this.label8.TabIndex = 4;
-            this.label8.Text = "Max flow";
+            this.label8.Text = "Capacity ";
             // 
-            // groupBox1
+            // gbToolbox
             // 
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 11);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(97, 499);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ToolBox";
+            this.gbToolbox.Controls.Add(this.btnMerger);
+            this.gbToolbox.Controls.Add(this.label15);
+            this.gbToolbox.Controls.Add(this.label6);
+            this.gbToolbox.Controls.Add(this.label5);
+            this.gbToolbox.Controls.Add(this.label4);
+            this.gbToolbox.Controls.Add(this.label3);
+            this.gbToolbox.Controls.Add(this.btnAdjSplitter);
+            this.gbToolbox.Controls.Add(this.btnSplitter);
+            this.gbToolbox.Controls.Add(this.label2);
+            this.gbToolbox.Controls.Add(this.label1);
+            this.gbToolbox.Controls.Add(this.btnSink);
+            this.gbToolbox.Controls.Add(this.btnPump);
+            this.gbToolbox.Controls.Add(this.btnPipe);
+            this.gbToolbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gbToolbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbToolbox.Location = new System.Drawing.Point(10, 11);
+            this.gbToolbox.Name = "gbToolbox";
+            this.gbToolbox.Size = new System.Drawing.Size(97, 499);
+            this.gbToolbox.TabIndex = 18;
+            this.gbToolbox.TabStop = false;
+            this.gbToolbox.Text = "ToolBox";
             // 
-            // button6
+            // btnMerger
             // 
-            this.button6.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.merger;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(16, 433);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(47, 45);
-            this.button6.TabIndex = 9;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnMerger.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.merger;
+            this.btnMerger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMerger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMerger.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMerger.Location = new System.Drawing.Point(16, 433);
+            this.btnMerger.Name = "btnMerger";
+            this.btnMerger.Size = new System.Drawing.Size(47, 45);
+            this.btnMerger.TabIndex = 9;
+            this.btnMerger.UseVisualStyleBackColor = true;
+            this.btnMerger.Click += new System.EventHandler(this.btnMerger_Click);
             // 
             // label15
             // 
@@ -349,31 +351,31 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Sink";
             // 
-            // button4
+            // btnAdjSplitter
             // 
-            this.button4.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.adjustable_splitter;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(16, 355);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(47, 45);
-            this.button4.TabIndex = 4;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnAdjSplitter.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.adjustable_splitter;
+            this.btnAdjSplitter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAdjSplitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdjSplitter.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdjSplitter.Location = new System.Drawing.Point(16, 355);
+            this.btnAdjSplitter.Name = "btnAdjSplitter";
+            this.btnAdjSplitter.Size = new System.Drawing.Size(47, 45);
+            this.btnAdjSplitter.TabIndex = 4;
+            this.btnAdjSplitter.UseVisualStyleBackColor = true;
+            this.btnAdjSplitter.Click += new System.EventHandler(this.btnAdjSplitter_Click);
             // 
-            // button5
+            // btnSplitter
             // 
-            this.button5.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.splitter;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(16, 263);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(47, 45);
-            this.button5.TabIndex = 2;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnSplitter.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.splitter;
+            this.btnSplitter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSplitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSplitter.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSplitter.Location = new System.Drawing.Point(16, 263);
+            this.btnSplitter.Name = "btnSplitter";
+            this.btnSplitter.Size = new System.Drawing.Size(47, 45);
+            this.btnSplitter.TabIndex = 2;
+            this.btnSplitter.UseVisualStyleBackColor = true;
+            this.btnSplitter.Click += new System.EventHandler(this.btnSplitter_Click);
             // 
             // label2
             // 
@@ -395,43 +397,44 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Pipe";
             // 
-            // button3
+            // btnSink
             // 
-            this.button3.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.sink;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(16, 189);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(47, 45);
-            this.button3.TabIndex = 3;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnSink.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.sink;
+            this.btnSink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSink.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSink.Location = new System.Drawing.Point(16, 189);
+            this.btnSink.Name = "btnSink";
+            this.btnSink.Size = new System.Drawing.Size(47, 45);
+            this.btnSink.TabIndex = 3;
+            this.btnSink.UseVisualStyleBackColor = true;
+            this.btnSink.Click += new System.EventHandler(this.btnSink_Click);
             // 
-            // button2
+            // btnPump
             // 
-            this.button2.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.pump;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(16, 117);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(47, 45);
-            this.button2.TabIndex = 2;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPump.BackgroundImage = global::ClassDiagram_Final.Properties.Resources.pump;
+            this.btnPump.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPump.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPump.Location = new System.Drawing.Point(16, 117);
+            this.btnPump.Name = "btnPump";
+            this.btnPump.Size = new System.Drawing.Size(47, 45);
+            this.btnPump.TabIndex = 2;
+            this.btnPump.UseVisualStyleBackColor = true;
+            this.btnPump.Click += new System.EventHandler(this.btnPump_Click);
             // 
-            // button1
+            // btnPipe
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(16, 44);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.button1.Size = new System.Drawing.Size(47, 45);
-            this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPipe.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPipe.Image = global::ClassDiagram_Final.Properties.Resources.pipeline;
+            this.btnPipe.Location = new System.Drawing.Point(16, 44);
+            this.btnPipe.Name = "btnPipe";
+            this.btnPipe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnPipe.Size = new System.Drawing.Size(47, 45);
+            this.btnPipe.TabIndex = 1;
+            this.btnPipe.UseVisualStyleBackColor = true;
+            this.btnPipe.Click += new System.EventHandler(this.btnPipe_Click);
             // 
             // panel1
             // 
@@ -476,7 +479,8 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbToolbox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Canvas";
@@ -486,8 +490,8 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbToolbox.ResumeLayout(false);
+            this.gbToolbox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -505,28 +509,28 @@
         public System.Windows.Forms.Button btSave;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label13;
-        public System.Windows.Forms.Button button7;
+        public System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Button button11;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.Button btnUpdateFlow;
+        private System.Windows.Forms.TextBox tbCurrentFlow;
+        private System.Windows.Forms.TextBox lblCapacity;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.GroupBox gbToolbox;
+        private System.Windows.Forms.Button btnMerger;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnAdjSplitter;
+        private System.Windows.Forms.Button btnSplitter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSink;
+        private System.Windows.Forms.Button btnPump;
+        public System.Windows.Forms.Button btnPipe;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label lblInfo;
