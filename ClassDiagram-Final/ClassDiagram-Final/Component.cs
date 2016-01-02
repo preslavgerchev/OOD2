@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ClassDiagram_Final
 {
@@ -30,6 +29,8 @@ namespace ClassDiagram_Final
 
         public abstract Point GetPipelineLocation(Point mouseClick);
 
+        public abstract bool IsLocationEmpty(Point location);
+
         public Point GetLocation()
         {
             return new Point(locationX, locationY);
@@ -39,6 +40,6 @@ namespace ClassDiagram_Final
         {
             return this.ComponentBox.IntersectsWith(otherComponent.ComponentBox);
         }
-        public abstract bool CheckIfConnected(Point location);
+
     }
 }

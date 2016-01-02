@@ -65,17 +65,21 @@ namespace ClassDiagram_Final
                 this.IncomePipeline = null;
             }
         }
-        public override bool CheckIfConnected(Point location)
-        {
-            if (IncomePipeline == null)
-                return false;
-            else return true;
-        }
+      
         public override IEnumerable<Pipeline> GetPipelines()
         {
             List<Pipeline> allPipelines = new List<Pipeline>();
             if (IncomePipeline != null) { allPipelines.Add(IncomePipeline); }
             return allPipelines;
+        }
+
+        public override bool IsLocationEmpty(Point location)
+        {
+            if (ComponentBox.Contains(location))
+            {
+                return this.IncomePipeline == null;
+            }
+            return false;
         }
     }
 }

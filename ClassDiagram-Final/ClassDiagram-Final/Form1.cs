@@ -227,7 +227,7 @@ namespace ClassDiagram_Final
                 if (startComp == null)
                 {
                     startComp = myNetwork.GetComponent(e.Location);
-                    startCompLoc = startComp.GetPipelineLocation(e.Location);
+                    startCompLoc = e.Location;
                     return;
                 }
                 endComp = myNetwork.GetComponent(e.Location);
@@ -235,7 +235,7 @@ namespace ClassDiagram_Final
                 {
                     return;
                 }
-                endCompLoc = endComp.GetPipelineLocation(e.Location);
+                endCompLoc = e.Location;
                 myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc);
                 ClearVariables();
                 type = ComponentType.NONE;

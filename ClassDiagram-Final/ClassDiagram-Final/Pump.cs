@@ -17,13 +17,7 @@ namespace ClassDiagram_Final
         {
             this.pipelineLocation = CalculaltePipelineLocation();
         }
-        public override bool CheckIfConnected(Point locaton)
-        {
-           
-            if (OutcomePipeline == null)
-                return false;
-            else return true;
-        }
+
         private Point CalculaltePipelineLocation()
         {
             return new Point(ComponentBox.Right - 5, ComponentBox.Top + ComponentBox.Height / 2);
@@ -79,6 +73,15 @@ namespace ClassDiagram_Final
             List<Pipeline> allPipelines = new List<Pipeline>();
             if (OutcomePipeline != null) { allPipelines.Add(OutcomePipeline); }
             return allPipelines;
+        }
+
+        public override bool IsLocationEmpty(Point location)
+        {
+            if (ComponentBox.Contains(location))
+            {
+                return this.OutcomePipeline == null;
+            }
+            return false;
         }
     }
 }

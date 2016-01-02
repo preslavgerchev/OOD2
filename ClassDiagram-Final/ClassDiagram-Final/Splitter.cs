@@ -35,22 +35,6 @@ namespace ClassDiagram_Final
             this.incomeHalfPoint = CalculateIncomeHalfPoint();
         }
         #region Calculating Methods
-        public override bool CheckIfConnected(Point location)
-        {
-            if (UpperHalf.Contains(location) && UpperOutcomePipeline==null)
-            {
-                return false;
-            }
-            else if (LowerHalf.Contains(location) && LowerOutcomePipeline==null)
-            {
-                return false;
-            }
-            else if (IncomeHalf.Contains(location) && IncomePipeline==null)
-            {
-                return false;
-            }
-            return false;
-        }
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
@@ -133,6 +117,10 @@ namespace ClassDiagram_Final
 
         public override void SetPipeline(Point location, Pipeline pipe)
         {
+            if (IncomePipeline == null)
+            {
+                this.IncomePipeline = pipe;
+            }
             if (UpperHalf.Contains(location))
             {
                 this.UpperOutcomePipeline = pipe;
@@ -161,6 +149,23 @@ namespace ClassDiagram_Final
             {
                 this.IncomePipeline = null;
             }
+        }
+
+        public override bool IsLocationEmpty(Point location)
+        {
+            if (UpperHalf.Contains(location))
+            {
+                return this.UpperOutcomePipeline == null;
+            }
+            else if (LowerHalf.Contains(location))
+            {
+                return this.LowerOutcomePipeline == null;
+            }
+            else if (IncomeHalf.Contains(location))
+            {
+                return this.IncomePipeline == null;
+            }
+            return false;
         }
 
         public override IEnumerable<Pipeline> GetPipelines()

@@ -87,7 +87,11 @@ namespace ClassDiagram_Final
         }
 
         public override void SetPipeline(Point location, Pipeline pipe)
-        {   
+        {
+            if (OutcomeHalf == null)
+            {
+                this.OutcomePipeline = pipe;
+            }
             if (UpperHalf.Contains(location))
             {
                 this.UpperIncomePipeline = pipe;
@@ -100,22 +104,6 @@ namespace ClassDiagram_Final
             {
                 this.OutcomePipeline = pipe;
             }
-        }
-        public override bool CheckIfConnected(Point location)
-        {
-            if (UpperHalf.Contains(location) && UpperIncomePipeline == null)
-            {
-                return false;
-            }
-            else if (LowerHalf.Contains(location) && LowerIncomePipeline == null)
-            {
-                return false;
-            }
-            else if (OutcomeHalf.Contains(location) && OutcomePipeline == null)
-            {
-                return false;
-            }
-            return false;
         }
 
         public override void ClearPipeline(Pipeline p)
@@ -141,6 +129,23 @@ namespace ClassDiagram_Final
             if (UpperIncomePipeline != null) { allPipelines.Add(UpperIncomePipeline); }
             if (OutcomePipeline != null) { allPipelines.Add(OutcomePipeline); }
             return allPipelines;
+        }
+
+        public override bool IsLocationEmpty(Point location)
+        {
+            if (UpperHalf.Contains(location))
+            {
+                return this.UpperIncomePipeline == null;
+            }
+            else if (LowerHalf.Contains(location))
+            {
+                return this.LowerIncomePipeline == null;
+            }
+            else if(OutcomeHalf.Contains(location))
+            {
+                return this.OutcomePipeline == null;
+            }
+            return false;
         }
     }
 }

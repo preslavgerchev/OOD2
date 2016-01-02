@@ -97,89 +97,32 @@ namespace ClassDiagram_Final
         {
             this.Pipelines.Add(p);
         }
-        private bool CheckSmth(Component c, Point location)
-        {
-            bool check = true;
-            if (c is Pump)
-            {
-                Pump p = c as Pump;
-                if (p.CheckIfConnected(location) == false)
-                    check = false;
-            }
-            else if (c is Sink)
-            {
-                Sink s = c as Sink;
-                if (s.CheckIfConnected(location) == false)
-                    check = false;
-
-            }
-            else if (c is Splitter)
-            {
-                Splitter s = c as Splitter;
-                if (s.CheckIfConnected(location) == false)
-                    check = false;
-            }
-            else if (c is Merger)
-            {
-                Splitter s = c as Splitter;
-                if (s.CheckIfConnected(location) == false)
-                    check = false;
-            }
-            return check;
-       
-        
-        }
 
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
         {
-            Pipeline p = new Pipeline();
-            //bool check = false;
-            //if (CheckSmth(startComp, location) == true)
-            //{
-            //    check = true;
-            //}
-            //if (CheckSmth(endComp) == true) { check = true; }
-
-
-            //else
-            //{
-            //    check = false;
-            //}
-            //if (check == false)
-            //{
-                p.SetStartComponent(startComp);
-                p.SetEndComponent(endComp);
-                p.SetStartPoint(startCompLoc);
-                p.SetEndPoint(endCompLoc);
-                return p;
-            //}
-            //else return p;
-
-
-        
-    
+            Pipeline p = new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc));
+            return p;
         }
 
         //good name plz
         public void CreateAndProcessPipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
         {
-            if (CheckSmth(startComp, startCompLoc) == false && CheckSmth(endComp, endCompLoc) == false)
-
+            if (!(startComp.IsLocationEmpty(startCompLoc) && endComp.IsLocationEmpty(endCompLoc)))
             {
-                Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc);
-                startComp.SetPipeline(startCompLoc, p);
-                endComp.SetPipeline(endCompLoc, p);
-                AddPipeline(p);
+                return;
             }
+            Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc);
+            startComp.SetPipeline(startCompLoc, p);
+            endComp.SetPipeline(endCompLoc, p);
+            AddPipeline(p);
         }
 
         public void RemovePipeline(Component c)
         {
             foreach (var pipe in c.GetPipelines())
             {
+                pipe.ClearComponents();
                 this.Pipelines.Remove(pipe);
-                pipe.StartComponent.ClearPipeline(pipe);
-                pipe.EndComponent.ClearPipeline(pipe);
             }
         }
 

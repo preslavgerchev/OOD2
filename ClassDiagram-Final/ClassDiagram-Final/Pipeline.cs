@@ -4,24 +4,27 @@ using System.Drawing;
 using System.Runtime.Serialization;
 
 namespace ClassDiagram_Final
-{[Serializable]
+{
+    [Serializable]
     public class Pipeline
     {
-        // PROPERTIES
         public Color PipelineColor { get; private set; }
         public int CurrentFlow { get; private set; }
-        public int MaxFlow { get; private  set; }
+        public int MaxFlow { get; private set; }
         public List<Point> InBetweenPoints;
-       public Component StartComponent { get; private set; }
+        public Component StartComponent { get; private set; }
         public Component EndComponent { get; private set; }
         public Point StartPoint { get; private set; }
         public Point EndPoint { get; private set; }
-        
-        public Pipeline()
+
+        public Pipeline(Component startComp,Component endComp,Point startCompLoc,Point endCompLoc)
         {
             this.InBetweenPoints = new List<Point>();
+            this.StartComponent = startComp;
+            this.EndComponent = endComp;
+            this.StartPoint = startCompLoc;
+            this.EndPoint = endCompLoc;
         }
-        // METHODS
         public bool ChangeCurrentFlow(int newFlow)
         {
             if (newFlow < MaxFlow)
@@ -39,31 +42,15 @@ namespace ClassDiagram_Final
         }
 
         public override string ToString()
-        {   
+        {
             //have to see what else we might return here
             return CurrentFlow.ToString();
         }
-
-        public void SetStartComponent(Component startComp)
+        
+        public void ClearComponents()
         {
-            this.StartComponent = startComp;
-            
+            this.StartComponent.ClearPipeline(this);
+            this.EndComponent.ClearPipeline(this);
         }
-        public void SetStartPoint(Point p)
-        {
-            this.StartPoint = p;
-        }
-
-        public void SetEndPoint(Point p)
-        {
-            this.EndPoint = p;
-        }
-
-        public void SetEndComponent(Component endComp)
-        {
-            this.EndComponent = endComp;
-        }
-
-
-}
+    }
 }
