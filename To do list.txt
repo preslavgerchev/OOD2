@@ -7,7 +7,7 @@ Implementation:
  6. Pump - Capacity = max flow
 	 - Current flow <= Capacity - did this +show and set from the UI -Monica
  7. Pipeline image + form icon - UI -Done Monica
- 8. Comments
+ 8. Comments -- Almost done
  9. Proper names for buttons and labels!! - Done Monica
  10. When pressing x, dont close form, just cancel
 Optional: No overlapping lines
@@ -15,7 +15,7 @@ Optional: No overlapping lines
 Docs : 
 URS and Design doc
  1. New class diagram + desciption of the members(=comments)
- 2. Update seq diagrams
+ 2. Update seq diagrams - done 03.01.2016
  3. New user interface screen shot + desciption
 (Maybe URS - updated 01.01.2016)
 Process report:
