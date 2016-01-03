@@ -5,7 +5,7 @@ using System;
 namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
-    {
+    {   //Fields
         Font font;
         Network myNetwork;
 
@@ -24,6 +24,7 @@ namespace ClassDiagram_Final
 
         public Form1()
         {
+            //intialization of the fields.
             InitializeComponent();
             myNetwork = new Network();
             panel1.Paint += PictureBox1_Paint;
