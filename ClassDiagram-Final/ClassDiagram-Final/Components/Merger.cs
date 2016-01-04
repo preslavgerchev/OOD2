@@ -155,6 +155,10 @@ namespace ClassDiagram_Final
             {
                 this.OutcomePipeline = null;
             }
+            if (PipelineValueChanged != null)
+            {
+                PipelineValueChanged();
+            }
         }
         /// <summary>
         /// Returns all connected pipelines.

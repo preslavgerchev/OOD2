@@ -133,18 +133,18 @@ namespace ClassDiagram_Final
         /// <param name="startCompLoc"></param>
         /// <param name="endCompLoc"></param>
         /// <returns></returns>
-        private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
+        private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc,List<Point> inbetweenPts)
         {
             Pipeline p = null;
             //this takes care of the case in which the user clicks first on a merger/splitter and then on a pump/sink 
             //- the places are simply switched 
             if (startComp is Sink || endComp is Pump)
             {
-                p = new Pipeline(endComp, startComp, endComp.GetPipelineLocation(endCompLoc), startComp.GetPipelineLocation(startCompLoc));
+                p = new Pipeline(endComp, startComp, endComp.GetPipelineLocation(endCompLoc), startComp.GetPipelineLocation(startCompLoc),inbetweenPts);
             }
             else
             {
-                p = new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc));
+                p = new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc),inbetweenPts);
             }
             return p;
         }
@@ -156,13 +156,13 @@ namespace ClassDiagram_Final
         /// <param name="endComp"></param>
         /// <param name="startCompLoc"></param>
         /// <param name="endCompLoc"></param>
-        public void CreateAndProcessPipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
+        public void CreateAndProcessPipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc,List<Point> inBetweenPts)
         {
             if (!(startComp.IsLocationEmpty(startCompLoc) && endComp.IsLocationEmpty(endCompLoc)))
             {
                 return;
             }
-            Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc);
+            Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc,inBetweenPts);
             startComp.SetPipeline(startCompLoc, p);
             endComp.SetPipeline(endCompLoc, p);
             AddPipeline(p);

@@ -8,32 +8,36 @@ namespace ClassDiagram_Final
     public class Pipeline
     {
         //Properties
-        public Color PipelineColor { get; private set; }
         public int CurrentFlow { get; private set; }
         public int MaxFlow { get; private set; } = 20;
-        public IList<Point> InBetweenPoints;
+        public IList<Point> InBetweenPoints { get; }
         public Component StartComponent { get; private set; }
         public Component EndComponent { get; private set; }
         public Point StartPoint { get; private set; }
         public Point EndPoint { get; private set; }
 
-        //Constructors
-        public Pipeline(Component startComp,Component endComp,Point startCompLoc,Point endCompLoc)
+        public Color PipelineColor
         {
-            this.InBetweenPoints = new List<Point>();
+            get
+            {
+                if (CurrentFlow < MaxFlow)
+                {
+                    return Color.Orange;
+                }
+                return Color.Red;
+            }
+        }
+
+        //Constructors
+        public Pipeline(Component startComp,Component endComp,Point startCompLoc,Point endCompLoc, List<Point> inbetweenPts)
+        {
+            this.InBetweenPoints = inbetweenPts;
             this.StartComponent = startComp;
             this.EndComponent = endComp;
             this.StartPoint = startCompLoc;
             this.EndPoint = endCompLoc;
         }
-
-        public Pipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inbetweenPts)
-            : this(startComp, endComp, startCompLoc, endCompLoc)
-        {
-            this.InBetweenPoints = inbetweenPts;
-        }
-
-
+        
         //Methods
         /// <summary>
         /// Changes the current flow of a pipeline if it does not execed its capacity.

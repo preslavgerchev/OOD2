@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Components\Component.cs" />
     <Compile Include="Enums\ComponentType.cs" />
+    <Compile Include="Extensions\GraphicsExtensions.cs" />
     <Compile Include="Interfaces\IFlow.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

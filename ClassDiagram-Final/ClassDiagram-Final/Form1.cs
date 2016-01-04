@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
 using System;
+using System.Collections.Generic;
 
 namespace ClassDiagram_Final
 {
@@ -12,7 +13,7 @@ namespace ClassDiagram_Final
 
         ComponentType type = ComponentType.NONE;
         Component selectedComponent;
-
+        List<Point> inbetweenPts;
         Component startComp;
         Component endComp;
         Point startCompLoc;
@@ -28,6 +29,7 @@ namespace ClassDiagram_Final
             myNetwork = new Network();
             panel1.Paint += panel1_Paint;
             trackBar1.Visible = false;
+            inbetweenPts = new List<Point>();
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             saved = false;
         }
@@ -129,7 +131,7 @@ namespace ClassDiagram_Final
         {
             foreach (Pipeline p in myNetwork.Pipelines)
             {
-                gr.DrawLine(new Pen(Color.Red, 5), p.StartPoint, p.EndPoint);
+                gr.DrawPipeline(p);
             }
         }
 
@@ -218,10 +220,11 @@ namespace ClassDiagram_Final
                 endComp = myNetwork.GetComponent(e.Location);
                 if (endComp == null)
                 {
+                    inbetweenPts.Add(e.Location);
                     return;
                 }
                 endCompLoc = e.Location;
-                myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc);
+                myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc,inbetweenPts);
                 ClearVariables();
                 type = ComponentType.NONE;
             }
@@ -237,6 +240,7 @@ namespace ClassDiagram_Final
         {
             this.startComp = null;
             this.endComp = null;
+            this.inbetweenPts = new List<Point>();
         }
 
         private void btnUpdateFlow_Click(object sender, EventArgs e)
