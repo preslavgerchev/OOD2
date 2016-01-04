@@ -95,7 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pipeline.png" />
+    <None Include="Resources\adjustable_splitter.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\load.bmp" />
@@ -116,16 +116,19 @@
     <None Include="Resources\save_as.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sink.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\splitter.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\adjustable_splitter.bmp" />
+    <None Include="Resources\sink.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tick.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipeline.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipeline1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,7 +19,7 @@ namespace ClassDiagram_Final
         {
             this.locationX = locx - GetImage().Width / 2;
             this.locationY = locy - GetImage().Height / 2;
-            ComponentBox = new Rectangle(new Point(locationX - 5, locationY - 5), new Size(GetImage().Width, GetImage().Height));
+            ComponentBox = new Rectangle(new Point(locationX - 1, locationY - 1), new Size(GetImage().Width + 1, GetImage().Height + 1));
         }
         //Abstract methods
         public abstract Image GetImage();
