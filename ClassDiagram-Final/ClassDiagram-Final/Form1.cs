@@ -18,8 +18,6 @@ namespace ClassDiagram_Final
         Point startCompLoc;
         Point endCompLoc;
 
-        int mouseX;
-        int mouseY;
         string FILE_PATH = "Network.XML";
         bool saved;
 
@@ -39,11 +37,6 @@ namespace ClassDiagram_Final
             if (selectedComponent != null)
             {
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
-            }
-            if (type != ComponentType.NONE && type != ComponentType.PIPELINE)
-            {
-                Component c = myNetwork.CreateComponent(type, mouseX, mouseY);
-                myNetwork.AddComponent(c);
             }
             DrawImages(e.Graphics);
             DrawPipelines(e.Graphics);
@@ -99,20 +92,6 @@ namespace ClassDiagram_Final
                 if (flowComp != null)
                 {
                     gr.DrawString(flowComp.GetFlow(), font, Brushes.Black, flowComp.GetTextLocation());
-                }
-                Merger m = comp as Merger;
-                if (m != null)
-                {
-                    gr.DrawRectangle(Pens.Red, m.UpperHalf);
-                    gr.DrawRectangle(Pens.Red, m.LowerHalf);
-                    gr.DrawRectangle(Pens.Red, m.OutcomeHalf);
-                }
-                Splitter sp = comp as Splitter;
-                if (sp != null)
-                {
-                    gr.DrawRectangle(Pens.Red, sp.LowerHalf);
-                    gr.DrawRectangle(Pens.Red, sp.UpperHalf);
-                    gr.DrawRectangle(Pens.Red, sp.IncomeHalf);
                 }
             }
         }
@@ -223,8 +202,11 @@ namespace ClassDiagram_Final
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            mouseX = e.X;
-            mouseY = e.Y;
+            if (type != ComponentType.NONE && type != ComponentType.PIPELINE)
+            {
+                Component c = myNetwork.CreateComponent(type, e.X, e.Y);
+                myNetwork.AddComponent(c);
+            }
             if (type == ComponentType.PIPELINE)
             {
                 if (startComp == null)

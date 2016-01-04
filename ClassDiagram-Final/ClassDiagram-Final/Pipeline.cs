@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.Serialization;
 
 namespace ClassDiagram_Final
 {
@@ -27,6 +26,13 @@ namespace ClassDiagram_Final
             this.StartPoint = startCompLoc;
             this.EndPoint = endCompLoc;
         }
+
+        public Pipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inbetweenPts)
+            : this(startComp, endComp, startCompLoc, endCompLoc)
+        {
+            this.InBetweenPoints = inbetweenPts;
+        }
+
 
         //Methods
         /// <summary>

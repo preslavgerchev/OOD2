@@ -19,7 +19,7 @@ namespace ClassDiagram_Final
         public Pump(int locx, int locy) :
             base(locx, locy)
         {
-            this.pipelineLocation = CalculaltePipelineLocation();
+            this.pipelineLocation = CalculatePipelineLocation();
         }
         //Methods
         /// <summary>
@@ -48,7 +48,7 @@ namespace ClassDiagram_Final
         /// Returns a point with the location of the pipeline.
         /// </summary>
         /// <returns></returns>
-        private Point CalculaltePipelineLocation()
+        private Point CalculatePipelineLocation()
         {
             return new Point(ComponentBox.Right - 5, ComponentBox.Top + ComponentBox.Height / 2);
         }
@@ -114,6 +114,7 @@ namespace ClassDiagram_Final
             if (this.OutcomePipeline == p)
             {
                 this.OutcomePipeline = null;
+                this.Flow = 0;
             }
         }
         /// <summary>

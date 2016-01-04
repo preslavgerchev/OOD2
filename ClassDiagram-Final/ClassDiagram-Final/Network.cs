@@ -20,7 +20,7 @@ namespace ClassDiagram_Final
             this.MyComponents = new List<Component>();
             this.Pipelines = new List<Pipeline>();
         }
-        //COnstructor used for deserialization
+        //Constructor used for deserialization
         public Network(SerializationInfo info, StreamingContext context)
         {
             this.MyComponents = (List<Component>)info.GetValue("MyComponents", typeof(List<Component>));
@@ -135,7 +135,17 @@ namespace ClassDiagram_Final
         /// <returns></returns>
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
         {
-            Pipeline p = new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc));
+            Pipeline p = null;
+            //this takes care of the case in which the user clicks first on a merger/splitter and then on a pump/sink 
+            //- the places are simply switched 
+            if (startComp is Sink || endComp is Pump)
+            {
+                p = new Pipeline(endComp, startComp, endComp.GetPipelineLocation(endCompLoc), startComp.GetPipelineLocation(startCompLoc));
+            }
+            else
+            {
+                p = new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc));
+            }
             return p;
         }
 
