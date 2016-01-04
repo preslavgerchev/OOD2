@@ -5,12 +5,14 @@ using System.Drawing;
 namespace ClassDiagram_Final
 {
     [Serializable]
-    public class Merger : Component, ISplit
+    public class Merger : Component, ISplit ,IFlowHandler
     {
         //Fields
         private Point lowerHalfPoint;
         private Point upperHalfPoint;
         private Point outcomingHalfPoint;
+
+        public event Action PipelineValueChanged;
 
         //Properties
         public Rectangle UpperHalf { get; }
@@ -32,14 +34,15 @@ namespace ClassDiagram_Final
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
             this.outcomingHalfPoint = CalculateOutcomingHalfPoint();
-        }
 
+            this.PipelineValueChanged += AdjustPipelineValues;
+        }
         //Methods
         #region Calculating Methods
-            /// <summary>
-            /// Calculates the upper half incoming rectangle.
-            /// </summary>
-            /// <returns></returns>
+        /// <summary>
+        /// Calculates the upper half incoming rectangle.
+        /// </summary>
+        /// <returns></returns>
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
@@ -119,6 +122,7 @@ namespace ClassDiagram_Final
             if (UpperHalf.Contains(location))
             {
                 this.UpperIncomePipeline = pipe;
+                
             }
             else if (LowerHalf.Contains(location))
             {
@@ -127,6 +131,10 @@ namespace ClassDiagram_Final
             else if (OutcomeHalf.Contains(location))
             {
                 this.OutcomePipeline = pipe;
+            }
+            if (PipelineValueChanged != null)
+            {
+                PipelineValueChanged();
             }
         }
         /// <summary>
@@ -182,6 +190,25 @@ namespace ClassDiagram_Final
                 return this.OutcomePipeline == null;
             }
             return false;
+        }
+
+        public void AdjustPipelineValues()
+        {
+            if (OutcomePipeline == null)
+            {
+                return;
+            }
+            int upperFlow = 0;
+            int lowerFlow = 0;
+            if (this.UpperIncomePipeline != null)
+            {
+                upperFlow = this.UpperIncomePipeline.CurrentFlow;
+            }
+            if (this.LowerIncomePipeline != null)
+            {
+                lowerFlow = this.LowerIncomePipeline.CurrentFlow;
+            }
+            this.OutcomePipeline.ChangeCurrentFlow(upperFlow + lowerFlow);
         }
     }
 }

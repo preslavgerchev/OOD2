@@ -48,17 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component.cs" />
-    <Compile Include="ComponentType.cs" />
-    <Compile Include="IFlow.cs" />
+    <Compile Include="Components\Component.cs" />
+    <Compile Include="Enums\ComponentType.cs" />
+    <Compile Include="Interfaces\IFlow.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ISplit.cs" />
-    <Compile Include="Merger.cs" />
+    <Compile Include="Interfaces\IFlowHandler.cs" />
+    <Compile Include="Interfaces\ISplit.cs" />
+    <Compile Include="Components\Merger.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Pipeline.cs" />
     <Compile Include="Program.cs" />
@@ -68,9 +69,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Pump.cs" />
-    <Compile Include="Sink.cs" />
-    <Compile Include="Splitter.cs" />
+    <Compile Include="Components\Pump.cs" />
+    <Compile Include="Components\Sink.cs" />
+    <Compile Include="Components\Splitter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

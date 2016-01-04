@@ -5,15 +5,14 @@ using System.Drawing;
 namespace ClassDiagram_Final
 {
     [Serializable]
-    public class Splitter : Component, IFlow, ISplit
+    public class Splitter : Component, IFlow, ISplit, IFlowHandler
     {
         //Fields
         private Point upperHalfPoint;
         private Point lowerHalfPoint;
         private Point incomeHalfPoint;
-    
-        public delegate void PercentageChangedDelegate();
-        public event PercentageChangedDelegate PercentageChanged;
+
+        public event Action PipelineValueChanged;
 
         //Properties
         public Rectangle UpperHalf { get; }
@@ -35,16 +34,12 @@ namespace ClassDiagram_Final
             this.LowerHalf = CalculateLowerHalf();
             this.UpperHalf = CalculateUpperHalf();
             this.IncomeHalf = CalculateIncomeHalf();
-            PercentageChanged += Splitter_PercentageChanged;
 
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
             this.incomeHalfPoint = CalculateIncomeHalfPoint();
-        }
 
-        private void Splitter_PercentageChanged()
-        {
-            AdjustPipelineValues();
+            PipelineValueChanged += AdjustPipelineValues;
         }
 
         //Methods
@@ -65,7 +60,7 @@ namespace ClassDiagram_Final
         {
             return new Rectangle(new Point(ComponentBox.Left + ComponentBox.Width / 2, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
-        
+
         /// <summary>
         /// Calculates the incoming rectangle.
         /// </summary>
@@ -82,12 +77,12 @@ namespace ClassDiagram_Final
         {
             return new Point(UpperHalf.Right - 5, UpperHalf.Top + UpperHalf.Width / 4);
         }
-        
+
         private Point CalculateLowerHalfPoint()
         {
             return new Point(UpperHalf.Right - 5, LowerHalf.Bottom - LowerHalf.Width / 4);
         }
-        
+
         private Point CalculateIncomeHalfPoint()
         {
             return new Point(IncomeHalf.Left + 5, IncomeHalf.Top + IncomeHalf.Width / 4);
@@ -127,25 +122,35 @@ namespace ClassDiagram_Final
             }
             this.UpperOutComePercentage = newPercentage;
             this.LowerOutComePercentage = 100 - this.UpperOutComePercentage;
-            if (PercentageChanged != null)
+            if (PipelineValueChanged != null)
             {
-                PercentageChanged();
+                PipelineValueChanged();
             }
         }
 
-        private void AdjustPipelineValues()
+        public void AdjustPipelineValues()
         {
             if (this.UpperOutcomePipeline != null)
             {
                 double currentPercentage = ((double)UpperOutComePercentage) / 100;
                 int newFlow = (int)(IncomePipeline.CurrentFlow * currentPercentage);
                 this.UpperOutcomePipeline.ChangeCurrentFlow(newFlow);
+                IFlowHandler flowHandler = UpperOutcomePipeline.EndComponent as IFlowHandler;
+                if (flowHandler != null)
+                {
+                    flowHandler.AdjustPipelineValues();
+                }
             }
             if (this.LowerOutcomePipeline != null)
             {
                 double currentPercentage = ((double)LowerOutComePercentage) / 100;
                 int newFlow = (int)(IncomePipeline.CurrentFlow * currentPercentage);
                 this.LowerOutcomePipeline.ChangeCurrentFlow(newFlow);
+                IFlowHandler flowHandler = LowerOutcomePipeline.EndComponent as IFlowHandler;
+                if (flowHandler != null)
+                {
+                    flowHandler.AdjustPipelineValues();
+                }
             }
         }
 
@@ -194,16 +199,18 @@ namespace ClassDiagram_Final
             if (pipeLoc == upperHalfPoint)
             {
                 this.UpperOutcomePipeline = pipe;
-                AdjustPipelineValues();
             }
             else if (pipeLoc == lowerHalfPoint)
             {
                 this.LowerOutcomePipeline = pipe;
-                AdjustPipelineValues();
             }
             else if (pipeLoc == incomeHalfPoint)
             {
                 this.IncomePipeline = pipe;
+            }
+            if (PipelineValueChanged != null)
+            {
+                PipelineValueChanged();
             }
         }
         /// <summary>
@@ -223,6 +230,7 @@ namespace ClassDiagram_Final
             if (this.IncomePipeline == p)
             {
                 this.IncomePipeline = null;
+
             }
         }
         /// <summary>

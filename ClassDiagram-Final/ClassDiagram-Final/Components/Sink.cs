@@ -9,7 +9,6 @@ namespace ClassDiagram_Final
     {
         //Fields
         private Point pipelineLocation;
-        
         //Properties
         public Pipeline IncomePipeline { get; private set; }
 
@@ -19,7 +18,7 @@ namespace ClassDiagram_Final
         {
             this.pipelineLocation = CalculatePipelineLocation();
         }
-
+        
         /// <summary>
         ///  Returns a point with the location of the pipeline.
         /// </summary>
@@ -93,10 +92,10 @@ namespace ClassDiagram_Final
                 this.IncomePipeline = null;
             }
         }
-      /// <summary>
-      /// Returns all the pipelines attached to the sink.
-      /// </summary>
-      /// <returns></returns>
+        /// <summary>
+        /// Returns all the pipelines attached to the sink.
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerable<Pipeline> GetPipelines()
         {
             List<Pipeline> allPipelines = new List<Pipeline>();

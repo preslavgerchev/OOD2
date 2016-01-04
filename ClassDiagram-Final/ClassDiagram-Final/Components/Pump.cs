@@ -13,7 +13,7 @@ namespace ClassDiagram_Final
         //Properties
         public Pipeline OutcomePipeline { get; private set; }
         public int Flow { get; private set; }
-        public int Capacity { get; private set;  }
+        public int Capacity { get; private set; }
 
         //Constructor
         public Pump(int locx, int locy) :
@@ -36,6 +36,11 @@ namespace ClassDiagram_Final
                 if (OutcomePipeline != null)
                 {
                     this.OutcomePipeline.ChangeCurrentFlow(current);
+                    IFlowHandler flowHandler = OutcomePipeline.EndComponent as IFlowHandler;
+                    if (flowHandler != null)
+                    {
+                        flowHandler.AdjustPipelineValues();
+                    }
                 }
             }
         }
@@ -55,7 +60,7 @@ namespace ClassDiagram_Final
         {
             return Properties.Resources.pump;
         }
-        
+
         /// <summary>
         /// Returns a string with the flow of the pump.
         /// </summary>
@@ -63,7 +68,7 @@ namespace ClassDiagram_Final
 
         public string GetFlow()
         {
-            return "("+Flow.ToString() + "/" + Capacity.ToString()+")" ;
+            return "(" + Flow.ToString() + "/" + Capacity.ToString() + ")";
         }
         /// <summary>
         /// Gets the text location for the flow string.
