@@ -1,15 +1,15 @@
 Implementation: 
- 1. Little square merger/splitter
+ 1. Little square merger/splitter - done
  2. Delete a line
  3. Colors for a line
  4. Info about a line's flow
- 5. Flow handling
+ 5. Flow handling - (almost) done
  6. Pump - Capacity = max flow
 	 - Current flow <= Capacity - did this +show and set from the UI -Monica
  7. Pipeline image + form icon - UI -Done Monica
  8. Comments -- Almost done
  9. Proper names for buttons and labels!! - Done Monica
- 10. When pressing x, dont close form, just cancel
+ 10. When pressing x, dont close form, just cancel - done
 Optional: No overlapping lines
 
 Docs : 
