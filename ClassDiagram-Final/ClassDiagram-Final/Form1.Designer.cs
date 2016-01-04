@@ -43,7 +43,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnUpdateFlow = new System.Windows.Forms.Button();
             this.tbCurrentFlow = new System.Windows.Forms.TextBox();
-            this.lblCapacity = new System.Windows.Forms.TextBox();
+            this.tbCapacity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.gbToolbox = new System.Windows.Forms.GroupBox();
@@ -205,7 +205,7 @@
             // 
             this.panel2.Controls.Add(this.btnUpdateFlow);
             this.panel2.Controls.Add(this.tbCurrentFlow);
-            this.panel2.Controls.Add(this.lblCapacity);
+            this.panel2.Controls.Add(this.tbCapacity);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -236,13 +236,13 @@
             this.tbCurrentFlow.Size = new System.Drawing.Size(46, 21);
             this.tbCurrentFlow.TabIndex = 5;
             // 
-            // lblCapacity
+            // tbCapacity
             // 
-            this.lblCapacity.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCapacity.Location = new System.Drawing.Point(92, 38);
-            this.lblCapacity.Name = "lblCapacity";
-            this.lblCapacity.Size = new System.Drawing.Size(46, 21);
-            this.lblCapacity.TabIndex = 6;
+            this.tbCapacity.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCapacity.Location = new System.Drawing.Point(92, 38);
+            this.tbCapacity.Name = "tbCapacity";
+            this.tbCapacity.Size = new System.Drawing.Size(46, 21);
+            this.tbCapacity.TabIndex = 6;
             // 
             // label7
             // 
@@ -514,7 +514,7 @@
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Button btnUpdateFlow;
         private System.Windows.Forms.TextBox tbCurrentFlow;
-        private System.Windows.Forms.TextBox lblCapacity;
+        private System.Windows.Forms.TextBox tbCapacity;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox gbToolbox;

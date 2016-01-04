@@ -116,10 +116,6 @@ namespace ClassDiagram_Final
         /// <param name="pipe"></param>
         public override void SetPipeline(Point location, Pipeline pipe)
         {
-            if (OutcomeHalf == null)
-            {
-                this.OutcomePipeline = pipe;
-            }
             if (UpperHalf.Contains(location))
             {
                 this.UpperIncomePipeline = pipe;

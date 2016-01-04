@@ -5,7 +5,8 @@ using System;
 namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
-    {   //Fields
+    {   
+        //Fields
         Font font;
         Network myNetwork;
 
@@ -27,21 +28,13 @@ namespace ClassDiagram_Final
             //intialization of the fields.
             InitializeComponent();
             myNetwork = new Network();
-            panel1.Paint += PictureBox1_Paint;
-            panel1.MouseDown += PictureBox1_MouseDown;
+            panel1.Paint += panel1_Paint;
             trackBar1.Visible = false;
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             saved = false;
         }
-
-        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            mouseX = e.X;
-            mouseY = e.Y;
-            panel1.Invalidate();
-        }
-
-        private void PictureBox1_Paint(object sender, PaintEventArgs e)
+        
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
             if (selectedComponent != null)
             {
@@ -127,11 +120,12 @@ namespace ClassDiagram_Final
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             selectedComponent = myNetwork.GetComponent(e.Location);
-            if (selectedComponent is Pump)
+
+            Pump p = selectedComponent as Pump;
+            if (p != null)
             {
-                Pump p = (Pump)selectedComponent;
-                this.tbCurrentFlow.Text = p.Capacity.ToString();
-                this.lblCapacity.Text = p.Flow.ToString();
+                this.tbCurrentFlow.Text = p.Flow.ToString();
+                this.tbCapacity.Text = p.Capacity.ToString();
             }
            
             Splitter splitterComp = selectedComponent as Splitter;
@@ -156,7 +150,6 @@ namespace ClassDiagram_Final
         {
             foreach (Pipeline p in myNetwork.Pipelines)
             {
-                
                 gr.DrawLine(new Pen(Color.Red, 5), p.StartPoint, p.EndPoint);
             }
         }
@@ -199,13 +192,13 @@ namespace ClassDiagram_Final
                 }
             }
         }
-        protected override void OnClosed(EventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Do you want to save it?", "Save?", MessageBoxButtons.YesNoCancel);
             if (dialog == DialogResult.Yes && saved == true)
             {
                 Network.SaveToFile(myNetwork, FILE_PATH);
-                base.OnClosed(e);
+                base.OnFormClosing(e);
             }
             else
             {
@@ -216,7 +209,7 @@ namespace ClassDiagram_Final
                 else
                 if (dialog == DialogResult.Cancel)
                 {
-                    //it should cancel the exit and close the dialog
+                    e.Cancel = true;
                 }
             }
         }
@@ -230,6 +223,8 @@ namespace ClassDiagram_Final
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
+            mouseX = e.X;
+            mouseY = e.Y;
             if (type == ComponentType.PIPELINE)
             {
                 if (startComp == null)
@@ -247,8 +242,8 @@ namespace ClassDiagram_Final
                 myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc);
                 ClearVariables();
                 type = ComponentType.NONE;
-                panel1.Invalidate();
             }
+            panel1.Invalidate();
         }
 
         private void btnPipe_Click(object sender, EventArgs e)
@@ -269,11 +264,13 @@ namespace ClassDiagram_Final
                 if (selectedComponent is Pump)
                 {
                     Pump p = (Pump)selectedComponent;
-                    p.SetFlow(Convert.ToInt32(this.lblCapacity.Text), Convert.ToInt32(this.tbCurrentFlow.Text));
+                    int capacity = Int32.Parse(tbCapacity.Text);
+                    int flow = Int32.Parse(tbCurrentFlow.Text);
+                    p.SetFlow(capacity, flow);
                 }
                 selectedComponent = null;
                 this.tbCurrentFlow.Text = "";
-                this.lblCapacity.Text = "";
+                this.tbCapacity.Text = "";
                 panel1.Invalidate();
             }
         }

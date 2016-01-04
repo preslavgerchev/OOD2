@@ -33,6 +33,10 @@ namespace ClassDiagram_Final
             {
                 this.Flow = current;
                 this.Capacity = max;
+                if (OutcomePipeline != null)
+                {
+                    this.OutcomePipeline.ChangeCurrentFlow(current);
+                }
             }
         }
         /// <summary>
@@ -80,6 +84,7 @@ namespace ClassDiagram_Final
             if (ComponentBox.Contains(location))
             {
                 this.OutcomePipeline = pipe;
+                this.OutcomePipeline.ChangeCurrentFlow(Flow);
             }
         }
         /// <summary>

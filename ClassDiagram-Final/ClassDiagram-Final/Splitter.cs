@@ -11,6 +11,9 @@ namespace ClassDiagram_Final
         private Point upperHalfPoint;
         private Point lowerHalfPoint;
         private Point incomeHalfPoint;
+    
+        public delegate void PercentageChangedDelegate();
+        public event PercentageChangedDelegate PercentageChanged;
 
         //Properties
         public Rectangle UpperHalf { get; }
@@ -32,11 +35,18 @@ namespace ClassDiagram_Final
             this.LowerHalf = CalculateLowerHalf();
             this.UpperHalf = CalculateUpperHalf();
             this.IncomeHalf = CalculateIncomeHalf();
+            PercentageChanged += Splitter_PercentageChanged;
 
             this.upperHalfPoint = CalculateUpperHalfPoint();
             this.lowerHalfPoint = CalculateLowerHalfPoint();
             this.incomeHalfPoint = CalculateIncomeHalfPoint();
         }
+
+        private void Splitter_PercentageChanged()
+        {
+            AdjustPipelineValues();
+        }
+
         //Methods
         #region Calculating Methods
         /// <summary>
@@ -84,6 +94,7 @@ namespace ClassDiagram_Final
         }
 
         #endregion
+
         /// <summary>
         /// Returns splitter's icon.
         /// </summary>
@@ -115,6 +126,27 @@ namespace ClassDiagram_Final
                 return;
             }
             this.UpperOutComePercentage = newPercentage;
+            this.LowerOutComePercentage = 100 - this.UpperOutComePercentage;
+            if (PercentageChanged != null)
+            {
+                PercentageChanged();
+            }
+        }
+
+        private void AdjustPipelineValues()
+        {
+            if (this.UpperOutcomePipeline != null)
+            {
+                double currentPercentage = ((double)UpperOutComePercentage) / 100;
+                int newFlow = (int)(IncomePipeline.CurrentFlow * currentPercentage);
+                this.UpperOutcomePipeline.ChangeCurrentFlow(newFlow);
+            }
+            if (this.LowerOutcomePipeline != null)
+            {
+                double currentPercentage = ((double)LowerOutComePercentage) / 100;
+                int newFlow = (int)(IncomePipeline.CurrentFlow * currentPercentage);
+                this.LowerOutcomePipeline.ChangeCurrentFlow(newFlow);
+            }
         }
 
         /// <summary>
@@ -129,23 +161,23 @@ namespace ClassDiagram_Final
         /// <summary>
         /// Returns the pipeline based on the given point.
         /// </summary>
-        /// <param name="mouseClick"></param>
+        /// <param name="location"></param>
         /// <returns></returns>
-        public override Point GetPipelineLocation(Point mouseClick)
+        public override Point GetPipelineLocation(Point location)
         {
             if (IncomePipeline == null)
             {
                 return incomeHalfPoint;
             }
-            else if (UpperHalf.Contains(mouseClick))
+            if (UpperHalf.Contains(location))
             {
                 return upperHalfPoint;
             }
-            else if (LowerHalf.Contains(mouseClick))
+            else if (LowerHalf.Contains(location))
             {
                 return lowerHalfPoint;
             }
-            else if (IncomeHalf.Contains(mouseClick))
+            else if (IncomeHalf.Contains(location))
             {
                 return incomeHalfPoint;
             }
@@ -154,23 +186,22 @@ namespace ClassDiagram_Final
         /// <summary>
         /// Sets the pipeline depending on the location.
         /// </summary>
-        /// <param name="location"></param>
-        /// <param name="pipe"></param>
+        /// <param name="location">The location ,where the pipeline will be connected to.</param>
+        /// <param name="pipe">The pipeline that will be connected to the element</param>
         public override void SetPipeline(Point location, Pipeline pipe)
         {
-            if (IncomePipeline == null)
-            {
-                this.IncomePipeline = pipe;
-            }
-            if (UpperHalf.Contains(location))
+            Point pipeLoc = GetPipelineLocation(location);
+            if (pipeLoc == upperHalfPoint)
             {
                 this.UpperOutcomePipeline = pipe;
+                AdjustPipelineValues();
             }
-            else if (LowerHalf.Contains(location))
+            else if (pipeLoc == lowerHalfPoint)
             {
                 this.LowerOutcomePipeline = pipe;
+                AdjustPipelineValues();
             }
-            else if (IncomeHalf.Contains(location))
+            else if (pipeLoc == incomeHalfPoint)
             {
                 this.IncomePipeline = pipe;
             }

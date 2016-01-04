@@ -11,8 +11,8 @@ namespace ClassDiagram_Final
         //Properties
         public Color PipelineColor { get; private set; }
         public int CurrentFlow { get; private set; }
-        public int MaxFlow { get; private set; }
-        public List<Point> InBetweenPoints;
+        public int MaxFlow { get; private set; } = 20;
+        public IList<Point> InBetweenPoints;
         public Component StartComponent { get; private set; }
         public Component EndComponent { get; private set; }
         public Point StartPoint { get; private set; }

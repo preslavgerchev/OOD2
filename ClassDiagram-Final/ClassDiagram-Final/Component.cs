@@ -30,7 +30,7 @@ namespace ClassDiagram_Final
 
         public abstract void SetPipeline(Point location, Pipeline pipe);
 
-        public abstract Point GetPipelineLocation(Point mouseClick);
+        public abstract Point GetPipelineLocation(Point location);
 
         public abstract bool IsLocationEmpty(Point location);
 
