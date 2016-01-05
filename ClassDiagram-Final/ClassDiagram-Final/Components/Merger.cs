@@ -213,6 +213,12 @@ namespace ClassDiagram_Final
                 lowerFlow = this.LowerIncomePipeline.CurrentFlow;
             }
             this.OutcomePipeline.ChangeCurrentFlow(upperFlow + lowerFlow);
+
+            IFlowHandler outcomeElement = OutcomePipeline.EndComponent as IFlowHandler;
+            if (outcomeElement != null)
+            {
+                outcomeElement.AdjustPipelineValues();
+            }
         }
     }
 }

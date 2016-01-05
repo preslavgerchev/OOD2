@@ -47,26 +47,31 @@ namespace ClassDiagram_Final
         private void btnPump_Click(object sender, EventArgs e)
         {
             type = ComponentType.PUMP;
+            ClearVariables();
         }
 
         private void btnSink_Click(object sender, EventArgs e)
         {
             type = ComponentType.SINK;
+            ClearVariables();
         }
 
         private void btnSplitter_Click(object sender, EventArgs e)
         {
             type = ComponentType.SPLITTER;
+            ClearVariables();
         }
 
         private void btnMerger_Click(object sender, EventArgs e)
         {
             type = ComponentType.MERGER;
+            ClearVariables();
         }
 
         private void btnAdjSplitter_Click(object sender, EventArgs e)
         {
             type = ComponentType.ADJUSTABLE_SPLITTER;
+            ClearVariables();
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -244,6 +249,7 @@ namespace ClassDiagram_Final
         private void btnPipe_Click(object sender, EventArgs e)
         {
             type = ComponentType.PIPELINE;
+            ClearVariables();
         }
 
         private void ClearVariables()

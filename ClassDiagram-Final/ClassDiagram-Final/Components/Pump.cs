@@ -50,7 +50,7 @@ namespace ClassDiagram_Final
         /// <returns></returns>
         private Point CalculatePipelineLocation()
         {
-            return new Point(ComponentBox.Right - 5, ComponentBox.Top + ComponentBox.Height / 2);
+            return new Point(ComponentBox.Right - 3, ComponentBox.Top + ComponentBox.Height / 2);
         }
         /// <summary>
         /// Returns pump's icon.
