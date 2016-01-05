@@ -202,8 +202,8 @@ namespace ClassDiagram_Final
             {
                 return;
             }
-            int upperFlow = 0;
-            int lowerFlow = 0;
+            double upperFlow = 0;
+            double lowerFlow = 0;
             if (this.UpperIncomePipeline != null)
             {
                 upperFlow = this.UpperIncomePipeline.CurrentFlow;

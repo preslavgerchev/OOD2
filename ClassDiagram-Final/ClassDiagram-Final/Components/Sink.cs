@@ -43,9 +43,9 @@ namespace ClassDiagram_Final
         {
             if (this.IncomePipeline == null)
             {
-                return "0";
+                return "0.0";
             }
-            return this.IncomePipeline.CurrentFlow.ToString();
+            return Math.Round(this.IncomePipeline.CurrentFlow, 1).ToString();
         }
         /// <summary>
         ///  Gets the text location for the flow string.

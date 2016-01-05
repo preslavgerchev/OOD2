@@ -12,8 +12,8 @@ namespace ClassDiagram_Final
 
         //Properties
         public Pipeline OutcomePipeline { get; private set; }
-        public int Flow { get; private set; }
-        public int Capacity { get; private set; }
+        public double Flow { get; private set; }
+        public double Capacity { get; private set; }
 
         //Constructor
         public Pump(int locx, int locy) :
@@ -27,7 +27,7 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="max"></param>
         /// <param name="current"></param>
-        public void SetFlow(int max, int current)
+        public void SetFlow(double max, double current)
         {
             if (current <= max)
             {
@@ -68,7 +68,7 @@ namespace ClassDiagram_Final
 
         public string GetFlow()
         {
-            return "(" + Flow.ToString() + "/" + Capacity.ToString() + ")";
+            return string.Format("{0}/{1}", Math.Round(Flow, 1), Capacity);
         }
         /// <summary>
         /// Gets the text location for the flow string.

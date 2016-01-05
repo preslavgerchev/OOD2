@@ -158,6 +158,7 @@ namespace ClassDiagram_Final
                 if (load.ShowDialog() == DialogResult.OK)
                 {
                     load.Title = "Load from file";
+                    FILE_PATH = load.FileName;
                     myNetwork = Network.LoadFromFile(load.FileName);
                     panel1.Invalidate();
                 }
@@ -167,31 +168,36 @@ namespace ClassDiagram_Final
                 OpenFileDialog load = new OpenFileDialog();
                 if (load.ShowDialog() == DialogResult.OK)
                 {
+                    FILE_PATH = load.FileName;
                     load.Title = "Load from file";
                     myNetwork = Network.LoadFromFile(load.FileName);
                     panel1.Invalidate();
                 }
             }
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Do you want to save it?", "Save?", MessageBoxButtons.YesNoCancel);
-            if (dialog == DialogResult.Yes && saved == true)
+            if (dialog == DialogResult.Yes)
             {
-                Network.SaveToFile(myNetwork, FILE_PATH);
+                if (saved)
+                {
+                    Network.SaveToFile(myNetwork, FILE_PATH);
+                    base.OnFormClosing(e);
+                }
+                else
+                {
+                    btnSaveAs.PerformClick();
+                }
+            }
+            else if (dialog == DialogResult.No)
+            {
                 base.OnFormClosing(e);
             }
             else
             {
-                if (dialog == DialogResult.Yes && saved == false)
-                {
-                    btnSaveAs.PerformClick();
-                }
-                else
-                if (dialog == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                }
+                e.Cancel = true;
             }
         }
 
@@ -204,10 +210,14 @@ namespace ClassDiagram_Final
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
+
             if (type != ComponentType.NONE && type != ComponentType.PIPELINE)
             {
                 Component c = myNetwork.CreateComponent(type, e.X, e.Y);
-                myNetwork.AddComponent(c);
+                if (panel1.DisplayRectangle.Contains(c.ComponentBox))
+                {
+                    myNetwork.AddComponent(c);
+                }
             }
             if (type == ComponentType.PIPELINE)
             {
@@ -250,8 +260,8 @@ namespace ClassDiagram_Final
                 if (selectedComponent is Pump)
                 {
                     Pump p = (Pump)selectedComponent;
-                    int capacity = Int32.Parse(tbCapacity.Text);
-                    int flow = Int32.Parse(tbCurrentFlow.Text);
+                    double capacity = Double.Parse(tbCapacity.Text);
+                    double flow = Double.Parse(tbCurrentFlow.Text);
                     p.SetFlow(capacity, flow);
                 }
                 selectedComponent = null;

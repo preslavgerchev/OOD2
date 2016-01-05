@@ -8,8 +8,8 @@ namespace ClassDiagram_Final
     public class Pipeline
     {
         //Properties
-        public int CurrentFlow { get; private set; }
-        public int MaxFlow { get; private set; } = 20;
+        public double CurrentFlow { get; private set; }
+        public double MaxFlow { get; private set; } = 20;
         public IList<Point> InBetweenPoints { get; }
         public Component StartComponent { get; private set; }
         public Component EndComponent { get; private set; }
@@ -44,9 +44,9 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="newFlow"></param>
         /// <returns></returns>
-        public bool ChangeCurrentFlow(int newFlow)
+        public bool ChangeCurrentFlow(double newFlow)
         {
-            if (newFlow < MaxFlow)
+            if (newFlow <= MaxFlow)
             {
                 this.CurrentFlow = newFlow;
                 return true;
@@ -63,15 +63,7 @@ namespace ClassDiagram_Final
             //and based on the return boolean we change the color or we don't
             return this.CurrentFlow <= this.MaxFlow;
         }
-        /// <summary>
-        /// Returns a sting with information about the pipeline.
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            //have to see what else we might return here
-            return CurrentFlow.ToString();
-        }
+
         /// <summary>
         /// Clears the pipelines.
         /// </summary>

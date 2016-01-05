@@ -5,9 +5,11 @@ namespace ClassDiagram_Final
 {
     public static class GraphicsExtensions
     {
+        private const int penWidth = 5;
+
         public static void DrawPipeline(this Graphics gr, Pipeline pipe)
         {
-            Pen pen = new Pen(pipe.PipelineColor, 5);
+            Pen pen = new Pen(pipe.PipelineColor, penWidth);
             if (pipe.InBetweenPoints.Count > 0)
             {
                 gr.DrawLine(pen, pipe.StartPoint, pipe.InBetweenPoints.First());

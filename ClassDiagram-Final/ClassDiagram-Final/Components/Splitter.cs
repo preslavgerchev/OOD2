@@ -133,7 +133,7 @@ namespace ClassDiagram_Final
             if (this.UpperOutcomePipeline != null)
             {
                 double currentPercentage = ((double)UpperOutComePercentage) / 100;
-                int newFlow = (int)(IncomePipeline.CurrentFlow * currentPercentage);
+                double newFlow = IncomePipeline.CurrentFlow * currentPercentage;
                 this.UpperOutcomePipeline.ChangeCurrentFlow(newFlow);
                 IFlowHandler flowHandler = UpperOutcomePipeline.EndComponent as IFlowHandler;
                 if (flowHandler != null)
@@ -144,7 +144,7 @@ namespace ClassDiagram_Final
             if (this.LowerOutcomePipeline != null)
             {
                 double currentPercentage = ((double)LowerOutComePercentage) / 100;
-                int newFlow = (int)(IncomePipeline.CurrentFlow * currentPercentage);
+                double newFlow = IncomePipeline.CurrentFlow * currentPercentage;
                 this.LowerOutcomePipeline.ChangeCurrentFlow(newFlow);
                 IFlowHandler flowHandler = LowerOutcomePipeline.EndComponent as IFlowHandler;
                 if (flowHandler != null)
