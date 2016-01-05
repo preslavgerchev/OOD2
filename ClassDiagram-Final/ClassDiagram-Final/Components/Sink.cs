@@ -9,6 +9,7 @@ namespace ClassDiagram_Final
     {
         //Fields
         private Point pipelineLocation;
+
         //Properties
         public Pipeline IncomePipeline { get; private set; }
 
@@ -18,27 +19,33 @@ namespace ClassDiagram_Final
         {
             this.pipelineLocation = CalculatePipelineLocation();
         }
-        
+
+        #region Calculating Methods
+
         /// <summary>
-        ///  Returns a point with the location of the pipeline.
+        /// Returns a point that will be used for connecting pipelines.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A point used for connecting pipelines.</returns>
         private Point CalculatePipelineLocation()
         {
             return new Point(ComponentBox.Left + 5, ComponentBox.Top + ComponentBox.Height / 2);
         }
+
+        #endregion
+
         /// <summary>
-        /// Returns sink's icon.
+        /// The Sink's image that is used for painting.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The Sink's image.</returns>
         public override Image GetImage()
         {
             return Properties.Resources.sink;
         }
+
         /// <summary>
-        /// Returns a string with the inming flow in the sink.
+        /// Returns a string with the flow of the sink.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string with the current incoming flow.</returns>
         public string GetFlow()
         {
             if (this.IncomePipeline == null)
@@ -47,19 +54,21 @@ namespace ClassDiagram_Final
             }
             return Math.Round(this.IncomePipeline.CurrentFlow, 1).ToString();
         }
+
         /// <summary>
-        ///  Gets the text location for the flow string.
+        /// Gets the text location for the flow string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A point used for drawing the text.</returns>
         public Point GetTextLocation()
         {
             return new Point(GetLocation().X + GetImage().Width / 3, GetLocation().Y + GetImage().Height / 3);
         }
+
         /// <summary>
-        /// Sets the incoming pipeline.
+        /// Assigns the pipeline that is being passed,based on the location.
         /// </summary>
-        /// <param name="location"></param>
-        /// <param name="pipe"></param>
+        /// <param name="location">The location of the mouse click.</param>
+        /// <param name="pipe">The pipeline that will be assigned.</param>
         public override void SetPipeline(Point location, Pipeline pipe)
         {
             if (ComponentBox.Contains(location))
@@ -67,11 +76,12 @@ namespace ClassDiagram_Final
                 this.IncomePipeline = pipe;
             }
         }
+
         /// <summary>
-        /// Returns the pipeline localized in that point.
+        /// Gets a concrete point that is used for connecting pipelines based on where the mouse click has been made.
         /// </summary>
-        /// <param name="mouseClick"></param>
-        /// <returns></returns>
+        /// <param name="location">The location of the mouse click.</param>
+        /// <returns>A concrete prefixed point.</returns>
         public override Point GetPipelineLocation(Point mouseClick)
         {
             if (ComponentBox.Contains(mouseClick))
@@ -82,9 +92,9 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Clears the pipeline.
+        /// Deletes the pipeline and sets its corresponding property to null.
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="p">The pipeline that will be deleted.</param>
         public override void ClearPipeline(Pipeline p)
         {
             if (this.IncomePipeline == p)
@@ -92,21 +102,23 @@ namespace ClassDiagram_Final
                 this.IncomePipeline = null;
             }
         }
+
         /// <summary>
-        /// Returns all the pipelines attached to the sink.
+        /// Gets all the connected (those that are not equal to null) pipelines.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list holding all the connected pipelines.</returns>
         public override IEnumerable<Pipeline> GetPipelines()
         {
             List<Pipeline> allPipelines = new List<Pipeline>();
             if (IncomePipeline != null) { allPipelines.Add(IncomePipeline); }
             return allPipelines;
         }
+
         /// <summary>
-        ///  Checks if there is no component in that point
+        /// Checks if the pipeline where the mouse click has been made is not connected(null).
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns></returns>
+        /// <param name="location">The location of the mouse click.</param>
+        /// <returns>True if the pipeline is null.Otherwise false.</returns>
         public override bool IsLocationEmpty(Point location)
         {
             if (ComponentBox.Contains(location))

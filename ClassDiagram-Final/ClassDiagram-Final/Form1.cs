@@ -239,7 +239,7 @@ namespace ClassDiagram_Final
                     return;
                 }
                 endCompLoc = e.Location;
-                myNetwork.CreateAndProcessPipeline(startComp, endComp, startCompLoc, endCompLoc,inbetweenPts);
+                myNetwork.RegisterPipeline(startComp, endComp, startCompLoc, endCompLoc,inbetweenPts);
                 ClearVariables();
                 type = ComponentType.NONE;
             }

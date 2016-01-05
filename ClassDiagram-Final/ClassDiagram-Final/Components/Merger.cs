@@ -5,7 +5,7 @@ using System.Drawing;
 namespace ClassDiagram_Final
 {
     [Serializable]
-    public class Merger : Component, ISplit ,IFlowHandler
+    public class Merger : Component, ISplit, IFlowHandler
     {
         //Fields
         private Point lowerHalfPoint;
@@ -37,65 +37,79 @@ namespace ClassDiagram_Final
 
             this.PipelineValueChanged += AdjustPipelineValues;
         }
-        //Methods
+
         #region Calculating Methods
+
         /// <summary>
         /// Calculates the upper half incoming rectangle.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The rectangle of the upper half.</returns>
         private Rectangle CalculateUpperHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top), new Size(25, ComponentBox.Height / 2));
         }
-            /// <summary>
-            /// Calculates the lower half incoming rectangle.
-            /// </summary>
-            /// <returns></returns>
+
+        /// <summary>
+        /// Calculates the lower half incoming rectangle.
+        /// </summary>
+        /// <returns>The rectangle of the lower half.</returns>
         private Rectangle CalculateLowerHalf()
         {
             return new Rectangle(new Point(ComponentBox.Left, ComponentBox.Top + ComponentBox.Height / 2), new Size(25, ComponentBox.Height / 2));
         }
+
         /// <summary>
-       /// Calculates the outcoming half rectangle.
-       /// </summary>
-       /// <returns></returns>
+        /// Calculates the outcoming half rectangle.
+        /// </summary>
+        /// <returns>The rectangle of the outcoming half.</returns>
         private Rectangle CalculateOutcomeHalf()
         {
             return new Rectangle(new Point(ComponentBox.Right - ComponentBox.Width / 2, ComponentBox.Top + ComponentBox.Height / 3), new Size(25, ComponentBox.Height / 2));
         }
+
         /// <summary>
-        /// ???
+        /// Calculates the point that will be used for pipeline connection of the upper half.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The point that will be used for pipelines connection.</returns>
         private Point CalculateUpperHalfPoint()
         {
             return new Point(UpperHalf.Left + 5, UpperHalf.Top + UpperHalf.Width / 2);
         }
 
+        /// <summary>
+        /// Calculates the point that will be used for pipeline connection of the lower half.
+        /// </summary>
+        /// <returns>The point that will be used for pipelines connection.</returns>
         private Point CalculateLowerHalfPoint()
         {
             return new Point(UpperHalf.Left + 5, LowerHalf.Bottom - LowerHalf.Width / 2);
         }
 
+        /// <summary>
+        /// Calculates the point that will be used for pipeline connection of the outcoming half.
+        /// </summary>
+        /// <returns>The point that will be used for pipelines connection.</returns>
         private Point CalculateOutcomingHalfPoint()
         {
             return new Point(OutcomeHalf.Right - 5, OutcomeHalf.Top + OutcomeHalf.Width / 4);
         }
         #endregion
+
         /// <summary>
-        /// Returns merger's icon.
+        /// The Merger's image that is used for painting.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The Merger's image.</returns>
         public override Image GetImage()
         {
             return Properties.Resources.merger;
         }
+
         /// <summary>
-        /// Checks in which rectagle the mosue click was and returns that point.
+        /// Gets a concrete point that is used for connecting pipelines based on where the mouse click has been made.
         /// </summary>
-        /// <param name="mouseClick"></param>
-        /// <returns></returns>
-        public override  Point GetPipelineLocation(Point mouseClick)
+        /// <param name="location">The location of the mouse click.</param>
+        /// <returns>A concrete prefixed point.</returns>
+        public override Point GetPipelineLocation(Point mouseClick)
         {
             if (UpperHalf.Contains(mouseClick))
             {
@@ -105,30 +119,30 @@ namespace ClassDiagram_Final
             {
                 return lowerHalfPoint;
             }
-            
             else if (OutcomeHalf.Contains(mouseClick))
             {
                 return outcomingHalfPoint;
             }
             return new Point(0, 0);
         }
+
         /// <summary>
-        /// Sets the pipeline depending on the location.
+        /// Assigns the pipeline that is being passed,based on the location.
         /// </summary>
-        /// <param name="location"></param>
-        /// <param name="pipe"></param>
+        /// <param name="location">The location of the mouse click.</param>
+        /// <param name="pipe">The pipeline that will be assigned.</param>
         public override void SetPipeline(Point location, Pipeline pipe)
         {
-            if (UpperHalf.Contains(location))
+            Point pipeLoc = GetPipelineLocation(location);
+            if (pipeLoc == upperHalfPoint)
             {
                 this.UpperIncomePipeline = pipe;
-                
             }
-            else if (LowerHalf.Contains(location))
+            else if (pipeLoc == lowerHalfPoint)
             {
                 this.LowerIncomePipeline = pipe;
             }
-            else if (OutcomeHalf.Contains(location))
+            else if (pipeLoc == outcomingHalfPoint)
             {
                 this.OutcomePipeline = pipe;
             }
@@ -137,10 +151,11 @@ namespace ClassDiagram_Final
                 PipelineValueChanged();
             }
         }
+
         /// <summary>
-        /// Deletes the pipeline.
+        /// Deletes the pipeline and sets its corresponding property to null.
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="p">The pipeline that will be deleted.</param>
         public override void ClearPipeline(Pipeline p)
         {
             if (this.UpperIncomePipeline == p)
@@ -160,11 +175,11 @@ namespace ClassDiagram_Final
                 PipelineValueChanged();
             }
         }
-        /// <summary>
-        /// Returns all connected pipelines.
-        /// </summary>
-        /// <returns></returns>
 
+        /// <summary>
+        /// Gets all the connected (those that are not equal to null) pipelines.
+        /// </summary>
+        /// <returns>A list holding all the connected pipelines.</returns>
         public override IEnumerable<Pipeline> GetPipelines()
         {
             List<Pipeline> allPipelines = new List<Pipeline>();
@@ -175,10 +190,10 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Checks if there is no pipeline connected to that location.
+        /// Checks if the pipeline where the mouse click has been made is not connected(null).
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns></returns>
+        /// <param name="location">The location of the mouse click.</param>
+        /// <returns>True if the pipeline is null.Otherwise false.</returns>
         public override bool IsLocationEmpty(Point location)
         {
             if (UpperHalf.Contains(location))
@@ -189,13 +204,17 @@ namespace ClassDiagram_Final
             {
                 return this.LowerIncomePipeline == null;
             }
-            else if(OutcomeHalf.Contains(location))
+            else if (OutcomeHalf.Contains(location))
             {
                 return this.OutcomePipeline == null;
             }
             return false;
         }
 
+        /// <summary>
+        /// Part of the IFlowHandler interface. Called when the PipeLineValue is raised.
+        /// Updates all the values of the connected pipelines.
+        /// </summary>
         public void AdjustPipelineValues()
         {
             if (OutcomePipeline == null)
@@ -213,7 +232,6 @@ namespace ClassDiagram_Final
                 lowerFlow = this.LowerIncomePipeline.CurrentFlow;
             }
             this.OutcomePipeline.ChangeCurrentFlow(upperFlow + lowerFlow);
-
             IFlowHandler outcomeElement = OutcomePipeline.EndComponent as IFlowHandler;
             if (outcomeElement != null)
             {

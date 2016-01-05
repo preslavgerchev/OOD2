@@ -7,6 +7,11 @@ namespace ClassDiagram_Final
     {
         private const int penWidth = 5;
 
+        /// <summary>
+        /// An extension method that is used for drawing pipelines.
+        /// </summary>
+        /// <param name="gr">The graphics that will draw the pipeline.</param>
+        /// <param name="pipe">The pipeline that will be drawn.</param>
         public static void DrawPipeline(this Graphics gr, Pipeline pipe)
         {
             Pen pen = new Pen(pipe.PipelineColor, penWidth);
@@ -23,9 +28,7 @@ namespace ClassDiagram_Final
             {
                 gr.DrawLine(pen, pipe.StartPoint, pipe.EndPoint);
             }
-
             IFlow pipeFlow = pipe as IFlow;
-
             if (pipeFlow != null)
             {
                 gr.DrawString(pipeFlow.GetFlow(), Form1.font, Brushes.Black, pipeFlow.GetTextLocation());

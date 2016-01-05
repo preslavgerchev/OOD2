@@ -11,10 +11,10 @@ namespace ClassDiagram_Final
         public double CurrentFlow { get; private set; }
         public double MaxFlow { get; private set; } = 20;
         public IList<Point> InBetweenPoints { get; }
-        public Component StartComponent { get; private set; }
-        public Component EndComponent { get; private set; }
-        public Point StartPoint { get; private set; }
-        public Point EndPoint { get; private set; }
+        public Component StartComponent { get; }
+        public Component EndComponent { get; }
+        public Point StartPoint { get; }
+        public Point EndPoint { get; }
 
         public Color PipelineColor
         {
@@ -28,7 +28,7 @@ namespace ClassDiagram_Final
             }
         }
 
-        //Constructors
+        //Constructor
         public Pipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inbetweenPts)
         {
             this.InBetweenPoints = inbetweenPts;
@@ -38,12 +38,11 @@ namespace ClassDiagram_Final
             this.EndPoint = endCompLoc;
         }
 
-        //Methods
         /// <summary>
-        /// Changes the current flow of a pipeline if it does not execed its capacity.
+        /// Changes the current flow of a pipeline if it does not exceed its capacity.
         /// </summary>
-        /// <param name="newFlow"></param>
-        /// <returns></returns>
+        /// <param name="newFlow">The new value for the current flow.</param>
+        /// <returns>True if the current flow's value has been successfully changed.Otherwise false.</returns>
         public bool ChangeCurrentFlow(double newFlow)
         {
             if (newFlow <= MaxFlow)
@@ -53,19 +52,9 @@ namespace ClassDiagram_Final
             }
             return false;
         }
-        /// <summary>
-        /// Checks if the flow excedes the capacity.
-        /// Returns a boolean
-        /// </summary>
-        /// <returns></returns>
-        public bool CheckFlow()
-        {    //if this is for color changing -makes more sense to add another method where we call this one 
-            //and based on the return boolean we change the color or we don't
-            return this.CurrentFlow <= this.MaxFlow;
-        }
 
         /// <summary>
-        /// Clears the pipelines.
+        /// Removes this pipeline from the start and end component's properties.
         /// </summary>
         public void ClearComponents()
         {
@@ -73,11 +62,19 @@ namespace ClassDiagram_Final
             this.EndComponent.ClearPipeline(this);
         }
 
+        /// <summary>
+        /// Returns a string with the current and max flow of the pipeline.
+        /// </summary>
+        /// <returns>A string with the current and max flow.</returns>
         public string GetFlow()
         {
             return string.Format("{0}/{1}", this.CurrentFlow, this.MaxFlow);
         }
 
+        /// <summary>
+        /// Gets the text location for the current and max flow string.
+        /// </summary>
+        /// <returns>A point used for drawing the text.</returns>
         public Point GetTextLocation()
         {
             if (InBetweenPoints.Count > 0)
