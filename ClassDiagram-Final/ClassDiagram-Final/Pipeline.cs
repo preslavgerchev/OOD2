@@ -5,7 +5,7 @@ using System.Drawing;
 namespace ClassDiagram_Final
 {
     [Serializable]
-    public class Pipeline
+    public class Pipeline : IFlow
     {
         //Properties
         public double CurrentFlow { get; private set; }
@@ -29,7 +29,7 @@ namespace ClassDiagram_Final
         }
 
         //Constructors
-        public Pipeline(Component startComp,Component endComp,Point startCompLoc,Point endCompLoc, List<Point> inbetweenPts)
+        public Pipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inbetweenPts)
         {
             this.InBetweenPoints = inbetweenPts;
             this.StartComponent = startComp;
@@ -37,7 +37,7 @@ namespace ClassDiagram_Final
             this.StartPoint = startCompLoc;
             this.EndPoint = endCompLoc;
         }
-        
+
         //Methods
         /// <summary>
         /// Changes the current flow of a pipeline if it does not execed its capacity.
@@ -71,6 +71,25 @@ namespace ClassDiagram_Final
         {
             this.StartComponent.ClearPipeline(this);
             this.EndComponent.ClearPipeline(this);
+        }
+
+        public string GetFlow()
+        {
+            return string.Format("{0}/{1}", this.CurrentFlow, this.MaxFlow);
+        }
+
+        public Point GetTextLocation()
+        {
+            if (InBetweenPoints.Count > 0)
+            {
+                return InBetweenPoints[InBetweenPoints.Count / 2];
+            }
+            else
+            {
+                int x = (this.StartPoint.X + this.EndPoint.X) / 2;
+                int y = (this.StartPoint.Y + this.EndPoint.Y) / 2;
+                return new Point(x, y);
+            }
         }
     }
 }

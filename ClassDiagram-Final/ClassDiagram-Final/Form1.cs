@@ -8,7 +8,7 @@ namespace ClassDiagram_Final
     public partial class Form1 : Form
     {   
         //Fields
-        Font font;
+        public static Font font;
         Network myNetwork;
 
         ComponentType type = ComponentType.NONE;

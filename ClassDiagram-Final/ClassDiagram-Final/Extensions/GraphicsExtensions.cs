@@ -23,6 +23,13 @@ namespace ClassDiagram_Final
             {
                 gr.DrawLine(pen, pipe.StartPoint, pipe.EndPoint);
             }
+
+            IFlow pipeFlow = pipe as IFlow;
+
+            if (pipeFlow != null)
+            {
+                gr.DrawString(pipeFlow.GetFlow(), Form1.font, Brushes.Black, pipeFlow.GetTextLocation());
+            }
         }
     }
 }
