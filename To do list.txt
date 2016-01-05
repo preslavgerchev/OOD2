@@ -1,26 +1,27 @@
 Implementation: 
  1. Little square merger/splitter - done
- 2. Delete a line
- 3. Colors for a line
- 4. Info about a line's flow
- 5. Flow handling - (almost) done
+ 2. Delete a line + select a line - Rosen
+ 3. Colors for a line - Done
+ 4. Info about a line's flow - Dimitar
+ 5. Flow handling - done
  6. Pump - Capacity = max flow
 	 - Current flow <= Capacity - did this +show and set from the UI -Monica
  7. Pipeline image + form icon - UI -Done Monica
- 8. Comments -- Almost done
+ 8. Comments -- Almost done -Monica
  9. Proper names for buttons and labels!! - Done Monica
- 10. When pressing x, dont close form, just cancel - done
+ 10. When pressing x, dont close form, just cancel - done -Monica
+ 11. int to double- preslav
 Optional: No overlapping lines
 
 Docs : 
 URS and Design doc
- 1. New class diagram + desciption of the members(=comments)
+ 1. New class diagram (Rosen )+ desciption of the members(=comments) + Monica
  2. Update seq diagrams - done 03.01.2016
- 3. New user interface screen shot + desciption
+ 3. New user interface screen shot + desciption - Dimitar
 (Maybe URS - updated 01.01.2016)
 Process report:
- 1. Update rules and decisions + explanation
- 2. Who-did-what table
- 3. Problems and solutions
- 4. Changes 
- 5. Personal opinion on the project/group work
+ 1. Update rules and decisions + explanation - group
+ 2. Who-did-what table  - group
+ 3. Problems and solutions - group 
+ 4. Changes - Monica
+ 5. Personal opinion on the project/group work 
