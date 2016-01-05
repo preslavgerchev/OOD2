@@ -13,6 +13,7 @@ namespace ClassDiagram_Final
 
         ComponentType type = ComponentType.NONE;
         Component selectedComponent;
+        Pipeline selectedPipeline;
         List<Point> inbetweenPts;
         Component startComp;
         Component endComp;
@@ -39,7 +40,12 @@ namespace ClassDiagram_Final
             if (selectedComponent != null)
             {
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
+               
             }
+            if (selectedPipeline != null)
+            {
+                e.Graphics.DrawRectangle(Pens.Red,selectedPipeline.GetPipelineRetangle);
+            };
             DrawImages(e.Graphics);
             DrawPipelines(e.Graphics);
         }
@@ -106,7 +112,7 @@ namespace ClassDiagram_Final
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             selectedComponent = myNetwork.GetComponent(e.Location);
-
+           
             Pump p = selectedComponent as Pump;
             if (p != null)
             {
@@ -226,6 +232,8 @@ namespace ClassDiagram_Final
             }
             if (type == ComponentType.PIPELINE)
             {
+                //here starts the problem
+                Pipeline p = myNetwork.RegisterPipeline(p.StartComponent, p.EndComponent, p.StartPoint, p.EndPoint,p.InBetweenPoints);
                 if (startComp == null)
                 {
                     startComp = myNetwork.GetComponent(e.Location);
@@ -238,6 +246,7 @@ namespace ClassDiagram_Final
                     inbetweenPts.Add(e.Location);
                     return;
                 }
+                
                 endCompLoc = e.Location;
                 myNetwork.RegisterPipeline(startComp, endComp, startCompLoc, endCompLoc,inbetweenPts);
                 ClearVariables();

@@ -121,7 +121,7 @@ namespace ClassDiagram_Final
         /// <param name="endCompLoc">The location of the ending component.</param>
         /// <param name="inbetweenPts">The list of points that the pipeline consists of.</param>
         /// <returns>A newly created pipeline.</returns>
-        private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inbetweenPts)
+        private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, IList<Point> inbetweenPts)
         {
             Pipeline p = null;
             //this takes care of the case in which the user clicks first on a merger/splitter and then on a pump/sink 
@@ -129,6 +129,7 @@ namespace ClassDiagram_Final
             if (startComp is Sink || endComp is Pump)
             {
                 p = new Pipeline(endComp, startComp, endComp.GetPipelineLocation(endCompLoc), startComp.GetPipelineLocation(startCompLoc), inbetweenPts);
+               
             }
             else
             {
@@ -156,6 +157,7 @@ namespace ClassDiagram_Final
             startComp.SetPipeline(startCompLoc, p);
             endComp.SetPipeline(endCompLoc, p);
             AddPipeline(p);
+            p.GetLineRectange();
         }
 
         /// <summary>
@@ -196,6 +198,7 @@ namespace ClassDiagram_Final
                     return null;
             }
         }
+       
 
         /// <summary>
         /// Objects to be serialized and added to the Serialization Info.

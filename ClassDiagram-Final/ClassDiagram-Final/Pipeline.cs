@@ -15,7 +15,7 @@ namespace ClassDiagram_Final
         public Component EndComponent { get; }
         public Point StartPoint { get; }
         public Point EndPoint { get; }
-
+        public Rectangle GetPipelineRetangle { get; }
         public Color PipelineColor
         {
             get
@@ -29,13 +29,14 @@ namespace ClassDiagram_Final
         }
 
         //Constructor
-        public Pipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inbetweenPts)
+        public Pipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, IList<Point> inbetweenPts)
         {
             this.InBetweenPoints = inbetweenPts;
             this.StartComponent = startComp;
             this.EndComponent = endComp;
             this.StartPoint = startCompLoc;
             this.EndPoint = endCompLoc;
+            GetPipelineRetangle = GetLineRectange();
         }
 
         /// <summary>
@@ -87,6 +88,16 @@ namespace ClassDiagram_Final
                 int y = (this.StartPoint.Y + this.EndPoint.Y) / 2;
                 return new Point(x, y);
             }
+        }
+
+        //added
+        public Rectangle GetLineRectange()
+        {           
+            return new Rectangle(
+                Math.Min(this.StartPoint.X, this.EndPoint.X),
+            Math.Min(this.StartPoint.Y, this.EndPoint.Y),
+            Math.Max(this.StartPoint.X, this.EndPoint.X),
+            Math.Max(this.StartPoint.Y, this.StartPoint.Y));
         }
     }
 }
