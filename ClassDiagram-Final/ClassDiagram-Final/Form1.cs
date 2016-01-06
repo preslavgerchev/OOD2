@@ -2,6 +2,7 @@
 using System.Drawing;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 
 namespace ClassDiagram_Final
 {
@@ -19,6 +20,8 @@ namespace ClassDiagram_Final
         Component endComp;
         Point startCompLoc;
         Point endCompLoc;
+
+        Point test;
 
         string FILE_PATH = "Network.XML";
         bool saved;
@@ -42,10 +45,28 @@ namespace ClassDiagram_Final
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
                
             }
-            if (selectedPipeline != null)
+            //this thing right here
+            using (var path = new GraphicsPath())
             {
-                e.Graphics.DrawRectangle(Pens.Red,selectedPipeline.GetPipelineRetangle);
-            };
+                foreach (var p in myNetwork.Pipelines)
+                {
+                    Point[] pts = new Point[p.InBetweenPoints.Count + 2];
+                    pts[0] = p.StartPoint;
+                    for (int i = 0; i < p.InBetweenPoints.Count; i++)
+                    {
+                        pts[i+1] = p.InBetweenPoints[i];
+                    }
+                    pts[p.InBetweenPoints.Count + 1] = p.EndPoint;
+                    path.AddLines(pts);
+                    if (path.IsOutlineVisible(test, new Pen(Color.Orange, 5), e.Graphics))
+                    {
+                        selectedPipeline = p;
+                        lblInfo.Text = "CLICK";
+                        break;
+                    }
+                    else { lblInfo.Text = "NO CLICK :("; }
+                }
+            }
             DrawImages(e.Graphics);
             DrawPipelines(e.Graphics);
         }
@@ -92,8 +113,12 @@ namespace ClassDiagram_Final
                 {
                     trackBar1.Visible = false;
                 }
-                panel1.Invalidate();
             }
+            else if (selectedPipeline != null)
+            {
+                myNetwork.RemovePipeline(selectedPipeline);
+            }
+            panel1.Invalidate();
         }
 
         private void DrawImages(Graphics gr)
@@ -221,7 +246,6 @@ namespace ClassDiagram_Final
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-
             if (type != ComponentType.NONE && type != ComponentType.PIPELINE)
             {
                 Component c = myNetwork.CreateComponent(type, e.X, e.Y);
@@ -232,8 +256,6 @@ namespace ClassDiagram_Final
             }
             if (type == ComponentType.PIPELINE)
             {
-                //here starts the problem
-                Pipeline p = myNetwork.RegisterPipeline(p.StartComponent, p.EndComponent, p.StartPoint, p.EndPoint,p.InBetweenPoints);
                 if (startComp == null)
                 {
                     startComp = myNetwork.GetComponent(e.Location);
@@ -245,13 +267,13 @@ namespace ClassDiagram_Final
                 {
                     inbetweenPts.Add(e.Location);
                     return;
-                }
-                
+                }   
                 endCompLoc = e.Location;
                 myNetwork.RegisterPipeline(startComp, endComp, startCompLoc, endCompLoc,inbetweenPts);
                 ClearVariables();
                 type = ComponentType.NONE;
             }
+            test = e.Location;
             panel1.Invalidate();
         }
 
@@ -285,7 +307,5 @@ namespace ClassDiagram_Final
                 panel1.Invalidate();
             }
         }
-
-       
     }
 }

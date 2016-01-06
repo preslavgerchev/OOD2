@@ -129,7 +129,7 @@ namespace ClassDiagram_Final
             if (startComp is Sink || endComp is Pump)
             {
                 p = new Pipeline(endComp, startComp, endComp.GetPipelineLocation(endCompLoc), startComp.GetPipelineLocation(startCompLoc), inbetweenPts);
-               
+
             }
             else
             {
@@ -174,6 +174,16 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
+        /// Removes a pipeline from the list and clear its starting and ending point.
+        /// </summary>
+        /// <param name="p">The pipeline that will be removed.</param>
+        public void RemovePipeline(Pipeline p)
+        {
+            p.ClearComponents();
+            this.Pipelines.Remove(p);
+        }
+
+        /// <summary>
         /// Creates a component in the specified location depending on the <see cref="ComponentType"/>.
         /// </summary>
         /// <param name="type">The type of the component.</param>
@@ -198,7 +208,6 @@ namespace ClassDiagram_Final
                     return null;
             }
         }
-       
 
         /// <summary>
         /// Objects to be serialized and added to the Serialization Info.

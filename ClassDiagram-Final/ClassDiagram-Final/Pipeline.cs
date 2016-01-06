@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 namespace ClassDiagram_Final
 {
     [Serializable]
-    public class Pipeline : IFlow
+    public class Pipeline :IFlow
     {
         //Properties
         public double CurrentFlow { get; private set; }
@@ -89,15 +88,11 @@ namespace ClassDiagram_Final
                 return new Point(x, y);
             }
         }
-
+    
         //added
         public Rectangle GetLineRectange()
-        {           
-            return new Rectangle(
-                Math.Min(this.StartPoint.X, this.EndPoint.X),
-            Math.Min(this.StartPoint.Y, this.EndPoint.Y),
-            Math.Max(this.StartPoint.X, this.EndPoint.X),
-            Math.Max(this.StartPoint.Y, this.StartPoint.Y));
+        {
+            return new Rectangle(StartPoint.X, StartPoint.Y - 6, EndPoint.X - StartPoint.X, 10);
         }
     }
 }
