@@ -186,10 +186,6 @@ namespace ClassDiagram_Final
         /// <returns>A concrete prefixed point.</returns>
         public override Point GetPipelineLocation(Point location)
         {
-            if (IncomePipeline == null)
-            {
-                return incomeHalfPoint;
-            }
             if (UpperHalf.Contains(location))
             {
                 return upperHalfPoint;

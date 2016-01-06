@@ -123,19 +123,11 @@ namespace ClassDiagram_Final
         /// <returns>A newly created pipeline.</returns>
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, IList<Point> inbetweenPts)
         {
-            Pipeline p = null;
-            //this takes care of the case in which the user clicks first on a merger/splitter and then on a pump/sink 
-            //- the places are simply switched 
-            if (startComp is Sink || endComp is Pump)
-            {
-                p = new Pipeline(endComp, startComp, endComp.GetPipelineLocation(endCompLoc), startComp.GetPipelineLocation(startCompLoc), inbetweenPts);
-
-            }
-            else
-            {
-                p = new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc), inbetweenPts);
-            }
-            return p;
+            
+            
+            
+                return new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc), inbetweenPts);
+             
         }
 
         /// <summary>
