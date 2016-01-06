@@ -7,7 +7,7 @@ using System.Drawing.Drawing2D;
 namespace ClassDiagram_Final
 {
     public partial class Form1 : Form
-    {   
+    {
         //Fields
         public static Font font;
         Network myNetwork;
@@ -21,7 +21,7 @@ namespace ClassDiagram_Final
         Point startCompLoc;
         Point endCompLoc;
 
-        Point test;
+        Point selectedPipelineLoc = new Point(0, 0);
 
         string FILE_PATH = "Network.XML";
         bool saved;
@@ -37,15 +37,33 @@ namespace ClassDiagram_Final
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             saved = false;
         }
-        
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             if (selectedComponent != null)
             {
                 e.Graphics.DrawRectangle(Pens.Red, selectedComponent.ComponentBox);
-               
+
             }
-            //this thing right here
+            SelectALine(e.Graphics, selectedPipelineLoc);
+            DrawImages(e.Graphics);
+            DrawPipelines(e.Graphics);
+            if (selectedPipeline != null)
+            {
+                e.Graphics.DrawSelectedLine(selectedPipeline);
+                this.tbCurrentFlow.Text = selectedPipeline.CurrentFlow.ToString();
+                this.tbCapacity.Text = selectedPipeline.MaxFlow.ToString();
+            }
+        }
+
+        private void btnPump_Click(object sender, EventArgs e)
+        {
+            type = ComponentType.PUMP;
+            ClearVariables();
+        }
+
+        private void SelectALine(Graphics gr, Point mouseClick)
+        {
             using (var path = new GraphicsPath())
             {
                 foreach (var p in myNetwork.Pipelines)
@@ -54,27 +72,17 @@ namespace ClassDiagram_Final
                     pts[0] = p.StartPoint;
                     for (int i = 0; i < p.InBetweenPoints.Count; i++)
                     {
-                        pts[i+1] = p.InBetweenPoints[i];
+                        pts[i + 1] = p.InBetweenPoints[i];
                     }
                     pts[p.InBetweenPoints.Count + 1] = p.EndPoint;
                     path.AddLines(pts);
-                    if (path.IsOutlineVisible(test, new Pen(Color.Orange, 5), e.Graphics))
+                    if (path.IsOutlineVisible(mouseClick, new Pen(Color.Orange, 5), gr))
                     {
                         selectedPipeline = p;
-                        lblInfo.Text = "CLICK";
                         break;
                     }
-                    else { lblInfo.Text = "NO CLICK :("; }
                 }
             }
-            DrawImages(e.Graphics);
-            DrawPipelines(e.Graphics);
-        }
-
-        private void btnPump_Click(object sender, EventArgs e)
-        {
-            type = ComponentType.PUMP;
-            ClearVariables();
         }
 
         private void btnSink_Click(object sender, EventArgs e)
@@ -114,10 +122,15 @@ namespace ClassDiagram_Final
                     trackBar1.Visible = false;
                 }
             }
-            else if (selectedPipeline != null)
+            if (selectedPipeline != null)
             {
                 myNetwork.RemovePipeline(selectedPipeline);
+                selectedPipeline = null;
+                selectedPipelineLoc = new Point(0, 0);
+                type = ComponentType.NONE;
             }
+            this.tbCapacity.Text = "";
+            this.tbCurrentFlow.Text = "";
             panel1.Invalidate();
         }
 
@@ -137,14 +150,14 @@ namespace ClassDiagram_Final
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             selectedComponent = myNetwork.GetComponent(e.Location);
-           
+
             Pump p = selectedComponent as Pump;
             if (p != null)
             {
                 this.tbCurrentFlow.Text = p.Flow.ToString();
                 this.tbCapacity.Text = p.Capacity.ToString();
             }
-           
+
             Splitter splitterComp = selectedComponent as Splitter;
             if (splitterComp != null && splitterComp.IsAdjustable)
             {
@@ -153,6 +166,15 @@ namespace ClassDiagram_Final
             else
             {
                 trackBar1.Visible = false;
+            }
+            if (selectedComponent != null)
+            {
+                selectedPipeline = null;
+                selectedPipelineLoc = new Point(0, 0);
+            }
+            else
+            {
+                selectedPipelineLoc = e.Location;
             }
             panel1.Invalidate();
         }
@@ -267,13 +289,12 @@ namespace ClassDiagram_Final
                 {
                     inbetweenPts.Add(e.Location);
                     return;
-                }   
+                }
                 endCompLoc = e.Location;
-                myNetwork.RegisterPipeline(startComp, endComp, startCompLoc, endCompLoc,inbetweenPts);
+                myNetwork.RegisterPipeline(startComp, endComp, startCompLoc, endCompLoc, inbetweenPts);
                 ClearVariables();
                 type = ComponentType.NONE;
             }
-            test = e.Location;
             panel1.Invalidate();
         }
 
@@ -297,11 +318,35 @@ namespace ClassDiagram_Final
                 if (selectedComponent is Pump)
                 {
                     Pump p = (Pump)selectedComponent;
-                    double capacity = Double.Parse(tbCapacity.Text);
-                    double flow = Double.Parse(tbCurrentFlow.Text);
-                    p.SetFlow(capacity, flow);
+                    double capacity;
+                    double flow;
+                    if (double.TryParse(tbCapacity.Text, out capacity) &&
+                        double.TryParse(tbCurrentFlow.Text, out flow))
+                    {
+                        p.SetFlow(capacity, flow);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid values!");
+                    }
                 }
                 selectedComponent = null;
+                this.tbCurrentFlow.Text = "";
+                this.tbCapacity.Text = "";
+                panel1.Invalidate();
+            }
+            else if (selectedPipeline != null)
+            {
+                double maxFlow;
+                if (double.TryParse(tbCapacity.Text, out maxFlow))
+                {
+                    selectedPipeline.ChangeMaxFlow(maxFlow);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid max value!");
+                }
+                selectedPipeline = null;
                 this.tbCurrentFlow.Text = "";
                 this.tbCapacity.Text = "";
                 panel1.Invalidate();

@@ -34,5 +34,28 @@ namespace ClassDiagram_Final
                 gr.DrawString(pipeFlow.GetFlow(), Form1.font, Brushes.Black, pipeFlow.GetTextLocation());
             }
         }
+
+        /// <summary>
+        /// An extension method that is used for drawing the selected pipeline.
+        /// </summary>
+        /// <param name="gr">The graphics that will draw the selected pipeline.</param>
+        /// <param name="pipe">The pipeline that will be drawn.</param>
+        public static void DrawSelectedLine(this Graphics gr, Pipeline pipe)
+        {
+            Pen pen = new Pen(Color.Black, penWidth);
+            if (pipe.InBetweenPoints.Count > 0)
+            {
+                gr.DrawLine(pen, pipe.StartPoint, pipe.InBetweenPoints.First());
+                for (int i = 0; i < pipe.InBetweenPoints.Count - 1; i++)
+                {
+                    gr.DrawLine(pen, pipe.InBetweenPoints[i], pipe.InBetweenPoints[i + 1]);
+                }
+                gr.DrawLine(pen, pipe.InBetweenPoints.Last(), pipe.EndPoint);
+            }
+            else
+            {
+                gr.DrawLine(pen, pipe.StartPoint, pipe.EndPoint);
+            }
+        }
     }
 }

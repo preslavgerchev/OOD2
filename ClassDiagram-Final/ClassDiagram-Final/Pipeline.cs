@@ -42,15 +42,24 @@ namespace ClassDiagram_Final
         /// Changes the current flow of a pipeline if it does not exceed its capacity.
         /// </summary>
         /// <param name="newFlow">The new value for the current flow.</param>
-        /// <returns>True if the current flow's value has been successfully changed.Otherwise false.</returns>
-        public bool ChangeCurrentFlow(double newFlow)
+        public void ChangeCurrentFlow(double newFlow)
         {
             if (newFlow <= MaxFlow)
             {
                 this.CurrentFlow = newFlow;
-                return true;
             }
-            return false;
+        }
+
+        /// <summary>
+        /// Changes the max flow of the pipeline if it is above the current flow.
+        /// </summary>
+        /// <param name="newMaxFlow">The new value for the max flow.</param>
+        public void ChangeMaxFlow(double newMaxFlow)
+        {
+            if (newMaxFlow >= CurrentFlow)
+            {
+                this.MaxFlow = newMaxFlow;
+            }
         }
 
         /// <summary>

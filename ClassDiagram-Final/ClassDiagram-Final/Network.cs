@@ -43,7 +43,7 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Deserializing a saved file.
+        /// Deserialize a saved file.
         /// </summary>
         /// <param name="path">The path where the serialized file is located.</param>
         /// <returns>A deserialized network.</returns>
@@ -123,11 +123,8 @@ namespace ClassDiagram_Final
         /// <returns>A newly created pipeline.</returns>
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, IList<Point> inbetweenPts)
         {
-            
-            
-            
-                return new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc), endComp.GetPipelineLocation(endCompLoc), inbetweenPts);
-             
+            return new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc),
+                endComp.GetPipelineLocation(endCompLoc), inbetweenPts);
         }
 
         /// <summary>
@@ -142,6 +139,10 @@ namespace ClassDiagram_Final
         public void RegisterPipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inBetweenPts)
         {
             if (!(startComp.IsLocationEmpty(startCompLoc) && endComp.IsLocationEmpty(endCompLoc)))
+            {
+                return;
+            }
+            if (startComp is Sink || endComp is Pump)
             {
                 return;
             }

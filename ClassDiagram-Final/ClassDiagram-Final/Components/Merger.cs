@@ -233,7 +233,7 @@ namespace ClassDiagram_Final
             }
             this.OutcomePipeline.ChangeCurrentFlow(upperFlow + lowerFlow);
             IFlowHandler outcomeElement = OutcomePipeline.EndComponent as IFlowHandler;
-            if (outcomeElement != null)
+            if (outcomeElement != null && OutcomePipeline.EndComponent != this)
             {
                 outcomeElement.AdjustPipelineValues();
             }
