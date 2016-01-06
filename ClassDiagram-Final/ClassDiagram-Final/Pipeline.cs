@@ -47,7 +47,9 @@ namespace ClassDiagram_Final
             if (newFlow <= MaxFlow)
             {
                 this.CurrentFlow = newFlow;
+                return;
             }
+            this.CurrentFlow = this.MaxFlow;
         }
 
         /// <summary>
@@ -59,6 +61,21 @@ namespace ClassDiagram_Final
             if (newMaxFlow >= CurrentFlow)
             {
                 this.MaxFlow = newMaxFlow;
+            }
+            Pump p = StartComponent as Pump;
+            if (p != null)
+            {
+                this.ChangeCurrentFlow(p.Flow);
+            }
+            IFlowHandler flowHandlerStart = StartComponent as IFlowHandler;
+            if (flowHandlerStart != null)
+            {
+                flowHandlerStart.AdjustPipelineValues();
+            }
+            IFlowHandler flowHandlerEnd = EndComponent as IFlowHandler;
+            if (flowHandlerEnd != null)
+            {
+                flowHandlerEnd.AdjustPipelineValues();
             }
         }
 

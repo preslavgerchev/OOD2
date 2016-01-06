@@ -76,7 +76,7 @@ namespace ClassDiagram_Final
                     }
                     pts[p.InBetweenPoints.Count + 1] = p.EndPoint;
                     path.AddLines(pts);
-                    if (path.IsOutlineVisible(mouseClick, new Pen(Color.Orange, 5), gr))
+                    if (path.IsOutlineVisible(mouseClick, new Pen(Color.Orange, 8), gr))
                     {
                         selectedPipeline = p;
                         break;
