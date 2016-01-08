@@ -33,6 +33,8 @@ namespace ClassDiagram_Final
             myNetwork = new Network();
             panel1.Paint += panel1_Paint;
             splitterTrackBar.Visible = false;
+            AdjSplitLb.Visible = false;
+            AdjSplitLb1.Visible = false;
             inbetweenPts = new List<Point>();
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             saved = false;
@@ -120,6 +122,8 @@ namespace ClassDiagram_Final
                 if (splitterTrackBar.Visible)
                 {
                     splitterTrackBar.Visible = false;
+                    AdjSplitLb1.Visible = false;
+                    AdjSplitLb.Visible = false;
                 }
             }
             if (selectedPipeline != null)
@@ -162,10 +166,14 @@ namespace ClassDiagram_Final
             if (splitterComp != null && splitterComp.IsAdjustable)
             {
                 splitterTrackBar.Visible = true;
+                AdjSplitLb.Visible = true;
+                AdjSplitLb1.Visible = true;
             }
             else
             {
                 splitterTrackBar.Visible = false;
+                AdjSplitLb.Visible = false;
+                AdjSplitLb1.Visible = false;
             }
             if (selectedComponent != null)
             {

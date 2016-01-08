@@ -63,8 +63,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitterTrackBar = new System.Windows.Forms.TrackBar();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.AdjSplitLb = new System.Windows.Forms.Label();
+            this.AdjSplitLb1 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -472,31 +472,31 @@
             this.lblInfo.Size = new System.Drawing.Size(0, 13);
             this.lblInfo.TabIndex = 25;
             // 
-            // label12
+            // AdjSplitLb
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(592, 11);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(56, 13);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Adjustable";
+            this.AdjSplitLb.AutoSize = true;
+            this.AdjSplitLb.Location = new System.Drawing.Point(592, 11);
+            this.AdjSplitLb.Name = "AdjSplitLb";
+            this.AdjSplitLb.Size = new System.Drawing.Size(56, 13);
+            this.AdjSplitLb.TabIndex = 26;
+            this.AdjSplitLb.Text = "Adjustable";
             // 
-            // label14
+            // AdjSplitLb1
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(592, 28);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(39, 13);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "Splitter";
+            this.AdjSplitLb1.AutoSize = true;
+            this.AdjSplitLb1.Location = new System.Drawing.Point(592, 28);
+            this.AdjSplitLb1.Name = "AdjSplitLb1";
+            this.AdjSplitLb1.Size = new System.Drawing.Size(39, 13);
+            this.AdjSplitLb1.TabIndex = 27;
+            this.AdjSplitLb1.Text = "Splitter";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 609);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.AdjSplitLb1);
+            this.Controls.Add(this.AdjSplitLb);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.splitterTrackBar);
             this.Controls.Add(this.panel1);
@@ -558,8 +558,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TrackBar splitterTrackBar;
         private System.Windows.Forms.Label lblInfo;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label AdjSplitLb;
+        private System.Windows.Forms.Label AdjSplitLb1;
     }
 }
 
