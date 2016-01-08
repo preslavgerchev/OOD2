@@ -52,7 +52,7 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="location">The location of the mouse click.</param>
         /// <returns>A concrete prefixed point.</returns>
-        public abstract Point GetPipelineLocation(Point location);
+        public abstract Point? GetPipelineLocation(Point location);
 
         /// <summary>
         /// Checks if the pipeline where the mouse click has been made is not connected(null).

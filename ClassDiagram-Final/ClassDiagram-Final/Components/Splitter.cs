@@ -192,7 +192,7 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="location">The location of the mouse click.</param>
         /// <returns>A concrete prefixed point.</returns>
-        public override Point GetPipelineLocation(Point location)
+        public override Point? GetPipelineLocation(Point location)
         {
             if (UpperHalf.Contains(location))
             {
@@ -206,7 +206,7 @@ namespace ClassDiagram_Final
             {
                 return incomeHalfPoint;
             }
-            return new Point(0, 0);
+            return null;
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace ClassDiagram_Final
         /// <param name="pipe">The pipeline that will be assigned.</param>
         public override void SetPipeline(Point location, Pipeline pipe)
         {
-            Point pipeLoc = GetPipelineLocation(location);
+            Point? pipeLoc = GetPipelineLocation(location);
             if (pipeLoc == upperHalfPoint)
             {
                 this.UpperOutcomePipeline = pipe;

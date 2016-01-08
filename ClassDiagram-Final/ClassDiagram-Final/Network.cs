@@ -123,8 +123,10 @@ namespace ClassDiagram_Final
         /// <returns>A newly created pipeline.</returns>
         private Pipeline CreatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, IList<Point> inbetweenPts)
         {
-            return new Pipeline(startComp, endComp, startComp.GetPipelineLocation(startCompLoc),
-                endComp.GetPipelineLocation(endCompLoc), inbetweenPts);
+            Point startPoint = (Point)startComp.GetPipelineLocation(startCompLoc);
+            Point endPoint = (Point)endComp.GetPipelineLocation(endCompLoc);
+            return new Pipeline(startComp, endComp, startPoint,
+                endPoint, inbetweenPts);
         }
 
         /// <summary>

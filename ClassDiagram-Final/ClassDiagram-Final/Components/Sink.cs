@@ -82,13 +82,13 @@ namespace ClassDiagram_Final
         /// </summary>
         /// <param name="location">The location of the mouse click.</param>
         /// <returns>A concrete prefixed point.</returns>
-        public override Point GetPipelineLocation(Point mouseClick)
+        public override Point? GetPipelineLocation(Point mouseClick)
         {
             if (ComponentBox.Contains(mouseClick))
             {
                 return pipelineLocation;
             }
-            return new Point(0, 0);
+            return null;
         }
 
         /// <summary>
