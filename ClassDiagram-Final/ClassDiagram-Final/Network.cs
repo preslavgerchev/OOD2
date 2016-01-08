@@ -140,19 +140,43 @@ namespace ClassDiagram_Final
         /// <param name="inBetweenPts">The list of points that the pipeline consists of.</param>
         public void RegisterPipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc, List<Point> inBetweenPts)
         {
+            if (ValidatePipeline(startComp, endComp, startCompLoc, endCompLoc))
+            {
+                Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc, inBetweenPts);
+                startComp.SetPipeline(startCompLoc, p);
+                endComp.SetPipeline(endCompLoc, p);
+                AddPipeline(p);
+                p.GetLineRectange();
+            }
+        }
+
+        /// <summary>
+        /// Validates whether the pipeline is eligible and should be created.
+        /// </summary>
+        /// <param name="startComp">The starting comp of the pipeline.</param>
+        /// <param name="endComp">The ending comp of the pipeline.</param>
+        /// <param name="startCompLoc">The location of the starting comp.</param>
+        /// <param name="endCompLoc">The location of the ending comp.</param>
+        /// <remarks>The following criterias must be met
+        /// 1. The location for both starting and ending point must be empty/
+        /// 2. The starting comp can't be Sink.The ending comp can't be Pump.
+        /// 3. The starting and ending comp must be different.</remarks>
+        /// <returns>A boolean indicating whether the pipeline is eligible.</returns>
+        private bool ValidatePipeline(Component startComp, Component endComp, Point startCompLoc, Point endCompLoc)
+        {
             if (!(startComp.IsLocationEmpty(startCompLoc) && endComp.IsLocationEmpty(endCompLoc)))
             {
-                return;
+                return false;
+            }
+            if (startComp == endComp)
+            {
+                return false;
             }
             if (startComp is Sink || endComp is Pump)
             {
-                return;
+                return false;
             }
-            Pipeline p = CreatePipeline(startComp, endComp, startCompLoc, endCompLoc, inBetweenPts);
-            startComp.SetPipeline(startCompLoc, p);
-            endComp.SetPipeline(endCompLoc, p);
-            AddPipeline(p);
-            p.GetLineRectange();
+            return true;
         }
 
         /// <summary>

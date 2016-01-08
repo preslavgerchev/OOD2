@@ -460,8 +460,7 @@
             this.splitterTrackBar.TickFrequency = 10;
             this.splitterTrackBar.Value = 1;
             this.splitterTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            this.splitterTrackBar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.splitterTrackBar_PreviewKeyDown);
-            // 
+            //
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
