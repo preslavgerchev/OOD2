@@ -63,6 +63,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitterTrackBar = new System.Windows.Forms.TrackBar();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -460,7 +462,7 @@
             this.splitterTrackBar.TickFrequency = 10;
             this.splitterTrackBar.Value = 1;
             this.splitterTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            //
+            // 
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
@@ -470,11 +472,31 @@
             this.lblInfo.Size = new System.Drawing.Size(0, 13);
             this.lblInfo.TabIndex = 25;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(592, 11);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(56, 13);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Adjustable";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(592, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(39, 13);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "Splitter";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 609);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.splitterTrackBar);
             this.Controls.Add(this.panel1);
@@ -536,6 +558,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TrackBar splitterTrackBar;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
     }
 }
 
