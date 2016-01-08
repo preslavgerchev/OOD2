@@ -1,17 +1,3 @@
-Implementation: 
- 1. Little square merger/splitter - done Preslav
- 2. Delete a line + select a line - Rosen
- 3. Colors for a line - Done Preslav
- 4. Info about a line's flow - Dimitar
- 5. Flow handling - done Preslav
- 6. Pump - Capacity = max flow
-	 - Current flow <= Capacity - did this +show and set from the UI -Monica
- 7. Pipeline image + form icon - UI -Done Monica
- 8. Comments -- Almost done -Monica
- 9. Proper names for buttons and labels!! - Done Monica
- 10. When pressing x, dont close form, just cancel - done -Monica
- 11. int to double- preslav
-
 Optional: No overlapping lines
 
 Docs : 

@@ -32,7 +32,7 @@ namespace ClassDiagram_Final
             InitializeComponent();
             myNetwork = new Network();
             panel1.Paint += panel1_Paint;
-            trackBar1.Visible = false;
+            splitterTrackBar.Visible = false;
             inbetweenPts = new List<Point>();
             font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Bold);
             saved = false;
@@ -117,9 +117,9 @@ namespace ClassDiagram_Final
                 myNetwork.RemovePipeline(selectedComponent);
                 selectedComponent = null;
                 type = ComponentType.NONE;
-                if (trackBar1.Visible)
+                if (splitterTrackBar.Visible)
                 {
-                    trackBar1.Visible = false;
+                    splitterTrackBar.Visible = false;
                 }
             }
             if (selectedPipeline != null)
@@ -161,11 +161,11 @@ namespace ClassDiagram_Final
             Splitter splitterComp = selectedComponent as Splitter;
             if (splitterComp != null && splitterComp.IsAdjustable)
             {
-                trackBar1.Visible = true;
+                splitterTrackBar.Visible = true;
             }
             else
             {
-                trackBar1.Visible = false;
+                splitterTrackBar.Visible = false;
             }
             if (selectedComponent != null)
             {
@@ -181,7 +181,7 @@ namespace ClassDiagram_Final
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            ((Splitter)selectedComponent).AdjustPercentages(trackBar1.Value);
+            ((Splitter)selectedComponent).AdjustPercentages(splitterTrackBar.Value);
             panel1.Invalidate();
         }
 

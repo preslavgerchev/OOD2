@@ -61,13 +61,13 @@
             this.btnPump = new System.Windows.Forms.Button();
             this.btnPipe = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.splitterTrackBar = new System.Windows.Forms.TrackBar();
             this.lblInfo = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.gbToolbox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -448,19 +448,19 @@
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             this.panel1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDoubleClick);
             // 
-            // trackBar1
+            // splitterTrackBar
             // 
-            this.trackBar1.Location = new System.Drawing.Point(654, -4);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Minimum = 1;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(45, 82);
-            this.trackBar1.SmallChange = 10;
-            this.trackBar1.TabIndex = 24;
-            this.trackBar1.TickFrequency = 10;
-            this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.splitterTrackBar.Location = new System.Drawing.Point(654, -4);
+            this.splitterTrackBar.Maximum = 100;
+            this.splitterTrackBar.Name = "splitterTrackBar";
+            this.splitterTrackBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.splitterTrackBar.Size = new System.Drawing.Size(45, 82);
+            this.splitterTrackBar.SmallChange = 10;
+            this.splitterTrackBar.TabIndex = 24;
+            this.splitterTrackBar.TickFrequency = 10;
+            this.splitterTrackBar.Value = 1;
+            this.splitterTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.splitterTrackBar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.splitterTrackBar_PreviewKeyDown);
             // 
             // lblInfo
             // 
@@ -477,14 +477,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 609);
             this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.splitterTrackBar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.gbToolbox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Canvas";
             this.panel4.ResumeLayout(false);
@@ -495,7 +495,7 @@
             this.panel2.PerformLayout();
             this.gbToolbox.ResumeLayout(false);
             this.gbToolbox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitterTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -535,7 +535,7 @@
         private System.Windows.Forms.Button btnPump;
         public System.Windows.Forms.Button btnPipe;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar splitterTrackBar;
         private System.Windows.Forms.Label lblInfo;
     }
 }
