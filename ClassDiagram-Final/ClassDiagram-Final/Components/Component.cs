@@ -29,7 +29,7 @@ namespace ClassDiagram_Final
         public abstract Image GetImage();
 
         /// <summary>
-        /// Deletes the pipeline and sets its corresponding property to null.
+        /// Deletes the pipeline and sets its corresponding outcome/income of the component to null.
         /// </summary>
         /// <param name="p">The pipeline that will be deleted.</param>
         public abstract void ClearPipeline(Pipeline p);

@@ -80,7 +80,7 @@ namespace ClassDiagram_Final
         /// <summary>
         /// Removes a component from the list.
         /// </summary>
-        /// <param name="c">The component that must be removed.</param>
+        /// <param name="c">The component that has to be removed.</param>
         public void RemoveComponent(Component c)
         {
             MyComponents.Remove(c);
@@ -146,7 +146,7 @@ namespace ClassDiagram_Final
                 startComp.SetPipeline(startCompLoc, p);
                 endComp.SetPipeline(endCompLoc, p);
                 AddPipeline(p);
-                p.GetLineRectange();
+                
             }
         }
 
@@ -180,7 +180,7 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Removes a pipeline from the pipeline list and sets its start and ending component to null.
+        /// Removes a pipeline from the pipeline list and sets its starting and ending component to null.
         /// </summary>
         /// <param name="c">The component for which all the pipelines will removed.</param>
         public void RemovePipeline(Component c)
@@ -193,7 +193,7 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Removes a pipeline from the list and clear its starting and ending point.
+        /// Removes a pipeline from the list and clears its starting and ending point.
         /// </summary>
         /// <param name="p">The pipeline that will be removed.</param>
         public void RemovePipeline(Pipeline p)

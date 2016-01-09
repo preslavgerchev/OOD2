@@ -35,7 +35,6 @@ namespace ClassDiagram_Final
             this.EndComponent = endComp;
             this.StartPoint = startCompLoc;
             this.EndPoint = endCompLoc;
-            GetPipelineRetangle = GetLineRectange();
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Changes the max flow of the pipeline if it is above the current flow.
+        /// Changes the max flow of the pipeline if it is bigger than the current flow.
         /// </summary>
         /// <param name="newMaxFlow">The new value for the max flow.</param>
         public void ChangeMaxFlow(double newMaxFlow)
@@ -80,7 +79,7 @@ namespace ClassDiagram_Final
         }
 
         /// <summary>
-        /// Removes this pipeline from the start and end component's properties.
+        /// Removes the pipeline from the components that it is attached to.
         /// </summary>
         public void ClearComponents()
         {
@@ -115,10 +114,6 @@ namespace ClassDiagram_Final
             }
         }
     
-        //added
-        public Rectangle GetLineRectange()
-        {
-            return new Rectangle(StartPoint.X, StartPoint.Y - 6, EndPoint.X - StartPoint.X, 10);
-        }
+      
     }
 }

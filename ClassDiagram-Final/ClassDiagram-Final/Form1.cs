@@ -360,5 +360,7 @@ namespace ClassDiagram_Final
                 panel1.Invalidate();
             }
         }
+
+        
     }
 }
