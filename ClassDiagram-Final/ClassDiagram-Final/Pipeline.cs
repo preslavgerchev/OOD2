@@ -8,7 +8,7 @@ namespace ClassDiagram_Final
     {
         //Properties
         public double CurrentFlow { get; private set; }
-        public double MaxFlow { get; private set; } = 20;
+        public double MaxFlow { get; private set; } 
         public IList<Point> InBetweenPoints { get; }
         public Component StartComponent { get; }
         public Component EndComponent { get; }
