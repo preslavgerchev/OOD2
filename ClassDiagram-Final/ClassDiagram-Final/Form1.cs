@@ -23,7 +23,7 @@ namespace ClassDiagram_Final
 
         Point selectedPipelineLoc = new Point(0, 0);
 
-        string FILE_PATH = "Network.XML";
+        string FILE_PATH = "";
         bool saved;
 
         public Form1()
@@ -269,9 +269,16 @@ namespace ClassDiagram_Final
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Network.SaveToFile(myNetwork, FILE_PATH);
-            saved = true;
-            lblInfo.Text = "Your file has been saved! " + DateTime.Now;
+            if (FILE_PATH == "")
+            {
+                btnSaveAs.PerformClick();
+            }
+            else
+            {
+                Network.SaveToFile(myNetwork, FILE_PATH);
+                saved = true;
+                lblInfo.Text = "Your file has been saved! " + DateTime.Now;
+            }
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
