@@ -112,8 +112,6 @@ namespace ClassDiagram_Final
                 int y = (this.StartPoint.Y + this.EndPoint.Y) / 2;
                 return new Point(x, y);
             }
-        }
-    
-      
+        }  
     }
 }
