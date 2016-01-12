@@ -1,0 +1,8 @@
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\bin\Debug\Network System.exe.config
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\bin\Debug\Network System.exe
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\bin\Debug\Network System.pdb
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\obj\Debug\Network System.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\obj\Debug\Network_System.Properties.Resources.resources
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\obj\Debug\Network System.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\obj\Debug\Network System.exe
+C:\Users\User\Desktop\YEAR 2\OOD\OOD2\OOD2\Network System\Network System\obj\Debug\Network System.pdb
